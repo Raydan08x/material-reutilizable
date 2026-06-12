@@ -1268,8 +1268,8 @@ label {
 }
 
 .guide-sidebar .accordion__content.is-open {
-    max-height: none;
-    overflow: visible;
+    max-height: 2000px;
+    overflow: hidden;
 }
 
 .guide-sidebar h3 {
