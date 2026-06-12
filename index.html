@@ -368,8 +368,23 @@
                 <p>Aquí puedes practicar dos laboratorios guiados nuevos además del conversor: una tarjeta de presentación inspirada en Bootstrap y una mini tienda con carrito DOM.</p>
             </div>
 
+            <div class="utility-badge-bar" id="utilityBadgeBar">
+                <button type="button" class="utility-badge is-active" data-target="temperatureTool">
+                    <span>Actividad 1</span>
+                    <strong>Conversor de temperatura</strong>
+                </button>
+                <button type="button" class="utility-badge" data-target="profileLab">
+                    <span>Actividad 2</span>
+                    <strong>Tarjeta de presentación</strong>
+                </button>
+                <button type="button" class="utility-badge" data-target="shopLab">
+                    <span>Actividad 3</span>
+                    <strong>Mini carrito de compras</strong>
+                </button>
+            </div>
+
             <div class="utilities-cards-grid">
-                <article class="glass-panel utility-card" id="temperatureTool">
+                <article class="glass-panel utility-card is-hidden" id="temperatureTool">
                     <div class="utility-card__header">
                         <div>
                             <span class="eyebrow">Actividad 1</span>
@@ -409,7 +424,7 @@
                     </div>
                 </article>
 
-                <article class="glass-panel utility-card">
+                <article class="glass-panel utility-card is-hidden">
                     <div class="utility-card__header">
                         <div>
                             <span class="eyebrow">Actividad 2</span>
@@ -472,7 +487,7 @@
                     </div>
                 </article>
 
-                <article class="glass-panel utility-card">
+                <article class="glass-panel utility-card is-hidden">
                     <div class="utility-card__header">
                         <div>
                             <span class="eyebrow">Actividad 3</span>

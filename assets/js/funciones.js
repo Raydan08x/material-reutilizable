@@ -1386,6 +1386,39 @@ export class ImplementationGuide {
     }
 }
 
+class UtilityBadgeToggle {
+    constructor() {
+        this.bar = document.getElementById("utilityBadgeBar");
+        if (!this.bar) return;
+        this.cards = document.querySelectorAll("#utilidades .utility-card");
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        this.bar.addEventListener("click", (e) => {
+            const badge = e.target.closest(".utility-badge");
+            if (!badge) return;
+            this.showCard(badge.dataset.target);
+            this.updateActiveBadge(badge);
+        });
+    }
+
+    showCard(targetId) {
+        this.cards.forEach((card) => {
+            if (card.id === targetId || card.querySelector(`#${targetId}`)) {
+                card.classList.remove("is-hidden");
+            } else {
+                card.classList.add("is-hidden");
+            }
+        });
+    }
+
+    updateActiveBadge(activeBadge) {
+        this.bar.querySelectorAll(".utility-badge").forEach((b) => b.classList.remove("is-active"));
+        activeBadge.classList.add("is-active");
+    }
+}
+
 export function initApp() {
     const toast = new ToastManager();
     new FeatureList();
@@ -1419,5 +1452,6 @@ export function initApp() {
     new ShoppingCartActivity(toast);
     new CopyToClipboard(toast);
     new UtilityActions(toast);
+    new UtilityBadgeToggle();
     new ImplementationGuide(toast);
 }
