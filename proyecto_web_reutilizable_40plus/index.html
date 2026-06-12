@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyecto unificado con componentes reutilizables de HTML, CSS y JavaScript para paginas web profesionales.">
+    <title>Kit Web Reutilizable 40+ Componentes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header class="glass-navbar" id="topbar">
+        <a href="#inicio" class="brand" data-section="inicio" aria-label="Ir al inicio">
+            <span class="brand__mark">CW</span>
+            <span class="brand__text">Componentes Web</span>
+        </a>
+
+        <nav class="navbar-links" aria-label="Navegacion principal">
+            <button class="nav-link is-active" data-section="inicio">Inicio</button>
+            <button class="nav-link" data-section="componentes">Componentes</button>
+            <button class="nav-link" data-section="formularios">Formularios</button>
+            <button class="nav-link" data-section="datos">Datos</button>
+            <button class="nav-link" data-section="utilidades">Utilidades</button>
+
+            <div class="dropdown" data-dropdown>
+                <button class="nav-link dropdown__button" data-dropdown-button type="button">Mas ▾</button>
+                <div class="dropdown__menu" data-dropdown-menu>
+                    <button data-section="login">Login demo</button>
+                    <button data-section="storage">Storage</button>
+                    <button data-section="guia">Guia</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="navbar-actions">
+            <button class="icon-button" id="themeToggle" type="button" aria-label="Cambiar tema">☾</button>
+            <button class="icon-button" id="openSidebar" type="button" aria-label="Abrir menu lateral">☰</button>
+        </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Menu lateral">
+        <div class="sidebar__header">
+            <strong>Menu lateral</strong>
+            <button class="icon-button" id="closeSidebar" type="button" aria-label="Cerrar menu lateral">×</button>
+        </div>
+
+        <div class="sidebar__content">
+            <button class="side-link is-active" data-section="inicio">Panel principal</button>
+
+            <div class="side-group">
+                <button class="side-group__button" type="button">Interfaz ▾</button>
+                <div class="side-group__content">
+                    <button data-section="componentes">Componentes UI</button>
+                    <button data-section="formularios">Formularios</button>
+                    <button data-section="utilidades">Conversor dinamico</button>
+                </div>
+            </div>
+
+            <div class="side-group">
+                <button class="side-group__button" type="button">Datos y estado ▾</button>
+                <div class="side-group__content">
+                    <button data-section="datos">Catalogos y tablas</button>
+                    <button data-section="storage">LocalStorage</button>
+                    <button data-section="login">Login demo</button>
+                </div>
+            </div>
+
+            <button class="side-link" data-section="guia">Guia de implementacion</button>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main class="page-shell">
+        <section class="view-section is-active" id="inicio" data-view-section>
+            <div class="hero glass-panel reveal">
+                <span class="eyebrow">HTML + CSS + JavaScript</span>
+                <h1>Proyecto unificado con mas de 40 funcionalidades reutilizables</h1>
+                <p>
+                    Este proyecto funciona como banco de componentes para copiar en tus tareas y paginas web:
+                    navbar fija con blur, sidebar, login, formularios, cards, tablas, select bonito, tema oscuro,
+                    conversor dinamico, modales, toasts, localStorage y mucho mas.
+                </p>
+                <div class="hero-actions">
+                    <button class="primary-button" data-section="componentes">Ver componentes</button>
+                    <button class="secondary-button" data-section="guia">Como implementarlo</button>
+                </div>
+            </div>
+
+            <div class="stats-grid reveal">
+                <article class="stat-card glass-panel">
+                    <strong data-counter data-target="52">0</strong>
+                    <span>funcionalidades incluidas</span>
+                </article>
+                <article class="stat-card glass-panel">
+                    <strong>2</strong>
+                    <span>versiones JS: modular y normal</span>
+                </article>
+                <article class="stat-card glass-panel">
+                    <strong>1</strong>
+                    <span>pagina demo unificada</span>
+                </article>
+            </div>
+
+            <div class="feature-grid reveal" id="featureList"></div>
+        </section>
+
+        <section class="view-section" id="login" data-view-section>
+            <div class="section-heading">
+                <span class="eyebrow">Login reutilizable</span>
+                <h2>Login demo con validacion, mostrar contraseña y sesion local</h2>
+                <p>Es un ejemplo frontend. No reemplaza autenticacion real con backend.</p>
+            </div>
+
+            <div class="two-column">
+                <form class="glass-panel form-card" id="loginForm" novalidate>
+                    <label for="loginEmail">Correo</label>
+                    <input id="loginEmail" name="email" type="email" placeholder="usuario@correo.com" required>
+                    <small class="field-error" data-error="loginEmail"></small>
+
+                    <label for="loginPassword">Contraseña</label>
+                    <div class="input-action">
+                        <input id="loginPassword" name="password" type="password" placeholder="Minimo 6 caracteres" required minlength="6">
+                        <button type="button" data-toggle-password="loginPassword">Ver</button>
+                    </div>
+                    <small class="field-error" data-error="loginPassword"></small>
+
+                    <label class="check-line">
+                        <input type="checkbox" id="rememberUser">
+                        Recordar usuario en este navegador
+                    </label>
+
+                    <button class="primary-button" type="submit">Ingresar</button>
+                    <button class="secondary-button" id="logoutButton" type="button">Cerrar sesion</button>
+                </form>
+
+                <article class="glass-panel">
+                    <h3>Estado de sesion</h3>
+                    <p id="sessionStatus">Aun no hay sesion iniciada.</p>
+                    <div class="badge-row">
+                        <span class="badge">Validacion email</span>
+                        <span class="badge">Password toggle</span>
+                        <span class="badge">localStorage</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="view-section" id="componentes" data-view-section>
+            <div class="section-heading">
+                <span class="eyebrow">Componentes UI</span>
+                <h2>Componentes visuales reutilizables</h2>
+                <p>Select personalizado, tabs, acordeon, modal, toast, dropdown, carrusel, tooltip y copiar texto.</p>
+            </div>
+
+            <div class="component-grid">
+                <article class="glass-panel">
+                    <h3>Selector personalizado editable</h3>
+                    <p>Para agregar opciones, solo copia otro <code>li</code> con <code>data-value</code>.</p>
+                    <div class="custom-select" data-custom-select>
+                        <input type="hidden" id="selectProducto" value="apa">
+                        <button type="button" class="custom-select__button">
+                            <span class="custom-select__value">APA artesanal</span>
+                            <span class="custom-select__arrow">⌄</span>
+                        </button>
+                        <ul class="custom-select__options">
+                            <li class="custom-select__option is-selected" data-value="apa">APA artesanal</li>
+                            <li class="custom-select__option" data-value="stout">Stout premium</li>
+                            <li class="custom-select__option" data-value="sour">Sour de fruta</li>
+                            <li class="custom-select__option" data-value="barley">Barley Wine</li>
+                        </ul>
+                    </div>
+                    <p class="muted">Valor seleccionado: <strong id="selectedProductText">apa</strong></p>
+                </article>
+
+                <article class="glass-panel">
+                    <h3>Tabs</h3>
+                    <div class="tabs" data-tabs>
+                        <div class="tabs__buttons">
+                            <button class="is-active" data-tab="tab1">HTML</button>
+                            <button data-tab="tab2">CSS</button>
+                            <button data-tab="tab3">JS</button>
+                        </div>
+                        <div class="tab-panel is-active" id="tab1">HTML estructura el contenido.</div>
+                        <div class="tab-panel" id="tab2">CSS diseña colores, tamaños, layout y responsive.</div>
+                        <div class="tab-panel" id="tab3">JS agrega interaccion y logica.</div>
+                    </div>
+                </article>
+
+                <article class="glass-panel">
+                    <h3>Acordeon FAQ</h3>
+                    <div class="accordion" data-accordion>
+                        <button class="accordion__button">¿Para que sirve un componente?</button>
+                        <div class="accordion__content">Para reutilizar una solucion en varias paginas sin empezar desde cero.</div>
+                        <button class="accordion__button">¿Puedo cambiar colores?</button>
+                        <div class="accordion__content">Si. Cambia las variables CSS dentro de <code>:root</code>.</div>
+                        <button class="accordion__button">¿Funciona con JS modular?</button>
+                        <div class="accordion__content">Si. El archivo principal importa clases desde <code>funciones.js</code>.</div>
+                    </div>
+                </article>
+
+                <article class="glass-panel">
+                    <h3>Modal y toast</h3>
+                    <button class="primary-button" data-open-modal="demoModal">Abrir modal</button>
+                    <button class="secondary-button" data-toast="Este es un toast reutilizable">Mostrar toast</button>
+                </article>
+
+                <article class="glass-panel">
+                    <h3>Carrusel</h3>
+                    <div class="carousel" data-carousel>
+                        <div class="carousel__track">
+                            <div class="carousel__slide is-active">Slide 1 - Hero</div>
+                            <div class="carousel__slide">Slide 2 - Producto</div>
+                            <div class="carousel__slide">Slide 3 - Contacto</div>
+                        </div>
+                        <div class="carousel__actions">
+                            <button data-carousel-prev>Anterior</button>
+                            <button data-carousel-next>Siguiente</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-panel">
+                    <h3>Copiar, tooltip y badge</h3>
+                    <p>Codigo promocional: <code id="couponCode">WEB-2026</code></p>
+                    <button class="secondary-button" data-copy="#couponCode">Copiar codigo</button>
+                    <button class="icon-button tooltip" data-tooltip="Texto de ayuda que aparece al pasar el mouse">?</button>
+                    <span class="notification-badge" id="notificationBadge">3</span>
+                </article>
+            </div>
+        </section>
+
+        <section class="view-section" id="formularios" data-view-section>
+            <div class="section-heading">
+                <span class="eyebrow">Formularios</span>
+                <h2>Validacion, contador, rango, archivo y autoguardado</h2>
+            </div>
+
+            <div class="two-column">
+                <form class="glass-panel form-card" id="contactForm" novalidate>
+                    <label for="contactName">Nombre</label>
+                    <input id="contactName" name="nombre" type="text" placeholder="Tu nombre" required minlength="3">
+                    <small class="field-error" data-error="contactName"></small>
+
+                    <label for="contactEmail">Correo</label>
+                    <input id="contactEmail" name="email" type="email" placeholder="correo@ejemplo.com" required>
+                    <small class="field-error" data-error="contactEmail"></small>
+
+                    <label for="messageText">Mensaje</label>
+                    <textarea id="messageText" rows="4" maxlength="160" placeholder="Escribe un mensaje"></textarea>
+                    <small><span id="charCounter">0</span>/160 caracteres</small>
+
+                    <label for="rangeInput">Nivel de interes</label>
+                    <input id="rangeInput" type="range" min="0" max="100" value="50">
+                    <p>Valor: <strong id="rangeValue">50</strong></p>
+
+                    <label for="fileInput">Archivo</label>
+                    <input id="fileInput" type="file">
+                    <p id="fileInfo" class="muted">No hay archivo seleccionado.</p>
+
+                    <button class="primary-button" type="submit">Enviar formulario</button>
+                    <button class="secondary-button" id="clearDraft" type="button">Limpiar borrador</button>
+                </form>
+
+                <article class="glass-panel">
+                    <h3>Stepper de progreso</h3>
+                    <div class="stepper" data-stepper>
+                        <div class="stepper__steps">
+                            <span class="is-active">1</span>
+                            <span>2</span>
+                            <span>3</span>
+                        </div>
+                        <p class="stepper__text">Paso 1: Datos personales</p>
+                        <button class="secondary-button" data-step-prev>Anterior</button>
+                        <button class="primary-button" data-step-next>Siguiente</button>
+                    </div>
+
+                    <h3>Skeleton loader</h3>
+                    <button class="secondary-button" id="loadSkeleton">Simular carga</button>
+                    <div id="skeletonArea"></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="view-section" id="datos" data-view-section>
+            <div class="section-heading">
+                <span class="eyebrow">Datos dinamicos</span>
+                <h2>Cards, filtros, busqueda, ordenamiento, paginacion y tabla ordenable</h2>
+            </div>
+
+            <div class="glass-panel data-toolbar">
+                <input id="catalogSearch" type="search" placeholder="Buscar producto...">
+                <select id="catalogSort">
+                    <option value="name">Ordenar por nombre</option>
+                    <option value="price">Ordenar por precio</option>
+                    <option value="rating">Ordenar por calificacion</option>
+                </select>
+                <div class="chips" id="catalogChips">
+                    <button class="chip is-active" data-category="all">Todos</button>
+                    <button class="chip" data-category="cerveza">Cerveza</button>
+                    <button class="chip" data-category="comida">Comida</button>
+                    <button class="chip" data-category="postre">Postre</button>
+                </div>
+            </div>
+
+            <div class="card-grid" id="catalogGrid"></div>
+            <div class="pagination" id="catalogPagination"></div>
+
+            <div class="glass-panel table-wrap">
+                <input id="tableSearch" type="search" placeholder="Filtrar tabla...">
+                <table class="data-table" id="demoTable">
+                    <thead>
+                        <tr>
+                            <th data-sort-table="name">Nombre</th>
+                            <th data-sort-table="role">Rol</th>
+                            <th data-sort-table="score">Puntaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Carlos</td><td>Frontend</td><td>92</td></tr>
+                        <tr><td>Laura</td><td>UX</td><td>88</td></tr>
+                        <tr><td>Valeria</td><td>Backend</td><td>95</td></tr>
+                        <tr><td>Juan</td><td>QA</td><td>84</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="view-section" id="storage" data-view-section>
+            <div class="section-heading">
+                <span class="eyebrow">Estado local</span>
+                <h2>Notas, tareas, autoguardado, exportar JSON y limpiar datos</h2>
+            </div>
+
+            <div class="two-column">
+                <article class="glass-panel">
+                    <h3>Notas con localStorage</h3>
+                    <textarea id="noteInput" rows="4" placeholder="Escribe una nota..."></textarea>
+                    <button class="primary-button" id="saveNote">Guardar nota</button>
+                    <button class="secondary-button" id="exportNotes">Exportar notas JSON</button>
+                    <ul class="item-list" id="noteList"></ul>
+                </article>
+
+                <article class="glass-panel">
+                    <h3>Lista de tareas</h3>
+                    <div class="input-action">
+                        <input id="todoInput" placeholder="Nueva tarea">
+                        <button id="addTodo" type="button">Agregar</button>
+                    </div>
+                    <ul class="item-list draggable-list" id="todoList"></ul>
+                    <button class="danger-button" id="clearTodos">Borrar tareas</button>
+                </article>
+            </div>
+        </section>
+
+        <section class="view-section" id="utilidades" data-view-section>
+            <div class="section-heading">
+                <span class="eyebrow">Ejemplo pedido</span>
+                <h2>Conversor con 3 botones: C, F y K</h2>
+                <p>Cada boton cambia la unidad seleccionada, el fondo y el resultado calculado.</p>
+            </div>
+
+            <div class="glass-panel temperature-tool" id="temperatureTool">
+                <div class="unit-buttons">
+                    <button class="unit-button is-active" data-unit="celsius">C</button>
+                    <button class="unit-button" data-unit="fahrenheit">F</button>
+                    <button class="unit-button" data-unit="kelvin">K</button>
+                </div>
+
+                <label for="temperatureInput">Temperatura</label>
+                <input id="temperatureInput" type="number" placeholder="Ingresa un valor">
+                <button class="primary-button" id="calculateTemperature">Calcular</button>
+                <p id="temperatureMessage" class="muted"></p>
+                <div class="result-box" id="temperatureResult">Selecciona una unidad y calcula.</div>
+            </div>
+
+            <div class="glass-panel utilities-row">
+                <button class="secondary-button" id="printPage">Imprimir pagina</button>
+                <button class="secondary-button" id="resetDemo">Reiniciar demo visual</button>
+                <button class="secondary-button" data-toast="Accion ejecutada correctamente">Probar accion rapida</button>
+            </div>
+        </section>
+
+        <section class="view-section" id="guia" data-view-section>
+            <div class="section-heading">
+                <span class="eyebrow">Guia de implementacion</span>
+                <h2>Que cambiar para reutilizar este proyecto</h2>
+            </div>
+
+            <div class="glass-panel guide-content">
+                <h3>1. Cambios principales en HTML</h3>
+                <p>Cambia textos, ids y atributos <code>data-section</code>. Si agregas una nueva seccion, crea un boton con el mismo valor en <code>data-section</code>.</p>
+                <pre><code>&lt;button data-section="servicios"&gt;Servicios&lt;/button&gt;
+&lt;section id="servicios" data-view-section&gt;...&lt;/section&gt;</code></pre>
+
+                <h3>2. Cambios principales en CSS</h3>
+                <p>Modifica las variables dentro de <code>:root</code> para cambiar colores, radios, sombras y tamaño de navbar.</p>
+                <pre><code>:root {
+  --primary: #2563eb;
+  --secondary: #7c3aed;
+  --radius-lg: 24px;
+}</code></pre>
+
+                <h3>3. Cambios principales en JS modular</h3>
+                <p>Agrega clases en <code>funciones.js</code> usando <code>export</code> y llamalas desde <code>script.js</code> con <code>import</code>.</p>
+                <pre><code>import { CustomSelect } from "./funciones.js";
+new CustomSelect("[data-custom-select]");</code></pre>
+
+                <h3>4. Version normal sin modulos</h3>
+                <p>Usa <code>script-normal.js</code> quitando <code>type="module"</code> si tu profesor no quiere modulos.</p>
+                <pre><code>&lt;script src="script-normal.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Volver arriba">↑</button>
+
+    <dialog class="modal" id="demoModal">
+        <div class="modal__content">
+            <button class="modal__close" data-close-modal type="button">×</button>
+            <h3>Modal reutilizable</h3>
+            <p>Este modal se puede usar para alertas, confirmaciones, detalles de producto o formularios cortos.</p>
+            <button class="primary-button" data-close-modal type="button">Entendido</button>
+        </div>
+    </dialog>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script type="module" src="script.js"></script>
+    <!-- Version normal sin modulos: comenta la linea anterior y descomenta esta si la necesitas. -->
+    <!-- <script src="script-normal.js"></script> -->
+</body>
+</html>
