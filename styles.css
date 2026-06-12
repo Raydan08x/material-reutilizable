@@ -63,6 +63,18 @@ body.unit-kelvin {
     background: radial-gradient(circle at top left, rgba(74, 222, 128, 0.6), transparent 35%), linear-gradient(135deg, #14532d, #111827);
 }
 
+[data-theme="light"] body.unit-celsius {
+    background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.4), transparent 35%), linear-gradient(135deg, #fecaca, #f8fafc);
+}
+
+[data-theme="light"] body.unit-fahrenheit {
+    background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.4), transparent 35%), linear-gradient(135deg, #bfdbfe, #f8fafc);
+}
+
+[data-theme="light"] body.unit-kelvin {
+    background: radial-gradient(circle at top left, rgba(74, 222, 128, 0.4), transparent 35%), linear-gradient(135deg, #bbf7d0, #f8fafc);
+}
+
 button,
 input,
 select,
@@ -700,7 +712,7 @@ label {
 .toast-container {
     position: fixed;
     right: 20px;
-    bottom: 20px;
+    bottom: 80px;
     z-index: 2000;
     display: grid;
     gap: 10px;
