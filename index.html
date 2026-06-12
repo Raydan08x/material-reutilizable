@@ -368,8 +368,8 @@
                 <p>Aquí puedes practicar dos laboratorios guiados nuevos además del conversor: una tarjeta de presentación inspirada en Bootstrap y una mini tienda con carrito DOM.</p>
             </div>
 
-            <div class="utilities-stack">
-                <div class="glass-panel temperature-tool utility-card" id="temperatureTool">
+            <div class="utilities-cards-grid">
+                <article class="glass-panel utility-card" id="temperatureTool">
                     <div class="utility-card__header">
                         <div>
                             <span class="eyebrow">Actividad 1</span>
@@ -407,142 +407,140 @@
                             <li>Imprime ambos resultados en el DOM o en consola y prueba casos como <code>45</code> y <code>14</code>.</li>
                         </ol>
                     </div>
-                </div>
+                </article>
 
-                <div class="utility-lab-grid">
-                    <article class="glass-panel utility-card">
-                        <div class="utility-card__header">
-                            <div>
-                                <span class="eyebrow">Actividad 2</span>
-                                <h3>Tarjeta de presentación Bootstrap</h3>
-                            </div>
-                            <a class="secondary-button" href="docs/pdf/actividades_guiadas_componentes_web_2026.pdf" download>PDF actividad</a>
+                <article class="glass-panel utility-card">
+                    <div class="utility-card__header">
+                        <div>
+                            <span class="eyebrow">Actividad 2</span>
+                            <h3>Tarjeta de presentación Bootstrap</h3>
                         </div>
+                        <a class="secondary-button" href="docs/pdf/actividades_guiadas_componentes_web_2026.pdf" download>PDF actividad</a>
+                    </div>
 
-                        <p class="muted">Resuelve el LAB1 creando una card presentable, con jerarquía visual, badges, botones y una segunda cara para tecnologías.</p>
+                    <p class="muted">Resuelve el LAB1 creando una card presentable, con jerarquía visual, badges, botones y una segunda cara para tecnologías.</p>
 
-                        <div class="profile-lab" id="profileLab">
-                            <div class="profile-lab__flip" id="profileLabFlip">
-                                <section class="profile-lab__face profile-lab__face--front">
-                                    <div class="profile-lab__avatar">CM</div>
-                                    <h4>Carlos Madero</h4>
-                                    <p class="profile-lab__role">Full Stack Java Developer</p>
-                                    <div class="profile-lab__badges">
-                                        <span>Bootstrap</span>
-                                        <span>JavaScript</span>
-                                        <span>Data</span>
-                                    </div>
-                                    <p class="muted">Card de presentación personal con una estructura parecida a un ejercicio Bootstrap, pero adaptada al look de esta guía.</p>
-                                    <div class="profile-lab__links">
-                                        <a href="mailto:cmadero08x@gmail.com">Email</a>
-                                        <a href="https://github.com/raydan08x" target="_blank" rel="noreferrer">GitHub</a>
-                                        <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-                                    </div>
-                                    <button type="button" class="primary-button" id="showProfileTech">Ver tecnologías</button>
-                                </section>
-
-                                <section class="profile-lab__face profile-lab__face--back">
-                                    <h4>Tecnologías</h4>
-                                    <div class="profile-lab__tech-grid">
-                                        <span>Bootstrap grid</span>
-                                        <span>Card</span>
-                                        <span>Badge</span>
-                                        <span>Buttons</span>
-                                        <span>Shadow</span>
-                                        <span>Responsive</span>
-                                    </div>
-                                    <p class="muted">La actividad te pide comprender qué pone Bootstrap y qué debe completar tu CSS personalizado.</p>
-                                    <button type="button" class="secondary-button" id="hideProfileTech">Volver al perfil</button>
-                                </section>
-                            </div>
-                        </div>
-
-                        <div class="utility-steps">
-                            <div class="utility-card__actions">
-                                <button type="button" class="secondary-button" data-section="guia" data-guide-feature-action="53">Saber más</button>
-                                <span class="muted">Abre la funcionalidad 53 con la explicación completa.</span>
-                            </div>
-                            <h4>Paso a paso sugerido</h4>
-                            <ol>
-                                <li>Crea un contenedor principal con estructura tipo <code>container</code>, <code>row</code> y <code>col</code>.</li>
-                                <li>Dentro arma la card con foto, nombre, rol, descripción y botones de contacto.</li>
-                                <li>Usa clases conceptuales de Bootstrap como <code>card</code>, <code>badge</code>, <code>btn</code> y <code>shadow</code>.</li>
-                                <li>Luego adapta colores, gradientes, radios y espaciado con CSS propio.</li>
-                                <li>Por último agrega la segunda cara o el estado alterno de tecnologías con JavaScript.</li>
-                            </ol>
-                        </div>
-                    </article>
-
-                    <article class="glass-panel utility-card">
-                        <div class="utility-card__header">
-                            <div>
-                                <span class="eyebrow">Actividad 3</span>
-                                <h3>Mini tienda con carrito DOM</h3>
-                            </div>
-                            <a class="secondary-button" href="docs/pdf/actividades_guiadas_componentes_web_2026.pdf" download>PDF actividad</a>
-                        </div>
-
-                        <p class="muted">Basado en <code>AD16_Lab_Carrito.pdf</code>: agrega productos, actualiza badge, suma total, elimina ítems y vacía el carrito sin recargar la página.</p>
-
-                        <div class="shop-lab" id="shopLab">
-                            <div class="shop-lab__topbar">
-                                <strong>Mini tienda</strong>
-                                <span class="shop-lab__badge" id="shopBadge">0</span>
-                            </div>
-
-                            <div class="shop-lab__grid">
-                                <article class="shop-product">
-                                    <h4>Pack IPA</h4>
-                                    <p class="muted">$18,000</p>
-                                    <button type="button" class="primary-button shop-add-button" data-name="Pack IPA" data-price="18000">Agregar</button>
-                                </article>
-                                <article class="shop-product">
-                                    <h4>Stout Reserva</h4>
-                                    <p class="muted">$16,500</p>
-                                    <button type="button" class="primary-button shop-add-button" data-name="Stout Reserva" data-price="16500">Agregar</button>
-                                </article>
-                                <article class="shop-product">
-                                    <h4>Burger Lab</h4>
-                                    <p class="muted">$24,000</p>
-                                    <button type="button" class="primary-button shop-add-button" data-name="Burger Lab" data-price="24000">Agregar</button>
-                                </article>
-                                <article class="shop-product">
-                                    <h4>Cheesecake</h4>
-                                    <p class="muted">$11,000</p>
-                                    <button type="button" class="primary-button shop-add-button" data-name="Cheesecake" data-price="11000">Agregar</button>
-                                </article>
-                            </div>
-
-                            <div class="shop-cart">
-                                <div class="shop-cart__head">
-                                    <h4>Carrito</h4>
-                                    <button type="button" class="danger-button" id="clearShopCart">Vaciar</button>
+                    <div class="profile-lab" id="profileLab">
+                        <div class="profile-lab__flip" id="profileLabFlip">
+                            <section class="profile-lab__face profile-lab__face--front">
+                                <div class="profile-lab__avatar">CM</div>
+                                <h4>Carlos Madero</h4>
+                                <p class="profile-lab__role">Full Stack Java Developer</p>
+                                <div class="profile-lab__badges">
+                                    <span>Bootstrap</span>
+                                    <span>JavaScript</span>
+                                    <span>Data</span>
                                 </div>
-                                <p class="muted shop-cart__empty" id="shopEmptyMessage">Tu carrito está vacío.</p>
-                                <ul class="shop-cart__list" id="shopCartList"></ul>
-                                <div class="shop-cart__total">
-                                    <span>Total</span>
-                                    <strong id="shopCartTotal">$0</strong>
+                                <p class="muted">Card de presentación personal con una estructura parecida a un ejercicio Bootstrap, pero adaptada al look de esta guía.</p>
+                                <div class="profile-lab__links">
+                                    <a href="mailto:cmadero08x@gmail.com">Email</a>
+                                    <a href="https://github.com/raydan08x" target="_blank" rel="noreferrer">GitHub</a>
+                                    <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
                                 </div>
-                            </div>
+                                <button type="button" class="primary-button" id="showProfileTech">Ver tecnologías</button>
+                            </section>
+
+                            <section class="profile-lab__face profile-lab__face--back">
+                                <h4>Tecnologías</h4>
+                                <div class="profile-lab__tech-grid">
+                                    <span>Bootstrap grid</span>
+                                    <span>Card</span>
+                                    <span>Badge</span>
+                                    <span>Buttons</span>
+                                    <span>Shadow</span>
+                                    <span>Responsive</span>
+                                </div>
+                                <p class="muted">La actividad te pide comprender qué pone Bootstrap y qué debe completar tu CSS personalizado.</p>
+                                <button type="button" class="secondary-button" id="hideProfileTech">Volver al perfil</button>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="utility-steps">
+                        <div class="utility-card__actions">
+                            <button type="button" class="secondary-button" data-section="guia" data-guide-feature-action="53">Saber más</button>
+                            <span class="muted">Abre la funcionalidad 53 con la explicación completa.</span>
+                        </div>
+                        <h4>Paso a paso sugerido</h4>
+                        <ol>
+                            <li>Crea un contenedor principal con estructura tipo <code>container</code>, <code>row</code> y <code>col</code>.</li>
+                            <li>Dentro arma la card con foto, nombre, rol, descripción y botones de contacto.</li>
+                            <li>Usa clases conceptuales de Bootstrap como <code>card</code>, <code>badge</code>, <code>btn</code> y <code>shadow</code>.</li>
+                            <li>Luego adapta colores, gradientes, radios y espaciado con CSS propio.</li>
+                            <li>Por último agrega la segunda cara o el estado alterno de tecnologías con JavaScript.</li>
+                        </ol>
+                    </div>
+                </article>
+
+                <article class="glass-panel utility-card">
+                    <div class="utility-card__header">
+                        <div>
+                            <span class="eyebrow">Actividad 3</span>
+                            <h3>Mini tienda con carrito DOM</h3>
+                        </div>
+                        <a class="secondary-button" href="docs/pdf/actividades_guiadas_componentes_web_2026.pdf" download>PDF actividad</a>
+                    </div>
+
+                    <p class="muted">Basado en <code>AD16_Lab_Carrito.pdf</code>: agrega productos, actualiza badge, suma total, elimina ítems y vacía el carrito sin recargar la página.</p>
+
+                    <div class="shop-lab" id="shopLab">
+                        <div class="shop-lab__topbar">
+                            <strong>Mini tienda</strong>
+                            <span class="shop-lab__badge" id="shopBadge">0</span>
                         </div>
 
-                        <div class="utility-steps">
-                            <div class="utility-card__actions">
-                                <button type="button" class="secondary-button" data-section="guia" data-guide-feature-action="54">Saber más</button>
-                                <span class="muted">Abre la funcionalidad 54 con la explicación completa.</span>
-                            </div>
-                            <h4>Paso a paso sugerido</h4>
-                            <ol>
-                                <li>Escribe el HTML con navbar, badge, cards de producto y sección del carrito.</li>
-                                <li>Selecciona los botones <code>.shop-add-button</code> con <code>querySelectorAll</code>.</li>
-                                <li>Lee <code>data-name</code> y <code>data-price</code> al hacer clic y crea cada línea del carrito en el DOM.</li>
-                                <li>Mantén variables separadas para cantidad y total acumulado.</li>
-                                <li>Conecta eliminar y vaciar para recalcular la UI en tiempo real.</li>
-                            </ol>
+                        <div class="shop-lab__grid">
+                            <article class="shop-product">
+                                <h4>Pack IPA</h4>
+                                <p class="muted">$18,000</p>
+                                <button type="button" class="primary-button shop-add-button" data-name="Pack IPA" data-price="18000">Agregar</button>
+                            </article>
+                            <article class="shop-product">
+                                <h4>Stout Reserva</h4>
+                                <p class="muted">$16,500</p>
+                                <button type="button" class="primary-button shop-add-button" data-name="Stout Reserva" data-price="16500">Agregar</button>
+                            </article>
+                            <article class="shop-product">
+                                <h4>Burger Lab</h4>
+                                <p class="muted">$24,000</p>
+                                <button type="button" class="primary-button shop-add-button" data-name="Burger Lab" data-price="24000">Agregar</button>
+                            </article>
+                            <article class="shop-product">
+                                <h4>Cheesecake</h4>
+                                <p class="muted">$11,000</p>
+                                <button type="button" class="primary-button shop-add-button" data-name="Cheesecake" data-price="11000">Agregar</button>
+                            </article>
                         </div>
-                    </article>
-                </div>
+
+                        <div class="shop-cart">
+                            <div class="shop-cart__head">
+                                <h4>Carrito</h4>
+                                <button type="button" class="danger-button" id="clearShopCart">Vaciar</button>
+                            </div>
+                            <p class="muted shop-cart__empty" id="shopEmptyMessage">Tu carrito está vacío.</p>
+                            <ul class="shop-cart__list" id="shopCartList"></ul>
+                            <div class="shop-cart__total">
+                                <span>Total</span>
+                                <strong id="shopCartTotal">$0</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="utility-steps">
+                        <div class="utility-card__actions">
+                            <button type="button" class="secondary-button" data-section="guia" data-guide-feature-action="54">Saber más</button>
+                            <span class="muted">Abre la funcionalidad 54 con la explicación completa.</span>
+                        </div>
+                        <h4>Paso a paso sugerido</h4>
+                        <ol>
+                            <li>Escribe el HTML con navbar, badge, cards de producto y sección del carrito.</li>
+                            <li>Selecciona los botones <code>.shop-add-button</code> con <code>querySelectorAll</code>.</li>
+                            <li>Lee <code>data-name</code> y <code>data-price</code> al hacer clic y crea cada línea del carrito en el DOM.</li>
+                            <li>Mantén variables separadas para cantidad y total acumulado.</li>
+                            <li>Conecta eliminar y vaciar para recalcular la UI en tiempo real.</li>
+                        </ol>
+                    </div>
+                </article>
             </div>
 
             <div class="glass-panel utilities-row">
@@ -556,21 +554,21 @@
             <div class="section-heading">
                 <span class="eyebrow">Guía interactiva</span>
                 <h2>Guía de Implementación y Reciclaje</h2>
-                <p>Haz clic en cualquier tarjeta para ver la explicación paso a paso, el código exacto (HTML, CSS y JS) y los detalles ampliados de cada funcionalidad o actividad.</p>
+                <p>Selecciona una de las 54 funcionalidades organizadas en 9 categorías para ver su descripción y el código exacto (HTML, CSS y JS modular o normal) para copiar y pegar en tus proyectos.</p>
             </div>
 
             <div class="guide-layout">
                 <aside class="guide-sidebar glass-panel">
-                    <h3>Actividades y Proyectos</h3>
+                    <h3>Categorías</h3>
                     <div class="guide-categories" id="guideCategories">
-                        <!-- Cards de funcionalidades se renderizan dinámicamente -->
+                        <!-- Categorías y funcionalidades se renderizan dinámicamente -->
                     </div>
                 </aside>
 
                 <article class="guide-detail glass-panel" id="guideDetail">
                     <div class="guide-detail__welcome">
-                        <h3>Selecciona una actividad</h3>
-                        <p>Haz clic en cualquiera de las tarjetas a la izquierda para ver las instrucciones de reciclaje paso a paso, variables de CSS y códigos listos para copiar.</p>
+                        <h3>Selecciona una funcionalidad</h3>
+                        <p>Haz clic en cualquiera de las categorías a la izquierda y selecciona una funcionalidad para ver las instrucciones de reciclaje paso a paso, variables de CSS y códigos listos para copiar.</p>
                     </div>
                 </article>
             </div>
