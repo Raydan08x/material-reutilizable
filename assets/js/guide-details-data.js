@@ -1,4 +1,4 @@
-window.GUIDE_DETAILS = {
+﻿window.GUIDE_DETAILS = {
     "1": "1. Navbar fija glass\nLa navbar fija glass es una barra superior que permanece visible mientras el usuario hace scroll. Usa\ntransparencia, blur y sombra para verse cristalina sin tapar totalmente el fondo. Es muy usada en\nlanding pages, dashboards, portafolios, ecommerce y aplicaciones web modernas.\nDonde se usa en paginas reales: cabeceras de paginas, menus principales, paneles administrativos,\nsitios de marca, portafolios y single page applications.\nDependencias internas: puede trabajar sola, pero normalmente se conecta con el Router de secciones\nmediante botones con data-section.\nIdea para reciclar: copia solo el bloque HTML que corresponde al componente, copia las reglas CSS\nindicadas y copia la clase JS modular o la funcion normal. Luego cambia IDs, clases y textos segun tu\nproyecto.\nParte\nQue debes copiar\nQue puedes cambiar sin romperlo\nHTML\nEstructura visible del componente y\natributos data-*.\nTextos, iconos, rutas, nombres de secciones,\nopciones y labels.\nCSS\nClases del componente y, si aplica, variables\nde color.\nColores, blur, radios, espacios, sombras, tiempos\nde transicion.\nJS modular\nClase exportada con constructor e\ninicializacion.\nSelectores, nombres de clase activa, claves\nlocalStorage y comportamiento.\nJS normal\nFuncion inicializadora sin import/export.\nSelectores y condiciones, igual que en la version\nmodular.\nCodigo HTML minimo\nHTML que debes llevar a index.html\n<header class=\"glass-navbar\" id=\"mainNavbar\">\n    <a href=\"#inicio\" class=\"glass-navbar__brand\">Mi Proyecto</a>\n    <nav class=\"glass-navbar__links\" aria-label=\"Menu principal\">\n        <button type=\"button\" data-section=\"inicio\">Inicio</button>\n        <button type=\"button\" data-section=\"servicios\">Servicios</button>\n        <button type=\"button\" data-section=\"contacto\">Contacto</button>\n    </nav>\n    <button type=\"button\" class=\"glass-navbar__menu\" id=\"openSidebar\">\n        Menu\n    </button>\n</header>\nCodigo CSS minimo\nCSS que debes llevar a styles.css\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 4\n/* Variable util para que el contenido no quede debajo de la navbar */\n:root {\n    --navbar-height: 72px;\n    --glass-bg: rgba(255, 255, 255, 0.14);\n    --glass-border: rgba(255, 255, 255, 0.28);\n    --primary: #2563eb;\n}\nbody {\n    padding-top: var(--navbar-height);\n}\n.glass-navbar {\n    position: fixed;\n    top: 0;\n    left: 0;\n    z-index: 1000;\n    width: 100%;\n    min-height: var(--navbar-height);\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 16px;\n    padding: 14px 24px;\n    background: var(--glass-bg);\n    border-bottom: 1px solid var(--glass-border);\n    backdrop-filter: blur(18px);\n    -webkit-backdrop-filter: blur(18px);\n    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);\n}\n.glass-navbar__brand {\n    color: #ffffff;\n    font-weight: 800;\n    text-decoration: none;\n}\n.glass-navbar__links {\n    display: flex;\n    gap: 10px;\n}\n.glass-navbar button {\n    border: 0;\n    border-radius: 999px;\n    padding: 10px 14px;\n    color: #ffffff;\n    background: rgba(255, 255, 255, 0.12);\n    cursor: pointer;\n}\n.glass-navbar button:hover,\n.glass-navbar button.is-active {\n    background: var(--primary);\n}\n@media (max-width: 720px) {\n    .glass-navbar__links {\n        display: none;\n    }\n}\nJavaScript modular con export/import\nfunciones.js - clase o funcion exportada\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 5\nexport class GlassNavbar {\n    constructor(navbarId = \"mainNavbar\") {\n        this.navbar = document.getElementById(navbarId);\n        this.buttons = this.navbar?.querySelectorAll(\"[data-section]\") || [];\n        this.init();\n    }\n    init() {\n        this.buttons.forEach((button) => {\n            button.addEventListener(\"click\", () => {\n                this.setActive(button);\n            });\n        });\n    }\n    setActive(activeButton) {\n        this.buttons.forEach((button) => button.classList.remove(\"is-active\"));\n        activeButton.classList.add(\"is-active\");\n    }\n}\nscript.js - como llamarlo\n// script.js\nimport { GlassNavbar } from './funciones.js';\nnew GlassNavbar();\nJavaScript normal sin modulos\nscript-normal.js - version directa\nfunction initGlassNavbar(navbarId = \"mainNavbar\") {\n    const navbar = document.getElementById(navbarId);\n    if (!navbar) return;\n    const buttons = navbar.querySelectorAll(\"[data-section]\");\n    buttons.forEach((button) => {\n        button.addEventListener(\"click\", () => {\n            buttons.forEach((item) => item.classList.remove(\"is-active\"));\n            button.classList.add(\"is-active\");\n        });\n    });\n}\ninitGlassNavbar();\nVariables, clases, IDs y atributos que debes cambiar\nElemento\nDonde esta\nComo adaptarlo\n#mainNavbar\nHTML y JS\nCambia el id solo si tambien cambias el argumento new\nGlassNavbar('nuevoId').\n.glass-navbar\nCSS y HTML\nPuedes renombrarla, pero cambia todas sus reglas CSS.\ndata-section\nBotones\nDebe coincidir con las secciones si usas router.\n--navbar-height\n:root\nAjusta la altura si tu navbar es mas alta o mas baja.\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 6\nElemento\nDonde esta\nComo adaptarlo\n--glass-bg\n:root\nSube o baja la transparencia; 0.10 es mas transparente,\n0.30 mas solido.\nPaso a paso para implementarlo en otro proyecto\n1. Copia el bloque <header> justo despues de abrir <body>.\n2. Copia las variables CSS y las reglas de .glass-navbar en tu styles.css.\n3. Verifica que el body tenga padding-top para que el contenido no quede escondido debajo de la navbar.\n4. Si vas a controlar secciones, pon data-section en cada boton y crea secciones con esos mismos nombres.\n5. Importa GlassNavbar en script.js y crea new GlassNavbar().\n6. Prueba scroll: la barra debe quedarse fija y el blur debe verse sobre el fondo.\nErrores comunes y como corregirlos\nError\nCausa probable\nSolucion\nLa navbar tapa el contenido\nFalta padding-top en body\nUsa body { padding-top:\nvar(--navbar-height); }\nNo se ve el blur\nEl fondo detras es plano o el\nnavegador no soporta backdrop-filter\nUsa un fondo con degradados y agrega\n-webkit-backdrop-filter.\nLos botones no se activan\nEl JS no encuentra #mainNavbar\nRevisa que el id del HTML coincida con el\nconstructor.\nChecklist de prueba\n• La navbar queda fija al hacer scroll.\n• Los botones cambian a estado activo al hacer clic.\n• En celular se ocultan los links si asi lo definiste.\n• El contenido no queda debajo de la barra superior.\nAdaptaciones profesionales recomendadas\n• Agrega aria-label al nav para mejorar accesibilidad.\n• Usa una clase .is-scrolled para oscurecer la navbar cuando el usuario baja.\n• Conecta el boton Menu con el Sidebar ocultable de la funcionalidad 2.\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 7",
     "2": "2. Sidebar ocultable\nEl sidebar ocultable es un menu lateral que entra y sale de la pantalla cuando el usuario lo pide. Es muy\ncomun en dashboards, paneles administrativos, aplicaciones tipo CRM, proyectos con muchas secciones\ny paginas responsive.\nDonde se usa en paginas reales: dashboards, aplicaciones internas, ecommerce con filtros, sistemas de\naprendizaje, paneles con muchas opciones.\nDependencias internas: puede abrirse desde un boton de la navbar; se complementa con overlay y\nsubmenus laterales.\nIdea para reciclar: copia solo el bloque HTML que corresponde al componente, copia las reglas CSS\nindicadas y copia la clase JS modular o la funcion normal. Luego cambia IDs, clases y textos segun tu\nproyecto.\nParte\nQue debes copiar\nQue puedes cambiar sin romperlo\nHTML\nEstructura visible del componente y\natributos data-*.\nTextos, iconos, rutas, nombres de secciones,\nopciones y labels.\nCSS\nClases del componente y, si aplica, variables\nde color.\nColores, blur, radios, espacios, sombras, tiempos\nde transicion.\nJS modular\nClase exportada con constructor e\ninicializacion.\nSelectores, nombres de clase activa, claves\nlocalStorage y comportamiento.\nJS normal\nFuncion inicializadora sin import/export.\nSelectores y condiciones, igual que en la version\nmodular.\nCodigo HTML minimo\nHTML que debes llevar a index.html\n<button type=\"button\" id=\"openSidebar\" class=\"btn-menu\">Abrir menu</button>\n<aside class=\"sidebar\" id=\"sidebar\" aria-hidden=\"true\">\n    <div class=\"sidebar__header\">\n        <h2>Panel</h2>\n        <button type=\"button\" id=\"closeSidebar\">Cerrar</button>\n    </div>\n    <nav class=\"sidebar__nav\">\n        <button type=\"button\" data-section=\"inicio\">Inicio</button>\n        <button type=\"button\" data-section=\"perfil\">Perfil</button>\n        <button type=\"button\" data-section=\"configuracion\">Configuracion</button>\n    </nav>\n</aside>\n<div class=\"sidebar-overlay\" id=\"sidebarOverlay\"></div>\nCodigo CSS minimo\nCSS que debes llevar a styles.css\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 8\nbody.sidebar-open {\n    overflow: hidden;\n}\n.sidebar {\n    position: fixed;\n    top: 0;\n    left: 0;\n    z-index: 1200;\n    width: min(320px, 86vw);\n    height: 100vh;\n    padding: 20px;\n    color: #ffffff;\n    background: rgba(15, 23, 42, 0.88);\n    border-right: 1px solid rgba(255, 255, 255, 0.18);\n    backdrop-filter: blur(20px);\n    -webkit-backdrop-filter: blur(20px);\n    transform: translateX(-105%);\n    transition: transform 0.25s ease;\n}\n.sidebar.is-open {\n    transform: translateX(0);\n}\n.sidebar__header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 12px;\n    margin-bottom: 20px;\n}\n.sidebar__nav {\n    display: grid;\n    gap: 8px;\n}\n.sidebar__nav button,\n.sidebar__header button,\n.btn-menu {\n    border: 0;\n    border-radius: 12px;\n    padding: 11px 14px;\n    color: #ffffff;\n    background: rgba(255, 255, 255, 0.12);\n    cursor: pointer;\n}\n.sidebar-overlay {\n    position: fixed;\n    inset: 0;\n    z-index: 1100;\n    background: rgba(0, 0, 0, 0.45);\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity 0.25s ease;\n}\n.sidebar-overlay.is-visible {\n    opacity: 1;\n    pointer-events: auto;\n}\nJavaScript modular con export/import\nfunciones.js - clase o funcion exportada\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 9\nexport class SidebarToggle {\n    constructor(config = {}) {\n        this.sidebar = document.getElementById(config.sidebarId || \"sidebar\");\n        this.openButton = document.getElementById(config.openButtonId || \"openSidebar\");\n        this.closeButton = document.getElementById(config.closeButtonId || \n            \"closeSidebar\");\n        this.overlay = document.getElementById(config.overlayId || \"sidebarOverlay\");\n        this.init();\n    }\n    init() {\n        this.openButton?.addEventListener(\"click\", () => this.open());\n        this.closeButton?.addEventListener(\"click\", () => this.close());\n        this.overlay?.addEventListener(\"click\", () => this.close());\n        document.addEventListener(\"keydown\", (event) => {\n            if (event.key === \"Escape\") this.close();\n        });\n    }\n    open() {\n        this.sidebar?.classList.add(\"is-open\");\n        this.overlay?.classList.add(\"is-visible\");\n        document.body.classList.add(\"sidebar-open\");\n        this.sidebar?.setAttribute(\"aria-hidden\", \"false\");\n    }\n    close() {\n        this.sidebar?.classList.remove(\"is-open\");\n        this.overlay?.classList.remove(\"is-visible\");\n        document.body.classList.remove(\"sidebar-open\");\n        this.sidebar?.setAttribute(\"aria-hidden\", \"true\");\n    }\n}\nscript.js - como llamarlo\n// script.js\nimport { SidebarToggle } from './funciones.js';\nnew SidebarToggle();\nJavaScript normal sin modulos\nscript-normal.js - version directa\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 10\nfunction initSidebarToggle() {\n    const sidebar = document.getElementById(\"sidebar\");\n    const openButton = document.getElementById(\"openSidebar\");\n    const closeButton = document.getElementById(\"closeSidebar\");\n    const overlay = document.getElementById(\"sidebarOverlay\");\n    function open() {\n        sidebar.classList.add(\"is-open\");\n        overlay.classList.add(\"is-visible\");\n        document.body.classList.add(\"sidebar-open\");\n        sidebar.setAttribute(\"aria-hidden\", \"false\");\n    }\n    function close() {\n        sidebar.classList.remove(\"is-open\");\n        overlay.classList.remove(\"is-visible\");\n        document.body.classList.remove(\"sidebar-open\");\n        sidebar.setAttribute(\"aria-hidden\", \"true\");\n    }\n    openButton?.addEventListener(\"click\", open);\n    closeButton?.addEventListener(\"click\", close);\n    overlay?.addEventListener(\"click\", close);\n    document.addEventListener(\"keydown\", (event) => {\n        if (event.key === \"Escape\") close();\n    });\n}\ninitSidebarToggle();\nVariables, clases, IDs y atributos que debes cambiar\nElemento\nDonde esta\nComo adaptarlo\n#sidebar\nHTML/JS\nID del panel lateral. Cambialo en HTML y en\nconfig.sidebarId.\n#openSidebar\nHTML/JS\nBoton que abre. Puede estar en navbar o en cualquier\nparte.\n#closeSidebar\nHTML/JS\nBoton interno que cierra el menu.\n#sidebarOverlay\nHTML/JS/CSS\nCapa oscura para cerrar al hacer clic fuera.\nwidth\nCSS .sidebar\nModifica el ancho del panel, por ejemplo 280px o 360px.\nPaso a paso para implementarlo en otro proyecto\n1. Copia el aside, el boton de abrir y el overlay.\n2. Copia CSS de .sidebar, .sidebar-overlay y body.sidebar-open.\n3. Copia la clase SidebarToggle en funciones.js.\n4. En script.js importa SidebarToggle y crea new SidebarToggle().\n5. Prueba abrir, cerrar, cerrar con overlay y cerrar con tecla Escape.\nErrores comunes y como corregirlos\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 11\nError\nCausa probable\nSolucion\nEl sidebar aparece siempre\nvisible\nFalta transform translateX(-105%)\nVerifica la clase .sidebar y que .is-open\nsolo se agregue con JS.\nNo cierra con overlay\nEl overlay no existe o tiene otro id\nRevisa #sidebarOverlay y el constructor.\nLa pagina sigue haciendo scroll\nFalta body.sidebar-open\nAgrega overflow: hidden cuando el\nsidebar esta abierto.\nChecklist de prueba\n• Abre desde el boton principal.\n• Cierra con boton Cerrar.\n• Cierra con clic en overlay.\n• Cierra con Escape.\n• En movil no se sale de la pantalla.\nAdaptaciones profesionales recomendadas\n• Agrega focus trap si el sidebar contiene formularios.\n• Usa aria-expanded en el boton de abrir para accesibilidad avanzada.\n• Guarda el estado abierto/cerrado si deseas recordar el layout de un dashboard.\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 12",
     "3": "3. Submenus laterales\nLos submenus laterales permiten agrupar opciones dentro del sidebar. El usuario puede abrir una\ncategoria y ver sus opciones internas. Es clave para organizar proyectos grandes sin saturar la pantalla.\nDonde se usa en paginas reales: paneles administrativos, menus de configuracion, rutas de aprendizaje,\ncategorias de tienda, menus de usuario.\nDependencias internas: normalmente va dentro del Sidebar ocultable, pero tambien sirve en menus\nverticales fijos.\nIdea para reciclar: copia solo el bloque HTML que corresponde al componente, copia las reglas CSS\nindicadas y copia la clase JS modular o la funcion normal. Luego cambia IDs, clases y textos segun tu\nproyecto.\nParte\nQue debes copiar\nQue puedes cambiar sin romperlo\nHTML\nEstructura visible del componente y\natributos data-*.\nTextos, iconos, rutas, nombres de secciones,\nopciones y labels.\nCSS\nClases del componente y, si aplica, variables\nde color.\nColores, blur, radios, espacios, sombras, tiempos\nde transicion.\nJS modular\nClase exportada con constructor e\ninicializacion.\nSelectores, nombres de clase activa, claves\nlocalStorage y comportamiento.\nJS normal\nFuncion inicializadora sin import/export.\nSelectores y condiciones, igual que en la version\nmodular.\nCodigo HTML minimo\nHTML que debes llevar a index.html\n<aside class=\"sidebar\" id=\"sidebar\">\n    <div class=\"side-group\">\n        <button type=\"button\" class=\"side-group__toggle\">\n            Productos\n            <span>+</span>\n        </button>\n        <div class=\"side-group__content\">\n            <button type=\"button\" data-section=\"cervezas\">Cervezas</button>\n            <button type=\"button\" data-section=\"combos\">Combos</button>\n            <button type=\"button\" data-section=\"promos\">Promociones</button>\n        </div>\n    </div>\n    <div class=\"side-group\">\n        <button type=\"button\" class=\"side-group__toggle\">\n            Administracion\n            <span>+</span>\n        </button>\n        <div class=\"side-group__content\">\n            <button type=\"button\" data-section=\"usuarios\">Usuarios</button>\n            <button type=\"button\" data-section=\"reportes\">Reportes</button>\n        </div>\n    </div>\n</aside>\nCodigo CSS minimo\nCSS que debes llevar a styles.css\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 13\n.side-group {\n    display: grid;\n    gap: 6px;\n    margin-bottom: 10px;\n}\n.side-group__toggle {\n    width: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    border: 0;\n    border-radius: 12px;\n    padding: 12px 14px;\n    color: #ffffff;\n    background: rgba(255, 255, 255, 0.14);\n    cursor: pointer;\n}\n.side-group__toggle span {\n    transition: transform 0.2s ease;\n}\n.side-group.is-open .side-group__toggle span {\n    transform: rotate(45deg);\n}\n.side-group__content {\n    display: grid;\n    gap: 6px;\n    max-height: 0;\n    overflow: hidden;\n    transition: max-height 0.25s ease;\n}\n.side-group.is-open .side-group__content {\n    max-height: 260px;\n}\n.side-group__content button {\n    margin-left: 12px;\n    border: 0;\n    border-radius: 10px;\n    padding: 10px 12px;\n    color: #ffffff;\n    background: rgba(255, 255, 255, 0.08);\n    text-align: left;\n    cursor: pointer;\n}\nJavaScript modular con export/import\nfunciones.js - clase o funcion exportada\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 14\nexport class SidebarSubmenus {\n    constructor(groupSelector = \".side-group\") {\n        this.groups = document.querySelectorAll(groupSelector);\n        this.init();\n    }\n    init() {\n        this.groups.forEach((group) => {\n            const toggle = group.querySelector(\".side-group__toggle\");\n            toggle?.addEventListener(\"click\", () => {\n                group.classList.toggle(\"is-open\");\n            });\n        });\n    }\n}\nscript.js - como llamarlo\n// script.js\nimport { SidebarSubmenus } from './funciones.js';\nnew SidebarSubmenus();\nJavaScript normal sin modulos\nscript-normal.js - version directa\nfunction initSidebarSubmenus(groupSelector = \".side-group\") {\n    const groups = document.querySelectorAll(groupSelector);\n    groups.forEach((group) => {\n        const toggle = group.querySelector(\".side-group__toggle\");\n        toggle?.addEventListener(\"click\", () => {\n            group.classList.toggle(\"is-open\");\n        });\n    });\n}\ninitSidebarSubmenus();\nVariables, clases, IDs y atributos que debes cambiar\nElemento\nDonde esta\nComo adaptarlo\n.side-group\nHTML/CSS/JS\nCada grupo nuevo debe usar esta clase para que JS lo\nreconozca.\n.side-group__toggle\nHTML/JS\nBoton que abre y cierra el grupo.\n.side-group__content\nHTML/CSS\nContenedor de opciones internas.\ndata-section\nBotones internos\nConecta cada opcion con una seccion del Router.\nmax-height\nCSS\nAumentalo si el submenu tiene muchas opciones.\nPaso a paso para implementarlo en otro proyecto\n1. Inserta uno o varios .side-group dentro del sidebar.\n2. Copia las reglas CSS de side-group y sus hijos.\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 15\n3. Copia SidebarSubmenus a funciones.js.\n4. Importa y ejecuta new SidebarSubmenus() en script.js.\n5. Duplica un grupo completo para crear nuevas categorias.\nErrores comunes y como corregirlos\nError\nCausa probable\nSolucion\nEl submenu no abre\nFalta clase .side-group__toggle\nEl boton que abre debe tener\nexactamente esa clase o debes cambiar\nel selector.\nSe cortan opciones\nmax-height muy bajo\nSube max-height a 400px o usa calculo\ndinamico con scrollHeight.\nAbren todos a la vez\nSe esta usando una clase global mal\naplicada\nAsegurate de aplicar toggle solo al group\nactual.\nChecklist de prueba\n• Cada grupo abre y cierra de forma independiente.\n• Las opciones internas se ven alineadas y con margen.\n• La animacion no corta textos.\n• Los data-section internos funcionan si estan conectados al router.\nAdaptaciones profesionales recomendadas\n• Agrega modo acordeon: cerrar los otros grupos cuando uno se abre.\n• Agrega iconos SVG en lugar del signo +.\n• Usa aria-expanded para indicar si el grupo esta abierto.\n\nGuia reciclaje componentes web - Funcionalidades 1 a 10\nPagina 16",
@@ -53,7 +53,347 @@ window.GUIDE_DETAILS = {
     "48": "48. Debounce\n¿Qué hace?\nRetrasa la ejecución de una función hasta que el usuario deja de escribir o de disparar eventos repetidos durante unos milisegundos. Sirve para búsquedas, filtros, autoguardado, validaciones en tiempo real y renderizados costosos.\n\n¿Cuándo usarlo?\nÚsalo cuando un input dispara demasiadas actualizaciones seguidas y quieres evitar renders o cálculos innecesarios.\n\nImplementación conceptual\nfunction debounce(callback, delay = 300) {\n    let timeoutId;\n    return (...args) => {\n        clearTimeout(timeoutId);\n        timeoutId = setTimeout(() => callback(...args), delay);\n    };\n}\n\nPaso a paso para reciclarlo en otro proyecto\n1. Crea la función debounce en tu archivo de utilidades.\n2. Envuelve con debounce el callback que hoy se ejecuta demasiado seguido.\n3. Ajusta el delay según la experiencia que quieras: 200 a 350 ms suele funcionar bien para búsquedas.\n4. Mantén la lógica principal dentro del callback original y deja a debounce solo el control del tiempo.\n5. Prueba escribiendo rápido y confirma que la interfaz responde sin saltos.\n\nDónde se usa mejor\n• Buscadores de catálogo\n• Filtros de tablas\n• Autoguardado de formularios\n• Validación mientras se escribe\n\nErrores comunes\n• Aplicarlo a acciones que deben ser instantáneas, como un botón principal.\n• Usar un delay demasiado alto y hacer que la interfaz se sienta lenta.\n• Mezclar debounce y lógica de render sin reiniciar correctamente el timeout."
 ,
     "53": "53. Tarjeta de presentacion Bootstrap\n¿Que hace?\nEs una actividad guiada para construir una tarjeta de presentacion personal usando la logica de Bootstrap como referencia, pero adaptada al estilo visual de este proyecto. La idea no es copiar el laboratorio tal cual, sino entender la estructura base de una card, ordenar la informacion y despues personalizarla con nuestro tema.\n\nObjetivo de la actividad\nCrear una card con foto o avatar, nombre, rol, descripcion corta, enlaces y una vista extra para mostrar tecnologias o datos complementarios. En esta pagina la actividad se resolvio con una cara frontal y una cara trasera que gira al hacer clic en los botones.\n\nConceptos de Bootstrap que estas practicando\ncontainer: centra el contenido y le da ancho maximo.\nrow y col: ayudan a distribuir bloques en columnas responsivas.\ncard: encapsula informacion relacionada dentro de una caja visual.\nbadge: sirve para etiquetas pequenas como HTML, CSS o Bootstrap.\nbtn: define acciones como Ver tecnologias o Volver.\nshadow y border-radius: mejoran la jerarquia visual.\n\nComo se tradujo al estilo de este proyecto\n1. Se mantuvo la idea de card personal del laboratorio.\n2. Se cambiaron colores, fondos, bordes y tipografia para que combine con el tema actual.\n3. Se agrego un contenedor con perspective para lograr el efecto flip.\n4. Se dividio la card en dos caras: presentacion y tecnologias.\n5. Se mantuvo una estructura facil de reciclar en cualquier otra pagina.\n\nHTML minimo que debes entender\n.article profile-lab guarda toda la actividad.\n.profile-lab__flip es la pieza que rota.\n.profile-lab__face--front muestra avatar, nombre y botones.\n.profile-lab__face--back muestra tecnologias y contenido complementario.\nLos botones showProfileTech y hideProfileTech controlan el cambio de cara.\n\nCSS clave que debes revisar\nperspective: crea profundidad para el giro.\ntransform-style: preserve-3d permite que las caras convivan en 3D.\nbackface-visibility: hidden evita ver el texto al reves.\ntransform: rotateY(180deg) gira la cara trasera.\n.is-flipped activa la animacion completa.\n\nJavaScript que resuelve la actividad\nLa clase ProfilePresentationActivity busca el contenedor principal y agrega o quita la clase is-flipped cuando el usuario hace clic. No depende de librerias externas. La logica es pequena porque la mayor parte del trabajo visual la hace CSS.\n\nPaso a paso para construirla desde cero\n1. Crea una seccion para la actividad dentro de Utilidades.\n2. Agrega un contenedor principal con clase profile-lab.\n3. Dentro crea un bloque profile-lab__flip con dos secciones internas.\n4. En la cara frontal agrega avatar, nombre, cargo, descripcion y enlaces.\n5. En la cara trasera agrega tecnologias, herramientas o datos extra.\n6. Copia el CSS del giro y los estilos base de la card.\n7. Crea dos botones: uno para mostrar tecnologias y otro para regresar.\n8. En JavaScript, escucha el clic de ambos botones y alterna la clase is-flipped.\n9. Prueba en escritorio y movil para validar alturas, espaciado y legibilidad.\n10. Si quieres personalizarla, cambia textos, colores, badges y enlaces sin tocar la logica del flip.\n\nComo adaptarla a otro ejercicio Bootstrap\nPuedes cambiar el avatar por una imagen real, sustituir los badges por iconos, agregar redes sociales o convertir la cara trasera en una lista de proyectos. Si en clase te piden usar Bootstrap directamente, la misma estructura se puede llevar a un .container con .row, .col-md-6 y .card, y luego enriquecerla con clases propias.\n\nChecklist de entrega\n• La tarjeta muestra nombre, rol y descripcion corta.\n• Existe al menos un boton de accion.\n• La vista de tecnologias se puede abrir y cerrar.\n• El contenido se lee bien en tema oscuro y claro.\n• La actividad se entiende como ejercicio guiado y no como componente aislado.\n\nError comun\nEl giro suele fallar cuando falta backface-visibility o cuando ambas caras no comparten posicion absoluta dentro del mismo contenedor. Si ves texto montado o invertido, revisa primero esa parte.",
-    "54": "54. Carrito de compras DOM\n¿Que hace?\nEs una actividad guiada basada en el laboratorio del carrito para practicar manipulacion del DOM con JavaScript puro. Permite agregar productos, actualizar un badge con la cantidad total, calcular el precio acumulado, eliminar items individuales y vaciar el carrito completo.\n\nObjetivo de la actividad\nAprender a conectar botones, data-attributes, listas dinamicas y calculos en tiempo real dentro de una mini tienda. En esta pagina se resolvio con una interfaz compacta que sigue el estilo del proyecto.\n\nEstructura general del ejercicio\nUna barra superior muestra el nombre de la mini tienda y el badge del carrito.\nCada producto tiene nombre, descripcion, precio y un boton Agregar.\nLa columna del carrito contiene la lista de items, el total y un boton para vaciar.\nCada item agregado crea una fila nueva con nombre, precio y boton Eliminar.\n\nConceptos de DOM que estas practicando\nquerySelectorAll: obtiene todos los botones Agregar.\ndataset: lee data-name y data-price desde cada boton.\ncreateElement: crea nodos li y button para el carrito.\nappendChild: inserta cada item en la lista.\ntextContent: actualiza badge, total y mensajes.\nremove: elimina elementos del DOM.\naddEventListener: conecta clics de agregar, eliminar y vaciar.\n\nComo se resolvio en esta pagina\nLa clase ShoppingCartActivity guarda referencias a botones, lista, badge, total y mensaje vacio. Cada vez que se agrega un producto, el script crea un nuevo item visual, suma una unidad al contador y acumula el precio. Cuando se elimina un item, resta el precio correspondiente y actualiza el resumen. El boton Vaciar reinicia el carrito por completo.\n\nPaso a paso para construirlo desde cero\n1. Crea una seccion visual para la mini tienda.\n2. Agrega varias cards o bloques de producto con boton Agregar.\n3. En cada boton usa data-name y data-price para no quemar esos valores en el JS.\n4. Crea una lista vacia con id shopCartList.\n5. Crea un elemento para el badge con id shopBadge.\n6. Crea un elemento para el total con id shopCartTotal.\n7. Crea un mensaje vacio para mostrar cuando no hay productos.\n8. En JavaScript selecciona todos los botones .shop-add-button.\n9. Al hacer clic, lee nombre y precio con dataset.\n10. Crea un li nuevo, inserta nombre y precio formateado, y agrega un boton Eliminar.\n11. Suma una unidad al contador y el valor al total.\n12. Actualiza badge, total y estado del mensaje vacio.\n13. En el boton Eliminar, resta una unidad, descuenta el precio y elimina la fila.\n14. En el boton Vaciar, limpia toda la lista y reinicia contadores.\n15. Prueba agregar varios productos, borrar uno y vaciar todo para validar que los numeros queden correctos.\n\nRelacion con el PDF del laboratorio\nEl laboratorio original pide precisamente practicar seleccion de elementos, eventos, creacion dinamica de nodos y actualizacion del total. Aqui se mantuvo esa misma logica, pero con nombres de clases y estilos adaptados al banco de componentes de esta pagina.\n\nBuenas practicas recomendadas\n• Guarda el precio como numero y conviertelo solo al momento de mostrarlo.\n• Usa funciones pequenas como addItem, removeItem y renderSummary para que el codigo sea facil de leer.\n• Separa la logica visual del formato de moneda.\n• Si luego quieres escalarlo, puedes agrupar productos iguales en vez de crear filas repetidas.\n\nChecklist de entrega\n• Cada boton Agregar inserta un item visible en la lista.\n• El badge cambia inmediatamente.\n• El total se actualiza sin recargar la pagina.\n• Cada item tiene su propio boton Eliminar.\n• El boton Vaciar deja la lista en cero y muestra el mensaje vacio.\n\nErrores comunes\nSi el total no cambia, normalmente el precio se esta leyendo como texto y no como numero. Si el boton Eliminar no funciona, revisa que el listener se este creando junto al item nuevo. Si el badge queda descuadrado, valida que tambien se actualice cuando eliminas o vacias."
-,
-    "44": "44. Conversor C/F/K como actividad guiada\n¿Que hace?\nResuelve la actividad de lógica donde el usuario ingresa una temperatura en grados Celsius y el programa debe convertirla a Fahrenheit y Kelvin. En esta página se implementó con input y DOM, pero el mismo ejercicio también se puede resolver con prompt y console.log.\n\nEnunciado práctico que debes cumplir\n1. Solicita al usuario una temperatura en grados Celsius.\n2. Convierte el valor a grados Fahrenheit y Kelvin.\n3. Muestra ambos resultados por consola o por el DOM.\n4. Valida que la entrada sea numérica.\n5. Si el dato no es válido, muestra un error y vuelve a pedir el valor.\n6. Prueba al menos con 45 y 14 para confirmar los resultados esperados.\n7. Al final, súbelo a un repositorio llamado logica-programacion-2.\n\nResultados de referencia\nEntrada: 45\nGrados Kelvin: 318.15\nGrados Fahrenheit: 113\n\nEntrada: 14\nGrados Kelvin: 287.15\nGrados Fahrenheit: 57.2\n\nFormulas que debes recordar\nKelvin = Celsius + 273.15\nFahrenheit = (Celsius * 9 / 5) + 32\n\nComo está resuelto en este proyecto\nLa clase TemperatureTool toma el valor del input, valida con Number.isFinite, y luego calcula los resultados según la unidad seleccionada. Para la actividad original, el camino más directo es usar Celsius como entrada base y mostrar Kelvin y Fahrenheit en el resultado.\n\nPaso a paso para construirlo\n1. Crea un input o usa prompt para recibir el valor en Celsius.\n2. Guarda el texto ingresado en una variable.\n3. Convierte ese texto a número con Number(valor).\n4. Valida con Number.isFinite para asegurarte de que el dato sí sea numérico.\n5. Si no es numérico, muestra un mensaje como Ingresa un número válido y detén o repite el flujo.\n6. Si es válido, calcula Kelvin sumando 273.15.\n7. Calcula Fahrenheit con la fórmula de multiplicar por 9, dividir entre 5 y sumar 32.\n8. Muestra ambos resultados en el DOM o con console.log.\n9. Repite las pruebas con 45, 14 y otros valores inventados por ti.\n10. Cuando el ejercicio funcione, súbelo a GitHub en el repositorio logica-programacion-2.\n\nImplementación básica con JavaScript\nconst valor = Number(input.value);\nif (!Number.isFinite(valor)) {\n    mensaje.textContent = 'Ingresa un número válido.';\n    return;\n}\nconst kelvin = valor + 273.15;\nconst fahrenheit = (valor * 9 / 5) + 32;\nresultado.innerHTML = `Grados Kelvin: ${kelvin.toFixed(2)}<br>Grados Fahrenheit: ${fahrenheit.toFixed(2)}`;\n\nQué se aprovecha del material de conversor-temperatura\nâ€¢ La validación del input.\nâ€¢ La separación entre lógica y presentación.\nâ€¢ La impresión del resultado dentro del DOM.\nâ€¢ El estilo visual de la tarjeta, que ya estaba bien resuelto.\n\nChecklist de entrega\nâ€¢ El programa recibe Celsius.\nâ€¢ Valida si el dato es realmente un número.\nâ€¢ Calcula Kelvin y Fahrenheit correctamente.\nâ€¢ Muestra los resultados en pantalla o consola.\nâ€¢ Pasa las pruebas con 45 y 14.\nâ€¢ Está listo para subirse al repositorio logica-programacion-2."
+    "54": "54. Carrito de compras DOM
+Que hace?
+Es una actividad guiada basada en el laboratorio del carrito para practicar manipulacion del DOM con JavaScript puro. Permite agregar productos, actualizar un badge con la cantidad total, calcular el precio acumulado, eliminar items individuales y vaciar el carrito completo.
+
+Objetivo de la actividad
+Aprender a conectar botones, data-attributes, listas dinamicas y calculos en tiempo real dentro de una mini tienda. En esta pagina se resolvio con una interfaz compacta que sigue el estilo del proyecto.
+
+Estructura general del ejercicio
+Una barra superior muestra el nombre de la mini tienda y el badge del carrito.
+Cada producto tiene nombre, descripcion, precio y un boton Agregar.
+La columna del carrito contiene la lista de items, el total y un boton para vaciar.
+Cada item agregado crea una fila nueva con nombre, precio y boton Eliminar.
+
+Conceptos de DOM que estas practicando
+querySelectorAll: obtiene todos los botones Agregar.
+dataset: lee data-name y data-price desde cada boton.
+createElement: crea nodos li y button para el carrito.
+appendChild: inserta cada item en la lista.
+textContent: actualiza badge, total y mensajes.
+remove: elimina elementos del DOM.
+addEventListener: conecta clics de agregar, eliminar y vaciar.
+
+HTML minimo que debes copiar
+index.html
+<div class=\"shop-lab\">
+  <div class=\"shop-lab__topbar\">
+    <strong>Mini tienda</strong>
+    <span class=\"shop-lab__badge\" id=\"shopBadge\">0</span>
+  </div>
+
+  <div class=\"shop-lab__grid\">
+    <article class=\"shop-product\">
+      <h4>Pack IPA</h4>
+      <p class=\"muted\">$18,000</p>
+      <button type=\"button\" class=\"primary-button shop-add-button\"
+              data-name=\"Pack IPA\" data-price=\"18000\">Agregar</button>
+    </article>
+
+    <article class=\"shop-product\">
+      <h4>Stout Reserva</h4>
+      <p class=\"muted\">$16,500</p>
+      <button type=\"button\" class=\"primary-button shop-add-button\"
+              data-name=\"Stout Reserva\" data-price=\"16500\">Agregar</button>
+    </article>
+  </div>
+
+  <div class=\"shop-cart\">
+    <div class=\"shop-cart__head\">
+      <h4>Carrito</h4>
+      <button type=\"button\" class=\"danger-button\" id=\"clearShopCart\">Vaciar</button>
+    </div>
+    <p class=\"muted shop-cart__empty\" id=\"shopEmptyMessage\">Tu carrito esta vacio.</p>
+    <ul class=\"shop-cart__list\" id=\"shopCartList\"></ul>
+    <div class=\"shop-cart__total\">
+      <span>Total</span>
+      <strong id=\"shopCartTotal\">$0</strong>
+    </div>
+  </div>
+</div>
+
+CSS del componente
+styles.css
+.shop-lab {
+  display: grid;
+  gap: 18px;
+}
+.shop-lab__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.shop-lab__badge {
+  min-width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+.shop-lab__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.shop-product {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.shop-cart {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: grid;
+  gap: 12px;
+}
+.shop-cart__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.shop-cart__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.shop-cart__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+.shop-cart__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+JavaScript modular con export/import
+Usa esta version si tu HTML carga <script type=\"module\" src=\"script.js\"></script>.
+
+funciones.js + script.js
+export const $ = (selector, parent = document) => parent.querySelector(selector);
+export const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+
+export class ShoppingCartActivity {
+  constructor(toast) {
+    this.toast = toast;
+    this.buttons = $$('.\\.shop-add-button');
+    this.list = $('#\\.shopCartList');
+    this.badge = $('#\\.shopBadge');
+    this.total = $('#\\.shopCartTotal');
+    this.emptyMessage = $('#\\.shopEmptyMessage');
+    this.clearButton = $('#\\.clearShopCart');
+    this.itemsCount = 0;
+    this.totalAmount = 0;
+    if (this.buttons.length && this.list && this.badge && this.total && this.emptyMessage && this.clearButton) {
+      this.init();
+    }
+  }
+
+  init() {
+    this.buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        this.addItem(button.dataset.name, Number(button.dataset.price));
+      });
+    });
+    this.clearButton.addEventListener('click', () => this.clear());
+    this.renderSummary();
+  }
+
+  addItem(name, price) {
+    const item = document.createElement('li');
+    item.className = 'shop-cart__item';
+    item.innerHTML = `
+      <div>
+        <strong>${name}</strong>
+        <p class=\"muted\">${this.formatPrice(price)}</p>
+      </div>
+      <button type=\"button\" class=\"danger-button\">&#10005;</button>
+    `;
+    $('button', item)?.addEventListener('click', () => this.removeItem(item, price));
+    this.list.appendChild(item);
+    this.itemsCount += 1;
+    this.totalAmount += price;
+    this.renderSummary();
+    this.toast?.show(`${name} agregado al carrito.`);
+  }
+
+  removeItem(item, price) {
+    item.remove();
+    this.itemsCount = Math.max(0, this.itemsCount - 1);
+    this.totalAmount = Math.max(0, this.totalAmount - price);
+    this.renderSummary();
+  }
+
+  clear() {
+    $$('li', this.list).forEach((item) => item.remove());
+    this.itemsCount = 0;
+    this.totalAmount = 0;
+    this.renderSummary();
+    this.toast?.show('Carrito vaciado.');
+  }
+
+  renderSummary() {
+    this.badge.textContent = String(this.itemsCount);
+    this.total.textContent = this.formatPrice(this.totalAmount);
+    this.emptyMessage.style.display = this.itemsCount ? 'none' : 'block';
+  }
+
+  formatPrice(value) {
+    return `$${value.toLocaleString('es-CO')}`;
+  }
+}
+
+// script.js
+import { ShoppingCartActivity } from './funciones.js';
+const cart = new ShoppingCartActivity();
+
+JavaScript normal sin modulos
+Usa esta version si tu HTML carga <script src=\"script.js\"></script> sin type=\"module\".
+
+script.js
+const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+
+class ShoppingCartActivity {
+  constructor(toast) {
+    this.toast = toast;
+    this.buttons = $$('.\\.shop-add-button');
+    this.list = $('#\\.shopCartList');
+    this.badge = $('#\\.shopBadge');
+    this.total = $('#\\.shopCartTotal');
+    this.emptyMessage = $('#\\.shopEmptyMessage');
+    this.clearButton = $('#\\.clearShopCart');
+    this.itemsCount = 0;
+    this.totalAmount = 0;
+    if (this.buttons.length && this.list && this.badge && this.total && this.emptyMessage && this.clearButton) {
+      this.init();
+    }
+  }
+
+  init() {
+    this.buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        this.addItem(button.dataset.name, Number(button.dataset.price));
+      });
+    });
+    this.clearButton.addEventListener('click', () => this.clear());
+    this.renderSummary();
+  }
+
+  addItem(name, price) {
+    const item = document.createElement('li');
+    item.className = 'shop-cart__item';
+    item.innerHTML = `
+      <div>
+        <strong>${name}</strong>
+        <p class=\"muted\">${this.formatPrice(price)}</p>
+      </div>
+      <button type=\"button\" class=\"danger-button\">&#10005;</button>
+    `;
+    $('button', item)?.addEventListener('click', () => this.removeItem(item, price));
+    this.list.appendChild(item);
+    this.itemsCount += 1;
+    this.totalAmount += price;
+    this.renderSummary();
+    this.toast?.show(`${name} agregado al carrito.`);
+  }
+
+  removeItem(item, price) {
+    item.remove();
+    this.itemsCount = Math.max(0, this.itemsCount - 1);
+    this.totalAmount = Math.max(0, this.totalAmount - price);
+    this.renderSummary();
+  }
+
+  clear() {
+    $$('li', this.list).forEach((item) => item.remove());
+    this.itemsCount = 0;
+    this.totalAmount = 0;
+    this.renderSummary();
+    this.toast?.show('Carrito vaciado.');
+  }
+
+  renderSummary() {
+    this.badge.textContent = String(this.itemsCount);
+    this.total.textContent = this.formatPrice(this.totalAmount);
+    this.emptyMessage.style.display = this.itemsCount ? 'none' : 'block';
+  }
+
+  formatPrice(value) {
+    return `$${value.toLocaleString('es-CO')}`;
+  }
+}
+
+const cart = new ShoppingCartActivity();
+
+Paso a paso para construirlo desde cero
+1. Copia los helpers $ y $$ al inicio de tu JS para no repetir querySelector.
+2. Crea el HTML de la mini tienda: barra con badge, grid de productos y seccion del carrito.
+3. En cada boton Agregar pon data-name y data-price con el nombre y precio del producto.
+4. Crea la lista vacia <ul id=\"shopCartList\"></ul> donde se insertaran los items.
+5. Crea el badge <span id=\"shopBadge\">0</span>, el total <strong id=\"shopCartTotal\">$0</strong> y el mensaje vacio <p id=\"shopEmptyMessage\">.
+6. En el JS, guarda referencias a todos esos elementos en el constructor.
+7. Inicia dos variables: itemsCount = 0 y totalAmount = 0.
+8. Recorre todos los botones con forEach y agrega un listener de click que llame a addItem(name, price).
+9. Dentro de addItem, crea un <li> con createElement, ponle la clase shop-cart__item y innerHTML con el nombre, precio y boton Eliminar.
+10. Busca el boton Eliminar dentro del item y conectale un listener que llame a removeItem(item, price).
+11. Agrega el item al <ul> con appendChild, suma 1 al contador y suma el precio al total.
+12. Llama a renderSummary() despues de cada cambio para actualizar el badge, el total y mostrar u ocultar el mensaje vacio.
+13. En removeItem, usa item.remove() para sacarlo del DOM, resta 1 y resta el precio, luego renderSummary().
+14. En clear(), selecciona todos los <li> del carrito, eliminalos con forEach, resetea los contadores a 0 y llama renderSummary().
+15. En formatPrice(), usa toLocaleString('es-CO') para mostrar los precios con puntos de miles.
+16. Inicializa el carrito al final: new ShoppingCartActivity().
+
+Mapa rapido de reciclaje
+1. Ubica el lugar exacto del HTML donde quieres insertar el componente.
+2. Copia el HTML minimo y cambia textos visibles, ids y data-attributes.
+3. Copia el CSS y ajusta colores, separaciones, radios, sombras y responsive si hace falta.
+4. Escoge JS modular o JS normal, no ambos al mismo tiempo.
+5. Inicializa el componente con el id correcto y prueba la interaccion principal.
+
+Errores comunes y como solucionarlos
+Se mezclan fondos: olvidaste quitar clases anteriores con classList.remove(...allowedClasses).
+No cambia el total: el precio se esta leyendo como texto y no como numero. Usa Number() al leer dataset.price.
+El boton Eliminar no funciona: revisa que el listener se este creando junto al item nuevo con $('button', item).
+El badge queda descuadrado: valida que tambien se actualice cuando eliminas o vacias.
+El mensaje vacio no aparece: revisa que emptyMessage exista y que renderSummary() maneje style.display correctamente.
+
+Checklist de prueba antes de reutilizar
+El componente existe en HTML y el id coincide con el usado en JavaScript.
+No hay ids duplicados en la pagina.
+La clase visual de estado se agrega y se quita correctamente.
+No aparecen errores en la consola del navegador.
+La funcionalidad sigue funcionando en pantalla pequena.
+El componente no rompe otros elementos del proyecto.
+
+Mejoras opcionales
+Conectar el componente con un Toast para avisar acciones exitosas o errores.
+Guardar preferencias o datos en localStorage cuando tenga sentido.
+Agregar validaciones antes de ejecutar acciones importantes.
+Mejorar accesibilidad con aria-label, aria-live, focus-visible y navegacion por teclado cuando aplique.
+""44": "44. Conversor C/F/K como actividad guiada\n¿Que hace?\nResuelve la actividad de lógica donde el usuario ingresa una temperatura en grados Celsius y el programa debe convertirla a Fahrenheit y Kelvin. En esta página se implementó con input y DOM, pero el mismo ejercicio también se puede resolver con prompt y console.log.\n\nEnunciado práctico que debes cumplir\n1. Solicita al usuario una temperatura en grados Celsius.\n2. Convierte el valor a grados Fahrenheit y Kelvin.\n3. Muestra ambos resultados por consola o por el DOM.\n4. Valida que la entrada sea numérica.\n5. Si el dato no es válido, muestra un error y vuelve a pedir el valor.\n6. Prueba al menos con 45 y 14 para confirmar los resultados esperados.\n7. Al final, súbelo a un repositorio llamado logica-programacion-2.\n\nResultados de referencia\nEntrada: 45\nGrados Kelvin: 318.15\nGrados Fahrenheit: 113\n\nEntrada: 14\nGrados Kelvin: 287.15\nGrados Fahrenheit: 57.2\n\nFormulas que debes recordar\nKelvin = Celsius + 273.15\nFahrenheit = (Celsius * 9 / 5) + 32\n\nComo está resuelto en este proyecto\nLa clase TemperatureTool toma el valor del input, valida con Number.isFinite, y luego calcula los resultados según la unidad seleccionada. Para la actividad original, el camino más directo es usar Celsius como entrada base y mostrar Kelvin y Fahrenheit en el resultado.\n\nPaso a paso para construirlo\n1. Crea un input o usa prompt para recibir el valor en Celsius.\n2. Guarda el texto ingresado en una variable.\n3. Convierte ese texto a número con Number(valor).\n4. Valida con Number.isFinite para asegurarte de que el dato sí sea numérico.\n5. Si no es numérico, muestra un mensaje como Ingresa un número válido y detén o repite el flujo.\n6. Si es válido, calcula Kelvin sumando 273.15.\n7. Calcula Fahrenheit con la fórmula de multiplicar por 9, dividir entre 5 y sumar 32.\n8. Muestra ambos resultados en el DOM o con console.log.\n9. Repite las pruebas con 45, 14 y otros valores inventados por ti.\n10. Cuando el ejercicio funcione, súbelo a GitHub en el repositorio logica-programacion-2.\n\nImplementación básica con JavaScript\nconst valor = Number(input.value);\nif (!Number.isFinite(valor)) {\n    mensaje.textContent = 'Ingresa un número válido.';\n    return;\n}\nconst kelvin = valor + 273.15;\nconst fahrenheit = (valor * 9 / 5) + 32;\nresultado.innerHTML = `Grados Kelvin: ${kelvin.toFixed(2)}<br>Grados Fahrenheit: ${fahrenheit.toFixed(2)}`;\n\nQué se aprovecha del material de conversor-temperatura\nâ€¢ La validación del input.\nâ€¢ La separación entre lógica y presentación.\nâ€¢ La impresión del resultado dentro del DOM.\nâ€¢ El estilo visual de la tarjeta, que ya estaba bien resuelto.\n\nChecklist de entrega\nâ€¢ El programa recibe Celsius.\nâ€¢ Valida si el dato es realmente un número.\nâ€¢ Calcula Kelvin y Fahrenheit correctamente.\nâ€¢ Muestra los resultados en pantalla o consola.\nâ€¢ Pasa las pruebas con 45 y 14.\nâ€¢ Está listo para subirse al repositorio logica-programacion-2."
 };
+
