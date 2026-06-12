@@ -1268,7 +1268,8 @@ label {
 }
 
 .guide-sidebar .accordion__content.is-open {
-    max-height: 400px;
+    max-height: 800px;
+    overflow-y: auto;
 }
 
 .guide-sidebar h3 {
