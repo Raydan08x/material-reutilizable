@@ -1391,6 +1391,7 @@ class UtilityBadgeToggle {
         this.bar = document.getElementById("utilityBadgeBar");
         if (!this.bar) return;
         this.cards = document.querySelectorAll("#utilidades .utility-card");
+        this.activeId = null;
         this.bindEvents();
     }
 
@@ -1398,7 +1399,16 @@ class UtilityBadgeToggle {
         this.bar.addEventListener("click", (e) => {
             const badge = e.target.closest(".utility-badge");
             if (!badge) return;
-            this.showCard(badge.dataset.target);
+            const targetId = badge.dataset.target;
+            // Si clic en la misma badge activa, ocultar todo
+            if (this.activeId === targetId) {
+                this.hideAllCards();
+                this.clearActiveBadge();
+                this.activeId = null;
+                return;
+            }
+            this.activeId = targetId;
+            this.showCard(targetId);
             this.updateActiveBadge(badge);
         });
     }
@@ -1413,9 +1423,17 @@ class UtilityBadgeToggle {
         });
     }
 
+    hideAllCards() {
+        this.cards.forEach((card) => card.classList.add("is-hidden"));
+    }
+
     updateActiveBadge(activeBadge) {
         this.bar.querySelectorAll(".utility-badge").forEach((b) => b.classList.remove("is-active"));
         activeBadge.classList.add("is-active");
+    }
+
+    clearActiveBadge() {
+        this.bar.querySelectorAll(".utility-badge").forEach((b) => b.classList.remove("is-active"));
     }
 }
 
