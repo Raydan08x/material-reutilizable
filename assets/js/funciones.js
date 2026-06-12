@@ -1028,39 +1028,38 @@ export class ImplementationGuide {
             categories[item.category].push(item);
         });
 
-        let html = "";
+        let html = '<div class="guide-cards-grid">';
+        
         Object.entries(categories)
             .sort(([, a], [, b]) => a[0].id - b[0].id)
-            .forEach(([cat, items], index) => {
-            html += `
-                <button class="accordion__button" type="button">
-                    <span>${index + 1}. ${cat}</span>
-                    <span class="guide-category-count">${items.length}</span>
-                </button>
-                <div class="accordion__content">
-                    <ul class="guide-item-list">
-                        ${items.map((feat) => `
-                            <li>
-                                <button class="guide-item-btn" type="button" data-id="${feat.id}">
-                                    ${feat.id}. ${feat.name}
-                                </button>
-                            </li>
-                        `).join("")}
-                    </ul>
-                </div>
-            `;
+            .forEach(([cat, items]) => {
+                items.forEach((feat) => {
+                    html += `
+                        <div class="guide-card" data-id="${feat.id}" data-category="${feat.category}">
+                            <div class="guide-card__header">
+                                <span class="guide-card__number">${feat.id}</span>
+                                <span class="guide-card__category">${feat.category}</span>
+                            </div>
+                            <h4 class="guide-card__title">${feat.name}</h4>
+                            <p class="guide-card__desc">${feat.description}</p>
+                            <div class="guide-card__footer">
+                                <span class="guide-card__action">Ver paso a paso</span>
+                            </div>
+                        </div>
+                    `;
+                });
             });
 
+        html += '</div>';
         this.container.innerHTML = html;
         this.container.insertAdjacentHTML("beforeend", this.renderDownloadsPanel());
-        new Accordion("#guideCategories");
     }
 
     bindSidebarEvents() {
         this.container.addEventListener("click", (e) => {
-            const btn = e.target.closest(".guide-item-btn");
-            if (!btn) return;
-            this.selectFeature(parseInt(btn.dataset.id, 10));
+            const card = e.target.closest(".guide-card");
+            if (!card) return;
+            this.selectFeature(parseInt(card.dataset.id, 10));
         });
     }
 
@@ -1369,18 +1368,16 @@ export class ImplementationGuide {
 
     selectFeature(id, options = {}) {
         const { scrollToDetail = false } = options;
-        const button = this.container.querySelector(`.guide-item-btn[data-id="${id}"]`);
-        if (!button) return;
+        const card = this.container.querySelector(`.guide-card[data-id="${id}"]`);
+        if (!card) return;
 
-        $$(".guide-item-btn", this.container).forEach((item) => item.classList.remove("is-active"));
-        $$(".accordion__content", this.container).forEach((content) => content.classList.remove("is-open"));
+        $$(".guide-card", this.container).forEach((item) => item.classList.remove("is-active"));
 
-        button.classList.add("is-active");
-        button.closest(".accordion__content")?.classList.add("is-open");
+        card.classList.add("is-active");
         this.renderDetail(id);
 
         if (scrollToDetail) {
-            button.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
             this.detailPanel.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     }
