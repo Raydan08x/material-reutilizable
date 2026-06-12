@@ -1,0 +1,332 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 3547 >>
+stream
+BT
+/F2 18 Tf
+1 0 0 1 52 742 Tm
+(Explicacion general del codigo: Conversor de Temperatura) Tj
+/F1 10 Tf
+1 0 0 1 52 718 Tm
+(Documento corregido despues de revisar nuevamente el proyecto. Los textos con tildes no) Tj
+/F1 10 Tf
+1 0 0 1 52 704 Tm
+(se consideran error: si en esta consola se ven como caracteres raros, es por la forma en) Tj
+/F1 10 Tf
+1 0 0 1 52 690 Tm
+(que la terminal muestra la codificacion, no por la logica del programa.) Tj
+/F2 16 Tf
+1 0 0 1 52 663 Tm
+(1. Estado actual del proyecto) Tj
+/F1 10 Tf
+1 0 0 1 52 643 Tm
+(La app esta formada por index.html, styles.css, funciones.js y script.js. El flujo) Tj
+/F1 10 Tf
+1 0 0 1 52 629 Tm
+(general ya esta bien encaminado: el HTML tiene un input de temperatura, un select de) Tj
+/F1 10 Tf
+1 0 0 1 52 615 Tm
+(unidad, un boton y un parrafo para mostrar resultados. script.js importa la clase de) Tj
+/F1 10 Tf
+1 0 0 1 52 601 Tm
+(funciones.js y usa esos IDs.) Tj
+/F1 10 Tf
+1 0 0 1 52 582 Tm
+(- Los labels ya apuntan a los IDs correctos: temperatura y unidad-medida.) Tj
+/F1 10 Tf
+1 0 0 1 52 566 Tm
+(- script.js ya usa los IDs correctos: temperatura, unidad-medida, mensaje, resultado y) Tj
+/F1 10 Tf
+1 0 0 1 52 552 Tm
+(  convertir.) Tj
+/F1 10 Tf
+1 0 0 1 52 536 Tm
+(- La conversion de Fahrenheit a Kelvin ya usa conversor.fahrenheitToKelvin\(\), que es) Tj
+/F1 10 Tf
+1 0 0 1 52 522 Tm
+(  correcto.) Tj
+/F1 10 Tf
+1 0 0 1 52 506 Tm
+(- La carga del modulo en index.html esta limpia: solo queda script.js con) Tj
+/F1 10 Tf
+1 0 0 1 52 492 Tm
+(  type="module".) Tj
+/F2 16 Tf
+1 0 0 1 52 468 Tm
+(2. index.html) Tj
+/F1 10 Tf
+1 0 0 1 52 448 Tm
+(index.html define la interfaz. Lo mas importante para JavaScript son los atributos id,) Tj
+/F1 10 Tf
+1 0 0 1 52 434 Tm
+(porque script.js los usa con document.getElementById.) Tj
+/F3 8 Tf
+1 0 0 1 52 411 Tm
+(    <input type="number" id="temperatura" placeholder="Ingrese la temperatura">) Tj
+/F3 8 Tf
+1 0 0 1 52 400 Tm
+(    <p id="mensaje" class="mensaje"></p>) Tj
+/F3 8 Tf
+1 0 0 1 52 389 Tm
+(    <select id="unidad-medida">) Tj
+/F3 8 Tf
+1 0 0 1 52 378 Tm
+(    <button id="convertir">Convertir</button>) Tj
+/F3 8 Tf
+1 0 0 1 52 367 Tm
+(    <p id="resultado"></p>) Tj
+/F1 10 Tf
+1 0 0 1 52 350 Tm
+(La carga correcta de modulos es esta:) Tj
+/F3 8 Tf
+1 0 0 1 52 327 Tm
+(    <script type="module" src="script.js"></script>) Tj
+/F1 10 Tf
+1 0 0 1 52 310 Tm
+(En el HTML actual ya no aparece una carga directa de funciones.js ni texto suelto antes) Tj
+/F1 10 Tf
+1 0 0 1 52 296 Tm
+(del script. Debe mantenerse solamente el script type="module" para que import/export) Tj
+/F1 10 Tf
+1 0 0 1 52 282 Tm
+(funcionen.) Tj
+/F2 16 Tf
+1 0 0 1 52 255 Tm
+(3. styles.css) Tj
+/F1 10 Tf
+1 0 0 1 52 235 Tm
+(styles.css aplica estilos basicos: fondo, padding, fuente, centrado y tamano de inputs,) Tj
+/F1 10 Tf
+1 0 0 1 52 221 Tm
+(select y boton. No afecta la logica de conversion; solo la presentacion visual.) Tj
+/F2 16 Tf
+1 0 0 1 52 194 Tm
+(4. funciones.js) Tj
+/F1 10 Tf
+1 0 0 1 52 174 Tm
+(funciones.js contiene la logica reutilizable. La clase principal es) Tj
+/F1 10 Tf
+1 0 0 1 52 160 Tm
+(ConversorTemperatura. Su trabajo es guardar valores y convertir entre Celsius,) Tj
+/F1 10 Tf
+1 0 0 1 52 146 Tm
+(Fahrenheit y Kelvin.) Tj
+/F3 8 Tf
+1 0 0 1 52 123 Tm
+(    export class ConversorTemperatura {) Tj
+/F3 8 Tf
+1 0 0 1 52 112 Tm
+(        constructor\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 101 Tm
+(            this.celsius = 0;) Tj
+/F3 8 Tf
+1 0 0 1 52 90 Tm
+(            this.fahrenheit = 0;) Tj
+/F3 8 Tf
+1 0 0 1 52 79 Tm
+(            this.kelvin = 0;) Tj
+/F3 8 Tf
+1 0 0 1 52 68 Tm
+(        }) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 3761 >>
+stream
+BT
+/F3 8 Tf
+1 0 0 1 52 742 Tm
+(    }) Tj
+/F1 10 Tf
+1 0 0 1 52 725 Tm
+(Cada metodo usa una formula. Por ejemplo, celsiusToFahrenheit toma this.celsius, calcula) Tj
+/F1 10 Tf
+1 0 0 1 52 711 Tm
+(Fahrenheit, guarda el resultado en this.fahrenheit y lo devuelve con return.) Tj
+/F3 8 Tf
+1 0 0 1 52 688 Tm
+(    celsiusToFahrenheit\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 677 Tm
+(        this.fahrenheit = \(this.celsius * 9 / 5\) + 32;) Tj
+/F3 8 Tf
+1 0 0 1 52 666 Tm
+(        return this.fahrenheit;) Tj
+/F3 8 Tf
+1 0 0 1 52 655 Tm
+(    }) Tj
+/F1 10 Tf
+1 0 0 1 52 638 Tm
+(La clase validador tambien existe en funciones.js. Actualmente no se usa desde) Tj
+/F1 10 Tf
+1 0 0 1 52 624 Tm
+(script.js, asi que no es necesaria para que la app convierta. Puede servir despues si) Tj
+/F1 10 Tf
+1 0 0 1 52 610 Tm
+(quieres validar mientras el usuario escribe.) Tj
+/F2 16 Tf
+1 0 0 1 52 583 Tm
+(5. script.js) Tj
+/F1 10 Tf
+1 0 0 1 52 563 Tm
+(script.js conecta la pagina con la logica matematica. Primero importa la clase, crea el) Tj
+/F1 10 Tf
+1 0 0 1 52 549 Tm
+(objeto conversor y guarda referencias a los elementos del DOM.) Tj
+/F3 8 Tf
+1 0 0 1 52 526 Tm
+(    import { ConversorTemperatura } from './funciones.js';) Tj
+/F3 8 Tf
+1 0 0 1 52 515 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 52 504 Tm
+(    const conversor = new ConversorTemperatura\(\);) Tj
+/F3 8 Tf
+1 0 0 1 52 493 Tm
+(    const inputTemperatura = document.getElementById\('temperatura'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 482 Tm
+(    const selectUnidad = document.getElementById\('unidad-medida'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 471 Tm
+(    const mensaje = document.getElementById\('mensaje'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 460 Tm
+(    const resultado = document.getElementById\('resultado'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 449 Tm
+(    const botonConvertir = document.getElementById\('convertir'\);) Tj
+/F1 10 Tf
+1 0 0 1 52 432 Tm
+(Luego escucha el click del boton. Dentro del evento lee el valor escrito, revisa la) Tj
+/F1 10 Tf
+1 0 0 1 52 418 Tm
+(unidad seleccionada, valida el dato y decide que conversion ejecutar.) Tj
+/F3 8 Tf
+1 0 0 1 52 395 Tm
+(    botonConvertir.addEventListener\('click', \(\) => {) Tj
+/F3 8 Tf
+1 0 0 1 52 384 Tm
+(        const valor = inputTemperatura.value.trim\(\);) Tj
+/F3 8 Tf
+1 0 0 1 52 373 Tm
+(        const unidad = selectUnidad.value;) Tj
+/F3 8 Tf
+1 0 0 1 52 362 Tm
+(        // validaciones y conversiones) Tj
+/F3 8 Tf
+1 0 0 1 52 351 Tm
+(    }\);) Tj
+/F2 16 Tf
+1 0 0 1 52 326 Tm
+(6. Flujo completo) Tj
+/F1 10 Tf
+1 0 0 1 52 306 Tm
+(- 1. El navegador carga index.html.) Tj
+/F1 10 Tf
+1 0 0 1 52 290 Tm
+(- 2. index.html carga script.js como modulo.) Tj
+/F1 10 Tf
+1 0 0 1 52 274 Tm
+(- 3. script.js importa ConversorTemperatura desde funciones.js.) Tj
+/F1 10 Tf
+1 0 0 1 52 258 Tm
+(- 4. Se crea el objeto conversor.) Tj
+/F1 10 Tf
+1 0 0 1 52 242 Tm
+(- 5. El usuario escribe una temperatura y elige una unidad.) Tj
+/F1 10 Tf
+1 0 0 1 52 226 Tm
+(- 6. Al hacer click, script.js valida el dato.) Tj
+/F1 10 Tf
+1 0 0 1 52 210 Tm
+(- 7. Segun la unidad, script.js asigna celsius, fahrenheit o kelvin.) Tj
+/F1 10 Tf
+1 0 0 1 52 194 Tm
+(- 8. Se llama el metodo correcto de funciones.js.) Tj
+/F1 10 Tf
+1 0 0 1 52 178 Tm
+(- 9. El resultado se muestra dentro del parrafo resultado.) Tj
+/F2 16 Tf
+1 0 0 1 52 154 Tm
+(7. Correcciones reales despues de la revision) Tj
+/F1 10 Tf
+1 0 0 1 52 134 Tm
+(- Corregido: los labels ya tienen for="temperatura" y for="unidad-medida".) Tj
+/F1 10 Tf
+1 0 0 1 52 118 Tm
+(- Corregido: ya no se carga funciones.js como script normal; se usa script.js como) Tj
+/F1 10 Tf
+1 0 0 1 52 104 Tm
+(  modulo.) Tj
+/F1 10 Tf
+1 0 0 1 52 88 Tm
+(- Corregido: Fahrenheit a Kelvin usa la variable conversor correctamente.) Tj
+/F1 10 Tf
+1 0 0 1 52 72 Tm
+(- Bien: el HTML ya no tiene carga directa de funciones.js ni texto suelto antes del) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Length 207 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 742 Tm
+(  script.) Tj
+/F1 10 Tf
+1 0 0 1 52 726 Tm
+(- No marcar como error: los textos con tilde son validos; la consola puede mostrarlos) Tj
+/F1 10 Tf
+1 0 0 1 52 712 Tm
+(  mal.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 4 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+9 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 6 0 R >>
+endobj
+10 0 obj
+<< /Type /Pages /Kids [7 0 R 8 0 R 9 0 R] /Count 3 >>
+endobj
+11 0 obj
+<< /Type /Catalog /Pages 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000003821 00000 n 
+0000007634 00000 n 
+0000007892 00000 n 
+0000008039 00000 n 
+0000008186 00000 n 
+0000008333 00000 n 
+0000008403 00000 n 
+trailer
+<< /Size 12 /Root 11 0 R >>
+startxref
+8454
+%%EOF

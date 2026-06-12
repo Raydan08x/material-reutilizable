@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <main class="app">
+        <section class="converter-card">
+
+            <h1>Conversor de Temperatura</h1>
+
+            <section class="input-section">
+                <label for="temperatura">Temperatura:</label>
+                <input type="number" id="temperatura" placeholder="Ingrese la temperatura">
+                <p id="mensaje" class="mensaje"></p>
+            </section>
+
+            <section class="input-section">
+                <label for="unidad-medida-boton">Unidad de medida:</label>
+
+                <div class="custom-select" id="selector-unidad">
+                    <input type="hidden" id="unidad-medida" value="celsius">
+
+                    <button type="button" class="custom-select__button" id="unidad-medida-boton">
+                        <span class="custom-select__value">Celsius</span>
+                        <span class="custom-select__arrow">⌄</span>
+                    </button>
+
+                    <ul class="custom-select__options">
+                        <li class="custom-select__option is-selected" data-value="celsius">Celsius</li>
+                        <li class="custom-select__option" data-value="fahrenheit">Fahrenheit</li>
+                        <li class="custom-select__option" data-value="kelvin">Kelvin</li>
+                    </ul>
+                </div>
+            </section>
+
+            <button id="convertir">Convertir</button>
+
+            <section class="result-section">
+                <h2>Resultados:</h2>
+                <p id="resultado"></p>
+            </section>
+
+        </section>
+    </main>
+
+
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>

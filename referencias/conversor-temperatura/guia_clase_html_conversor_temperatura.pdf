@@ -1,0 +1,506 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 2927 >>
+stream
+BT
+/F2 18 Tf
+1 0 0 1 50 736 Tm
+(Guia de clase: index.html) Tj
+/F1 10 Tf
+1 0 0 1 50 712 Tm
+(HTML es el archivo que define que existe en la pagina. En este proyecto, index.html crea) Tj
+/F1 10 Tf
+1 0 0 1 50 698 Tm
+(el formulario del conversor: titulo, input, selector de unidad, boton y zona de) Tj
+/F1 10 Tf
+1 0 0 1 50 684 Tm
+(resultados.) Tj
+/F2 14 Tf
+1 0 0 1 50 657 Tm
+(1. Que es .html) Tj
+/F1 10 Tf
+1 0 0 1 50 637 Tm
+(La extension .html indica que el archivo contiene etiquetas HTML. Una etiqueta normalmente) Tj
+/F1 10 Tf
+1 0 0 1 50 623 Tm
+(abre y cierra: <main> abre y </main> cierra. Algunas etiquetas, como meta, no necesitan) Tj
+/F1 10 Tf
+1 0 0 1 50 609 Tm
+(cierre.) Tj
+/F2 14 Tf
+1 0 0 1 50 582 Tm
+(2. Estructura base) Tj
+/F3 8 Tf
+1 0 0 1 50 558 Tm
+(    <!DOCTYPE html>) Tj
+/F3 8 Tf
+1 0 0 1 50 547 Tm
+(    <html lang="en">) Tj
+/F3 8 Tf
+1 0 0 1 50 536 Tm
+(    <head>) Tj
+/F3 8 Tf
+1 0 0 1 50 525 Tm
+(        <meta charset="UTF-8">) Tj
+/F3 8 Tf
+1 0 0 1 50 514 Tm
+(        <meta name="viewport" content="width=device-width, initial-scale=1.0">) Tj
+/F3 8 Tf
+1 0 0 1 50 503 Tm
+(        <title>Document</title>) Tj
+/F3 8 Tf
+1 0 0 1 50 492 Tm
+(        <link rel="stylesheet" href="styles.css">) Tj
+/F3 8 Tf
+1 0 0 1 50 481 Tm
+(    </head>) Tj
+/F3 8 Tf
+1 0 0 1 50 470 Tm
+(    <body>) Tj
+/F3 8 Tf
+1 0 0 1 50 459 Tm
+(        ...) Tj
+/F3 8 Tf
+1 0 0 1 50 448 Tm
+(    </body>) Tj
+/F3 8 Tf
+1 0 0 1 50 437 Tm
+(    </html>) Tj
+/F1 10 Tf
+1 0 0 1 50 419 Tm
+(- <!DOCTYPE html> le dice al navegador que use HTML moderno.) Tj
+/F1 10 Tf
+1 0 0 1 50 403 Tm
+(- <html> envuelve toda la pagina.) Tj
+/F1 10 Tf
+1 0 0 1 50 387 Tm
+(- lang="en" indica idioma ingles. Para tu proyecto en espanol puede ser lang="es".) Tj
+/F1 10 Tf
+1 0 0 1 50 371 Tm
+(- <head> guarda configuracion invisible: codificacion, viewport, titulo y CSS.) Tj
+/F1 10 Tf
+1 0 0 1 50 355 Tm
+(- <body> guarda lo visible para el usuario.) Tj
+/F2 14 Tf
+1 0 0 1 50 331 Tm
+(3. Meta charset) Tj
+/F3 8 Tf
+1 0 0 1 50 307 Tm
+(    <meta charset="UTF-8">) Tj
+/F1 10 Tf
+1 0 0 1 50 289 Tm
+(UTF-8 permite representar letras, tildes, simbolos y caracteres especiales. Es importante) Tj
+/F1 10 Tf
+1 0 0 1 50 275 Tm
+(para textos en espanol.) Tj
+/F2 14 Tf
+1 0 0 1 50 248 Tm
+(4. Meta viewport) Tj
+/F3 8 Tf
+1 0 0 1 50 224 Tm
+(    <meta name="viewport" content="width=device-width, initial-scale=1.0">) Tj
+/F1 10 Tf
+1 0 0 1 50 206 Tm
+(Esta linea es clave para responsive. width=device-width hace que la pagina use el ancho) Tj
+/F1 10 Tf
+1 0 0 1 50 192 Tm
+(real del celular. initial-scale=1.0 evita que cargue con zoom raro.) Tj
+/F2 14 Tf
+1 0 0 1 50 165 Tm
+(5. Conectar CSS) Tj
+/F3 8 Tf
+1 0 0 1 50 141 Tm
+(    <link rel="stylesheet" href="styles.css">) Tj
+/F1 10 Tf
+1 0 0 1 50 123 Tm
+(- link conecta un archivo externo.) Tj
+/F1 10 Tf
+1 0 0 1 50 107 Tm
+(- rel="stylesheet" dice que ese archivo es una hoja de estilos.) Tj
+/F1 10 Tf
+1 0 0 1 50 91 Tm
+(- href="styles.css" indica la ruta del archivo CSS.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 3087 >>
+stream
+BT
+/F2 14 Tf
+1 0 0 1 50 744 Tm
+(6. main) Tj
+/F3 8 Tf
+1 0 0 1 50 720 Tm
+(    <main>) Tj
+/F3 8 Tf
+1 0 0 1 50 709 Tm
+(        <h1> Conversor de Temperatura </h1>) Tj
+/F3 8 Tf
+1 0 0 1 50 698 Tm
+(        ...) Tj
+/F3 8 Tf
+1 0 0 1 50 687 Tm
+(    </main>) Tj
+/F1 10 Tf
+1 0 0 1 50 669 Tm
+(main representa el contenido principal de la pagina. Es bueno usarlo porque mejora la) Tj
+/F1 10 Tf
+1 0 0 1 50 655 Tm
+(semantica y ayuda a navegadores, lectores de pantalla y buscadores.) Tj
+/F2 14 Tf
+1 0 0 1 50 628 Tm
+(7. h1 y h2) Tj
+/F1 10 Tf
+1 0 0 1 50 608 Tm
+(- <h1> es el titulo principal. Debe haber normalmente uno por pagina.) Tj
+/F1 10 Tf
+1 0 0 1 50 592 Tm
+(- <h2> es un subtitulo de seccion. En tu caso se usa para Resultados.) Tj
+/F2 14 Tf
+1 0 0 1 50 568 Tm
+(8. section) Tj
+/F3 8 Tf
+1 0 0 1 50 544 Tm
+(    <section class="input-section">) Tj
+/F3 8 Tf
+1 0 0 1 50 533 Tm
+(        ...) Tj
+/F3 8 Tf
+1 0 0 1 50 522 Tm
+(    </section>) Tj
+/F1 10 Tf
+1 0 0 1 50 504 Tm
+(section agrupa contenido relacionado. class="input-section" no es para JavaScript en este) Tj
+/F1 10 Tf
+1 0 0 1 50 490 Tm
+(caso; sirve principalmente para que CSS pueda seleccionar y disenar esa seccion.) Tj
+/F2 14 Tf
+1 0 0 1 50 463 Tm
+(9. label e input) Tj
+/F3 8 Tf
+1 0 0 1 50 439 Tm
+(    <label for="temperatura">Temperatura:</label>) Tj
+/F3 8 Tf
+1 0 0 1 50 428 Tm
+(    <input type="number" id="temperatura" placeholder="Ingrese la temperatura">) Tj
+/F1 10 Tf
+1 0 0 1 50 410 Tm
+(- label muestra el texto que explica que se debe escribir.) Tj
+/F1 10 Tf
+1 0 0 1 50 394 Tm
+(- for="temperatura" conecta el label con el input que tiene id="temperatura".) Tj
+/F1 10 Tf
+1 0 0 1 50 378 Tm
+(- input crea una caja donde el usuario escribe.) Tj
+/F1 10 Tf
+1 0 0 1 50 362 Tm
+(- type="number" indica que se espera un numero.) Tj
+/F1 10 Tf
+1 0 0 1 50 346 Tm
+(- id="temperatura" permite que JavaScript encuentre ese input.) Tj
+/F1 10 Tf
+1 0 0 1 50 330 Tm
+(- placeholder muestra una pista cuando el campo esta vacio.) Tj
+/F2 14 Tf
+1 0 0 1 50 306 Tm
+(10. p para mensajes) Tj
+/F3 8 Tf
+1 0 0 1 50 282 Tm
+(    <p id="mensaje" class="mensaje"></p>) Tj
+/F1 10 Tf
+1 0 0 1 50 264 Tm
+(Este parrafo empieza vacio. JavaScript lo llena cuando necesita decir si el campo esta) Tj
+/F1 10 Tf
+1 0 0 1 50 250 Tm
+(vacio, si el numero es valido o si hay algun error.) Tj
+/F2 14 Tf
+1 0 0 1 50 223 Tm
+(11. select y option) Tj
+/F3 8 Tf
+1 0 0 1 50 199 Tm
+(    <select id="unidad-medida">) Tj
+/F3 8 Tf
+1 0 0 1 50 188 Tm
+(        <option value="celsius">Celsius</option>) Tj
+/F3 8 Tf
+1 0 0 1 50 177 Tm
+(        <option value="fahrenheit">Fahrenheit</option>) Tj
+/F3 8 Tf
+1 0 0 1 50 166 Tm
+(        <option value="kelvin">Kelvin</option>) Tj
+/F3 8 Tf
+1 0 0 1 50 155 Tm
+(    </select>) Tj
+/F1 10 Tf
+1 0 0 1 50 137 Tm
+(- select crea una lista desplegable.) Tj
+/F1 10 Tf
+1 0 0 1 50 121 Tm
+(- id="unidad-medida" permite que JS lea la unidad elegida.) Tj
+/F1 10 Tf
+1 0 0 1 50 105 Tm
+(- option crea cada opcion.) Tj
+/F1 10 Tf
+1 0 0 1 50 89 Tm
+(- value es el dato real que recibe JavaScript.) Tj
+/F1 10 Tf
+1 0 0 1 50 73 Tm
+(- El texto entre etiquetas es lo que ve el usuario.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Length 3597 >>
+stream
+BT
+/F2 14 Tf
+1 0 0 1 50 744 Tm
+(12. button) Tj
+/F3 8 Tf
+1 0 0 1 50 720 Tm
+(    <button id="convertir">Convertir</button>) Tj
+/F1 10 Tf
+1 0 0 1 50 702 Tm
+(button crea el boton. id="convertir" permite que script.js agregue un evento click. Sin) Tj
+/F1 10 Tf
+1 0 0 1 50 688 Tm
+(ese id, el boton existe visualmente, pero JavaScript no podria encontrarlo con el codigo) Tj
+/F1 10 Tf
+1 0 0 1 50 674 Tm
+(actual.) Tj
+/F2 14 Tf
+1 0 0 1 50 647 Tm
+(13. Resultado) Tj
+/F3 8 Tf
+1 0 0 1 50 623 Tm
+(    <section class="result-section">) Tj
+/F3 8 Tf
+1 0 0 1 50 612 Tm
+(        <h2>Resultados:</h2>) Tj
+/F3 8 Tf
+1 0 0 1 50 601 Tm
+(        <p id="resultado"></p>) Tj
+/F3 8 Tf
+1 0 0 1 50 590 Tm
+(    </section>) Tj
+/F1 10 Tf
+1 0 0 1 50 572 Tm
+(resultado es otro parrafo vacio. JavaScript usa innerHTML para escribir ahi las) Tj
+/F1 10 Tf
+1 0 0 1 50 558 Tm
+(conversiones.) Tj
+/F2 14 Tf
+1 0 0 1 50 531 Tm
+(14. Conectar JavaScript como modulo) Tj
+/F3 8 Tf
+1 0 0 1 50 507 Tm
+(    <script type="module" src="script.js"></script>) Tj
+/F1 10 Tf
+1 0 0 1 50 489 Tm
+(- script carga JavaScript.) Tj
+/F1 10 Tf
+1 0 0 1 50 473 Tm
+(- src="script.js" indica el archivo.) Tj
+/F1 10 Tf
+1 0 0 1 50 457 Tm
+(- type="module" permite usar import y export.) Tj
+/F1 10 Tf
+1 0 0 1 50 441 Tm
+(- Se coloca al final del body para que el HTML exista antes de que JS lo busque.) Tj
+/F2 14 Tf
+1 0 0 1 50 417 Tm
+(15. Version HTML recomendada) Tj
+/F3 8 Tf
+1 0 0 1 50 393 Tm
+(    <!DOCTYPE html>) Tj
+/F3 8 Tf
+1 0 0 1 50 382 Tm
+(    <html lang="es">) Tj
+/F3 8 Tf
+1 0 0 1 50 371 Tm
+(    <head>) Tj
+/F3 8 Tf
+1 0 0 1 50 360 Tm
+(        <meta charset="UTF-8">) Tj
+/F3 8 Tf
+1 0 0 1 50 349 Tm
+(        <meta name="viewport" content="width=device-width, initial-scale=1.0">) Tj
+/F3 8 Tf
+1 0 0 1 50 338 Tm
+(        <title>Conversor de Temperatura</title>) Tj
+/F3 8 Tf
+1 0 0 1 50 327 Tm
+(        <link rel="stylesheet" href="styles.css">) Tj
+/F3 8 Tf
+1 0 0 1 50 316 Tm
+(    </head>) Tj
+/F3 8 Tf
+1 0 0 1 50 305 Tm
+(    <body>) Tj
+/F3 8 Tf
+1 0 0 1 50 294 Tm
+(        <main class="app">) Tj
+/F3 8 Tf
+1 0 0 1 50 283 Tm
+(            <section class="converter-card">) Tj
+/F3 8 Tf
+1 0 0 1 50 272 Tm
+(                <h1>Conversor de Temperatura</h1>) Tj
+/F3 8 Tf
+1 0 0 1 50 261 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 250 Tm
+(                <div class="field-group">) Tj
+/F3 8 Tf
+1 0 0 1 50 239 Tm
+(                    <label for="temperatura">Temperatura</label>) Tj
+/F3 8 Tf
+1 0 0 1 50 228 Tm
+(                    <input type="number" id="temperatura" placeholder="Ej: 25">) Tj
+/F3 8 Tf
+1 0 0 1 50 217 Tm
+(                    <p id="mensaje" class="mensaje"></p>) Tj
+/F3 8 Tf
+1 0 0 1 50 206 Tm
+(                </div>) Tj
+/F3 8 Tf
+1 0 0 1 50 195 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 184 Tm
+(                <div class="field-group">) Tj
+/F3 8 Tf
+1 0 0 1 50 173 Tm
+(                    <label for="unidad-medida">Unidad de medida</label>) Tj
+/F3 8 Tf
+1 0 0 1 50 162 Tm
+(                    <select id="unidad-medida">) Tj
+/F3 8 Tf
+1 0 0 1 50 151 Tm
+(                        <option value="celsius">Celsius</option>) Tj
+/F3 8 Tf
+1 0 0 1 50 140 Tm
+(                        <option value="fahrenheit">Fahrenheit</option>) Tj
+/F3 8 Tf
+1 0 0 1 50 129 Tm
+(                        <option value="kelvin">Kelvin</option>) Tj
+/F3 8 Tf
+1 0 0 1 50 118 Tm
+(                    </select>) Tj
+/F3 8 Tf
+1 0 0 1 50 107 Tm
+(                </div>) Tj
+/F3 8 Tf
+1 0 0 1 50 96 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 85 Tm
+(                <button id="convertir">Convertir</button>) Tj
+/F3 8 Tf
+1 0 0 1 50 74 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 63 Tm
+(                <section class="result-section">) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Length 954 >>
+stream
+BT
+/F3 8 Tf
+1 0 0 1 50 744 Tm
+(                    <h2>Resultados</h2>) Tj
+/F3 8 Tf
+1 0 0 1 50 733 Tm
+(                    <p id="resultado"></p>) Tj
+/F3 8 Tf
+1 0 0 1 50 722 Tm
+(                </section>) Tj
+/F3 8 Tf
+1 0 0 1 50 711 Tm
+(            </section>) Tj
+/F3 8 Tf
+1 0 0 1 50 700 Tm
+(        </main>) Tj
+/F3 8 Tf
+1 0 0 1 50 689 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 678 Tm
+(        <script type="module" src="script.js"></script>) Tj
+/F3 8 Tf
+1 0 0 1 50 667 Tm
+(    </body>) Tj
+/F3 8 Tf
+1 0 0 1 50 656 Tm
+(    </html>) Tj
+/F2 14 Tf
+1 0 0 1 50 630 Tm
+(16. Como estudiar este HTML) Tj
+/F1 10 Tf
+1 0 0 1 50 610 Tm
+(- Subraya todos los id. Esos son puentes hacia JavaScript.) Tj
+/F1 10 Tf
+1 0 0 1 50 594 Tm
+(- Subraya todas las class. Esas son puentes hacia CSS.) Tj
+/F1 10 Tf
+1 0 0 1 50 578 Tm
+(- Lee de arriba hacia abajo y pregunta: que vera el usuario?) Tj
+/F1 10 Tf
+1 0 0 1 50 562 Tm
+(- Despues pregunta: que elemento necesita usar JavaScript?) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 4 0 R >>
+endobj
+9 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+10 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 6 0 R >>
+endobj
+11 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 7 0 R >>
+endobj
+12 0 obj
+<< /Type /Pages /Kids [8 0 R 9 0 R 10 0 R 11 0 R] /Count 4 >>
+endobj
+13 0 obj
+<< /Type /Catalog /Pages 12 0 R >>
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000003201 00000 n 
+0000006340 00000 n 
+0000009989 00000 n 
+0000010994 00000 n 
+0000011141 00000 n 
+0000011288 00000 n 
+0000011436 00000 n 
+0000011584 00000 n 
+0000011662 00000 n 
+trailer
+<< /Size 14 /Root 13 0 R >>
+startxref
+11713
+%%EOF

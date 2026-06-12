@@ -1,0 +1,731 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 3114 >>
+stream
+BT
+/F2 18 Tf
+1 0 0 1 50 736 Tm
+(Guia de clase: styles.css y responsive) Tj
+/F1 10 Tf
+1 0 0 1 50 712 Tm
+(CSS controla como se ve la pagina. Tu CSS actual funciona, pero es muy basico. Esta guia) Tj
+/F1 10 Tf
+1 0 0 1 50 698 Tm
+(explica lo que tienes, que falta mejorar y como crear una version mas bonita, clara y) Tj
+/F1 10 Tf
+1 0 0 1 50 684 Tm
+(responsive para celular.) Tj
+/F2 14 Tf
+1 0 0 1 50 657 Tm
+(1. Que es .css) Tj
+/F1 10 Tf
+1 0 0 1 50 637 Tm
+(La extension .css significa Cascading Style Sheets. CSS no crea elementos; CSS toma) Tj
+/F1 10 Tf
+1 0 0 1 50 623 Tm
+(elementos que ya existen en HTML y les da apariencia: color, tamano, posicion, espacios,) Tj
+/F1 10 Tf
+1 0 0 1 50 609 Tm
+(bordes y animaciones.) Tj
+/F2 14 Tf
+1 0 0 1 50 582 Tm
+(2. Anatomia de una regla CSS) Tj
+/F3 8 Tf
+1 0 0 1 50 558 Tm
+(    selector {) Tj
+/F3 8 Tf
+1 0 0 1 50 547 Tm
+(        propiedad: valor;) Tj
+/F3 8 Tf
+1 0 0 1 50 536 Tm
+(    }) Tj
+/F1 10 Tf
+1 0 0 1 50 518 Tm
+(- selector: indica que elemento quieres modificar.) Tj
+/F1 10 Tf
+1 0 0 1 50 502 Tm
+(- propiedad: indica que aspecto quieres cambiar.) Tj
+/F1 10 Tf
+1 0 0 1 50 486 Tm
+(- valor: indica como quieres cambiarlo.) Tj
+/F1 10 Tf
+1 0 0 1 50 470 Tm
+(- Cada declaracion termina con punto y coma.) Tj
+/F2 14 Tf
+1 0 0 1 50 446 Tm
+(3. Tipos de selectores) Tj
+/F1 10 Tf
+1 0 0 1 50 426 Tm
+(- body selecciona todas las etiquetas body.) Tj
+/F1 10 Tf
+1 0 0 1 50 410 Tm
+(- .input-section selecciona elementos con class="input-section".) Tj
+/F1 10 Tf
+1 0 0 1 50 394 Tm
+(- #temperatura selecciona el elemento con id="temperatura".) Tj
+/F1 10 Tf
+1 0 0 1 50 378 Tm
+(- input, select, button selecciona tres tipos de etiqueta a la vez.) Tj
+/F1 10 Tf
+1 0 0 1 50 362 Tm
+(- button:hover aplica estilos cuando el mouse pasa por encima.) Tj
+/F2 14 Tf
+1 0 0 1 50 338 Tm
+(4. Tu CSS actual) Tj
+/F3 8 Tf
+1 0 0 1 50 314 Tm
+(    head{) Tj
+/F3 8 Tf
+1 0 0 1 50 303 Tm
+(        background-color: #f0f0f0;) Tj
+/F3 8 Tf
+1 0 0 1 50 292 Tm
+(        padding: 20px;) Tj
+/F3 8 Tf
+1 0 0 1 50 281 Tm
+(        font-family: Arial, sans-serif;) Tj
+/F3 8 Tf
+1 0 0 1 50 270 Tm
+(        text-align: center;) Tj
+/F3 8 Tf
+1 0 0 1 50 259 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 248 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 237 Tm
+(    body{) Tj
+/F3 8 Tf
+1 0 0 1 50 226 Tm
+(        background-color: #ffffff;) Tj
+/F3 8 Tf
+1 0 0 1 50 215 Tm
+(        padding: 20px;) Tj
+/F3 8 Tf
+1 0 0 1 50 204 Tm
+(        font-family: Arial, sans-serif;) Tj
+/F3 8 Tf
+1 0 0 1 50 193 Tm
+(        text-align: center;) Tj
+/F3 8 Tf
+1 0 0 1 50 182 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 171 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 160 Tm
+(    input, select, button{) Tj
+/F3 8 Tf
+1 0 0 1 50 149 Tm
+(        padding: 10px;) Tj
+/F3 8 Tf
+1 0 0 1 50 138 Tm
+(        margin: 10px;) Tj
+/F3 8 Tf
+1 0 0 1 50 127 Tm
+(        font-size: 16px;) Tj
+/F3 8 Tf
+1 0 0 1 50 116 Tm
+(    }) Tj
+/F1 10 Tf
+1 0 0 1 50 98 Tm
+(- head no se disena normalmente porque head no se ve en pantalla.) Tj
+/F1 10 Tf
+1 0 0 1 50 82 Tm
+(- body tiene fondo blanco, padding, fuente y texto centrado.) Tj
+/F1 10 Tf
+1 0 0 1 50 66 Tm
+(- input, select y button tienen espacio interno, margen y tamano de texto.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 3226 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 50 744 Tm
+(- Falta estructura visual: tarjeta, max-width, estados, contraste, responsive y) Tj
+/F1 10 Tf
+1 0 0 1 50 730 Tm
+(  jerarquia.) Tj
+/F2 14 Tf
+1 0 0 1 50 706 Tm
+(5. Conceptos para mejorarlo) Tj
+/F1 10 Tf
+1 0 0 1 50 686 Tm
+(- Reset: quitar margenes por defecto y usar box-sizing para medir mejor.) Tj
+/F1 10 Tf
+1 0 0 1 50 670 Tm
+(- Layout: centrar el contenido y limitar ancho para que no se estire demasiado.) Tj
+/F1 10 Tf
+1 0 0 1 50 654 Tm
+(- Card: crear una caja principal con fondo, borde, sombra y radio.) Tj
+/F1 10 Tf
+1 0 0 1 50 638 Tm
+(- Responsive: usar media queries para cambiar estilos en pantallas pequenas.) Tj
+/F1 10 Tf
+1 0 0 1 50 622 Tm
+(- Estados: hover, focus, validacion verde/roja, resultado destacado.) Tj
+/F2 14 Tf
+1 0 0 1 50 598 Tm
+(6. CSS recomendado completo) Tj
+/F3 8 Tf
+1 0 0 1 50 574 Tm
+(    * {) Tj
+/F3 8 Tf
+1 0 0 1 50 563 Tm
+(        box-sizing: border-box;) Tj
+/F3 8 Tf
+1 0 0 1 50 552 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 541 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 530 Tm
+(    body {) Tj
+/F3 8 Tf
+1 0 0 1 50 519 Tm
+(        margin: 0;) Tj
+/F3 8 Tf
+1 0 0 1 50 508 Tm
+(        min-height: 100vh;) Tj
+/F3 8 Tf
+1 0 0 1 50 497 Tm
+(        font-family: Arial, sans-serif;) Tj
+/F3 8 Tf
+1 0 0 1 50 486 Tm
+(        background: #edf2f7;) Tj
+/F3 8 Tf
+1 0 0 1 50 475 Tm
+(        color: #1f2937;) Tj
+/F3 8 Tf
+1 0 0 1 50 464 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 453 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 442 Tm
+(    .app {) Tj
+/F3 8 Tf
+1 0 0 1 50 431 Tm
+(        min-height: 100vh;) Tj
+/F3 8 Tf
+1 0 0 1 50 420 Tm
+(        display: flex;) Tj
+/F3 8 Tf
+1 0 0 1 50 409 Tm
+(        align-items: center;) Tj
+/F3 8 Tf
+1 0 0 1 50 398 Tm
+(        justify-content: center;) Tj
+/F3 8 Tf
+1 0 0 1 50 387 Tm
+(        padding: 24px;) Tj
+/F3 8 Tf
+1 0 0 1 50 376 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 365 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 354 Tm
+(    .converter-card {) Tj
+/F3 8 Tf
+1 0 0 1 50 343 Tm
+(        width: 100%;) Tj
+/F3 8 Tf
+1 0 0 1 50 332 Tm
+(        max-width: 480px;) Tj
+/F3 8 Tf
+1 0 0 1 50 321 Tm
+(        background: #ffffff;) Tj
+/F3 8 Tf
+1 0 0 1 50 310 Tm
+(        border: 1px solid #d9e2ec;) Tj
+/F3 8 Tf
+1 0 0 1 50 299 Tm
+(        border-radius: 12px;) Tj
+/F3 8 Tf
+1 0 0 1 50 288 Tm
+(        padding: 28px;) Tj
+/F3 8 Tf
+1 0 0 1 50 277 Tm
+(        box-shadow: 0 18px 45px rgba\(15, 23, 42, 0.12\);) Tj
+/F3 8 Tf
+1 0 0 1 50 266 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 255 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 244 Tm
+(    h1 {) Tj
+/F3 8 Tf
+1 0 0 1 50 233 Tm
+(        margin: 0 0 24px;) Tj
+/F3 8 Tf
+1 0 0 1 50 222 Tm
+(        font-size: 28px;) Tj
+/F3 8 Tf
+1 0 0 1 50 211 Tm
+(        line-height: 1.2;) Tj
+/F3 8 Tf
+1 0 0 1 50 200 Tm
+(        text-align: center;) Tj
+/F3 8 Tf
+1 0 0 1 50 189 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 178 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 167 Tm
+(    .field-group {) Tj
+/F3 8 Tf
+1 0 0 1 50 156 Tm
+(        margin-bottom: 18px;) Tj
+/F3 8 Tf
+1 0 0 1 50 145 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 134 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 123 Tm
+(    label {) Tj
+/F3 8 Tf
+1 0 0 1 50 112 Tm
+(        display: block;) Tj
+/F3 8 Tf
+1 0 0 1 50 101 Tm
+(        margin-bottom: 8px;) Tj
+/F3 8 Tf
+1 0 0 1 50 90 Tm
+(        font-weight: 700;) Tj
+/F3 8 Tf
+1 0 0 1 50 79 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 68 Tm
+(    ) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Length 3268 >>
+stream
+BT
+/F3 8 Tf
+1 0 0 1 50 744 Tm
+(    input,) Tj
+/F3 8 Tf
+1 0 0 1 50 733 Tm
+(    select {) Tj
+/F3 8 Tf
+1 0 0 1 50 722 Tm
+(        width: 100%;) Tj
+/F3 8 Tf
+1 0 0 1 50 711 Tm
+(        min-height: 44px;) Tj
+/F3 8 Tf
+1 0 0 1 50 700 Tm
+(        border: 1px solid #b8c4d6;) Tj
+/F3 8 Tf
+1 0 0 1 50 689 Tm
+(        border-radius: 8px;) Tj
+/F3 8 Tf
+1 0 0 1 50 678 Tm
+(        padding: 10px 12px;) Tj
+/F3 8 Tf
+1 0 0 1 50 667 Tm
+(        font-size: 16px;) Tj
+/F3 8 Tf
+1 0 0 1 50 656 Tm
+(        background: #ffffff;) Tj
+/F3 8 Tf
+1 0 0 1 50 645 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 634 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 623 Tm
+(    input:focus,) Tj
+/F3 8 Tf
+1 0 0 1 50 612 Tm
+(    select:focus {) Tj
+/F3 8 Tf
+1 0 0 1 50 601 Tm
+(        outline: 3px solid rgba\(37, 99, 235, 0.22\);) Tj
+/F3 8 Tf
+1 0 0 1 50 590 Tm
+(        border-color: #2563eb;) Tj
+/F3 8 Tf
+1 0 0 1 50 579 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 568 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 557 Tm
+(    button {) Tj
+/F3 8 Tf
+1 0 0 1 50 546 Tm
+(        width: 100%;) Tj
+/F3 8 Tf
+1 0 0 1 50 535 Tm
+(        min-height: 46px;) Tj
+/F3 8 Tf
+1 0 0 1 50 524 Tm
+(        border: 0;) Tj
+/F3 8 Tf
+1 0 0 1 50 513 Tm
+(        border-radius: 8px;) Tj
+/F3 8 Tf
+1 0 0 1 50 502 Tm
+(        padding: 12px 16px;) Tj
+/F3 8 Tf
+1 0 0 1 50 491 Tm
+(        font-size: 16px;) Tj
+/F3 8 Tf
+1 0 0 1 50 480 Tm
+(        font-weight: 700;) Tj
+/F3 8 Tf
+1 0 0 1 50 469 Tm
+(        color: #ffffff;) Tj
+/F3 8 Tf
+1 0 0 1 50 458 Tm
+(        background: #2563eb;) Tj
+/F3 8 Tf
+1 0 0 1 50 447 Tm
+(        cursor: pointer;) Tj
+/F3 8 Tf
+1 0 0 1 50 436 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 425 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 414 Tm
+(    button:hover {) Tj
+/F3 8 Tf
+1 0 0 1 50 403 Tm
+(        background: #1d4ed8;) Tj
+/F3 8 Tf
+1 0 0 1 50 392 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 381 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 370 Tm
+(    .mensaje {) Tj
+/F3 8 Tf
+1 0 0 1 50 359 Tm
+(        min-height: 20px;) Tj
+/F3 8 Tf
+1 0 0 1 50 348 Tm
+(        margin: 8px 0 0;) Tj
+/F3 8 Tf
+1 0 0 1 50 337 Tm
+(        font-size: 14px;) Tj
+/F3 8 Tf
+1 0 0 1 50 326 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 315 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 304 Tm
+(    .result-section {) Tj
+/F3 8 Tf
+1 0 0 1 50 293 Tm
+(        margin-top: 22px;) Tj
+/F3 8 Tf
+1 0 0 1 50 282 Tm
+(        padding: 16px;) Tj
+/F3 8 Tf
+1 0 0 1 50 271 Tm
+(        border-radius: 8px;) Tj
+/F3 8 Tf
+1 0 0 1 50 260 Tm
+(        background: #f8fafc;) Tj
+/F3 8 Tf
+1 0 0 1 50 249 Tm
+(        border: 1px solid #e2e8f0;) Tj
+/F3 8 Tf
+1 0 0 1 50 238 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 227 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 216 Tm
+(    .result-section h2 {) Tj
+/F3 8 Tf
+1 0 0 1 50 205 Tm
+(        margin: 0 0 8px;) Tj
+/F3 8 Tf
+1 0 0 1 50 194 Tm
+(        font-size: 18px;) Tj
+/F3 8 Tf
+1 0 0 1 50 183 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 172 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 161 Tm
+(    #resultado {) Tj
+/F3 8 Tf
+1 0 0 1 50 150 Tm
+(        margin: 0;) Tj
+/F3 8 Tf
+1 0 0 1 50 139 Tm
+(        line-height: 1.6;) Tj
+/F3 8 Tf
+1 0 0 1 50 128 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 50 117 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 106 Tm
+(    @media \(max-width: 480px\) {) Tj
+/F3 8 Tf
+1 0 0 1 50 95 Tm
+(        .app {) Tj
+/F3 8 Tf
+1 0 0 1 50 84 Tm
+(            align-items: flex-start;) Tj
+/F3 8 Tf
+1 0 0 1 50 73 Tm
+(            padding: 16px;) Tj
+/F3 8 Tf
+1 0 0 1 50 62 Tm
+(        }) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Length 3216 >>
+stream
+BT
+/F3 8 Tf
+1 0 0 1 50 744 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 733 Tm
+(        .converter-card {) Tj
+/F3 8 Tf
+1 0 0 1 50 722 Tm
+(            padding: 20px;) Tj
+/F3 8 Tf
+1 0 0 1 50 711 Tm
+(            border-radius: 10px;) Tj
+/F3 8 Tf
+1 0 0 1 50 700 Tm
+(        }) Tj
+/F3 8 Tf
+1 0 0 1 50 689 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 678 Tm
+(        h1 {) Tj
+/F3 8 Tf
+1 0 0 1 50 667 Tm
+(            font-size: 24px;) Tj
+/F3 8 Tf
+1 0 0 1 50 656 Tm
+(        }) Tj
+/F3 8 Tf
+1 0 0 1 50 645 Tm
+(    }) Tj
+/F2 14 Tf
+1 0 0 1 50 619 Tm
+(7. Explicacion propiedad por propiedad) Tj
+/F1 10 Tf
+1 0 0 1 50 599 Tm
+(- box-sizing: border-box hace que padding y border se incluyan dentro del ancho total.) Tj
+/F1 10 Tf
+1 0 0 1 50 583 Tm
+(- margin: 0 quita margenes por defecto del navegador.) Tj
+/F1 10 Tf
+1 0 0 1 50 567 Tm
+(- min-height: 100vh hace que el body o app ocupen minimo toda la pantalla.) Tj
+/F1 10 Tf
+1 0 0 1 50 551 Tm
+(- font-family define la tipografia.) Tj
+/F1 10 Tf
+1 0 0 1 50 535 Tm
+(- background define el color de fondo.) Tj
+/F1 10 Tf
+1 0 0 1 50 519 Tm
+(- color define el color del texto.) Tj
+/F1 10 Tf
+1 0 0 1 50 503 Tm
+(- display: flex activa Flexbox.) Tj
+/F1 10 Tf
+1 0 0 1 50 487 Tm
+(- align-items: center centra verticalmente cuando se usa flex.) Tj
+/F1 10 Tf
+1 0 0 1 50 471 Tm
+(- justify-content: center centra horizontalmente cuando se usa flex.) Tj
+/F1 10 Tf
+1 0 0 1 50 455 Tm
+(- padding agrega espacio interno.) Tj
+/F1 10 Tf
+1 0 0 1 50 439 Tm
+(- width: 100% hace que el elemento ocupe el ancho disponible.) Tj
+/F1 10 Tf
+1 0 0 1 50 423 Tm
+(- max-width evita que la tarjeta sea demasiado ancha en escritorio.) Tj
+/F1 10 Tf
+1 0 0 1 50 407 Tm
+(- border crea linea alrededor.) Tj
+/F1 10 Tf
+1 0 0 1 50 391 Tm
+(- border-radius redondea esquinas.) Tj
+/F1 10 Tf
+1 0 0 1 50 375 Tm
+(- box-shadow crea sombra.) Tj
+/F1 10 Tf
+1 0 0 1 50 359 Tm
+(- line-height mejora lectura entre lineas.) Tj
+/F1 10 Tf
+1 0 0 1 50 343 Tm
+(- cursor: pointer muestra mano al pasar por el boton.) Tj
+/F1 10 Tf
+1 0 0 1 50 327 Tm
+(- outline en focus ayuda accesibilidad: muestra donde esta el teclado.) Tj
+/F2 14 Tf
+1 0 0 1 50 303 Tm
+(8. Como hacer responsive) Tj
+/F1 10 Tf
+1 0 0 1 50 283 Tm
+(Responsive significa que la pagina se adapta a distintos tamanos de pantalla. Para) Tj
+/F1 10 Tf
+1 0 0 1 50 269 Tm
+(celular, debes evitar anchos fijos grandes. Usa width: 100%, max-width y media queries.) Tj
+/F3 8 Tf
+1 0 0 1 50 246 Tm
+(    @media \(max-width: 480px\) {) Tj
+/F3 8 Tf
+1 0 0 1 50 235 Tm
+(        .converter-card {) Tj
+/F3 8 Tf
+1 0 0 1 50 224 Tm
+(            padding: 20px;) Tj
+/F3 8 Tf
+1 0 0 1 50 213 Tm
+(        }) Tj
+/F3 8 Tf
+1 0 0 1 50 202 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 50 191 Tm
+(        h1 {) Tj
+/F3 8 Tf
+1 0 0 1 50 180 Tm
+(            font-size: 24px;) Tj
+/F3 8 Tf
+1 0 0 1 50 169 Tm
+(        }) Tj
+/F3 8 Tf
+1 0 0 1 50 158 Tm
+(    }) Tj
+/F1 10 Tf
+1 0 0 1 50 140 Tm
+(- @media aplica reglas solo cuando se cumple una condicion.) Tj
+/F1 10 Tf
+1 0 0 1 50 124 Tm
+(- max-width: 480px significa: desde 480px hacia abajo.) Tj
+/F1 10 Tf
+1 0 0 1 50 108 Tm
+(- En celular bajamos padding y tamano de titulo para que todo respire.) Tj
+/F2 14 Tf
+1 0 0 1 50 84 Tm
+(9. Como estudiar CSS) Tj
+/F1 10 Tf
+1 0 0 1 50 64 Tm
+(- Primero identifica el selector.) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Length 303 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 50 744 Tm
+(- Luego lee cada propiedad.) Tj
+/F1 10 Tf
+1 0 0 1 50 728 Tm
+(- Cambia un valor y observa que pasa.) Tj
+/F1 10 Tf
+1 0 0 1 50 712 Tm
+(- Prueba escritorio y celular.) Tj
+/F1 10 Tf
+1 0 0 1 50 696 Tm
+(- No metas muchas decoraciones: prioriza lectura, orden y contraste.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 14 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 4 0 R >>
+endobj
+10 0 obj
+<< /Type /Page /Parent 14 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+11 0 obj
+<< /Type /Page /Parent 14 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 6 0 R >>
+endobj
+12 0 obj
+<< /Type /Page /Parent 14 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 7 0 R >>
+endobj
+13 0 obj
+<< /Type /Page /Parent 14 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 8 0 R >>
+endobj
+14 0 obj
+<< /Type /Pages /Kids [9 0 R 10 0 R 11 0 R 12 0 R 13 0 R] /Count 5 >>
+endobj
+15 0 obj
+<< /Type /Catalog /Pages 14 0 R >>
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000003388 00000 n 
+0000006666 00000 n 
+0000009986 00000 n 
+0000013254 00000 n 
+0000013608 00000 n 
+0000013755 00000 n 
+0000013903 00000 n 
+0000014051 00000 n 
+0000014199 00000 n 
+0000014347 00000 n 
+0000014433 00000 n 
+trailer
+<< /Size 16 /Root 15 0 R >>
+startxref
+14484
+%%EOF

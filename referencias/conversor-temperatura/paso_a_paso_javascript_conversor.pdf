@@ -1,0 +1,560 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 2925 >>
+stream
+BT
+/F2 18 Tf
+1 0 0 1 52 742 Tm
+(Paso a paso corregido de los archivos JavaScript) Tj
+/F1 10 Tf
+1 0 0 1 52 718 Tm
+(Este documento se centra en funciones.js y script.js. Esta version corrige las notas) Tj
+/F1 10 Tf
+1 0 0 1 52 704 Tm
+(anteriores: los textos con tildes no se tratan como error y el codigo revisado ya tiene) Tj
+/F1 10 Tf
+1 0 0 1 52 690 Tm
+(varias correcciones aplicadas.) Tj
+/F2 16 Tf
+1 0 0 1 52 663 Tm
+(Parte A: funciones.js) Tj
+/F2 13 Tf
+1 0 0 1 52 635 Tm
+(Paso 1: Exportar ConversorTemperatura) Tj
+/F1 10 Tf
+1 0 0 1 52 615 Tm
+(La palabra export permite que script.js pueda importar esta clase. Como se usa) Tj
+/F1 10 Tf
+1 0 0 1 52 601 Tm
+(export/import, el HTML debe cargar script.js con type="module".) Tj
+/F3 8 Tf
+1 0 0 1 52 578 Tm
+(    export class ConversorTemperatura {) Tj
+/F2 13 Tf
+1 0 0 1 52 553 Tm
+(Paso 2: Inicializar valores) Tj
+/F1 10 Tf
+1 0 0 1 52 533 Tm
+(El constructor prepara tres propiedades en cero. Son los espacios donde el objeto guarda) Tj
+/F1 10 Tf
+1 0 0 1 52 519 Tm
+(la temperatura actual.) Tj
+/F3 8 Tf
+1 0 0 1 52 496 Tm
+(    constructor\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 485 Tm
+(        this.celsius = 0;) Tj
+/F3 8 Tf
+1 0 0 1 52 474 Tm
+(        this.fahrenheit = 0;) Tj
+/F3 8 Tf
+1 0 0 1 52 463 Tm
+(        this.kelvin = 0;) Tj
+/F3 8 Tf
+1 0 0 1 52 452 Tm
+(    }) Tj
+/F1 10 Tf
+1 0 0 1 52 435 Tm
+(- this.celsius guarda el valor en Celsius.) Tj
+/F1 10 Tf
+1 0 0 1 52 419 Tm
+(- this.fahrenheit guarda el valor en Fahrenheit.) Tj
+/F1 10 Tf
+1 0 0 1 52 403 Tm
+(- this.kelvin guarda el valor en Kelvin.) Tj
+/F2 13 Tf
+1 0 0 1 52 379 Tm
+(Paso 3: Metodo celsiusToFahrenheit) Tj
+/F1 10 Tf
+1 0 0 1 52 359 Tm
+(Lee this.celsius, aplica la formula, guarda el resultado en this.fahrenheit y lo) Tj
+/F1 10 Tf
+1 0 0 1 52 345 Tm
+(devuelve.) Tj
+/F3 8 Tf
+1 0 0 1 52 322 Tm
+(    celsiusToFahrenheit\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 311 Tm
+(        this.fahrenheit = \(this.celsius * 9 / 5\) + 32;) Tj
+/F3 8 Tf
+1 0 0 1 52 300 Tm
+(        return this.fahrenheit;) Tj
+/F3 8 Tf
+1 0 0 1 52 289 Tm
+(    }) Tj
+/F2 13 Tf
+1 0 0 1 52 264 Tm
+(Paso 4: Metodo celsiusToKelvin) Tj
+/F1 10 Tf
+1 0 0 1 52 244 Tm
+(Lee this.celsius, suma 273.15, guarda el resultado en this.kelvin y lo devuelve.) Tj
+/F3 8 Tf
+1 0 0 1 52 221 Tm
+(    celsiusToKelvin\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 210 Tm
+(        this.kelvin = this.celsius + 273.15;) Tj
+/F3 8 Tf
+1 0 0 1 52 199 Tm
+(        return this.kelvin;) Tj
+/F3 8 Tf
+1 0 0 1 52 188 Tm
+(    }) Tj
+/F2 13 Tf
+1 0 0 1 52 163 Tm
+(Paso 5: Metodos desde Fahrenheit) Tj
+/F1 10 Tf
+1 0 0 1 52 143 Tm
+(Cuando el usuario elige Fahrenheit, script.js llena conversor.fahrenheit. Luego estos) Tj
+/F1 10 Tf
+1 0 0 1 52 129 Tm
+(metodos calculan Celsius y Kelvin.) Tj
+/F3 8 Tf
+1 0 0 1 52 106 Tm
+(    fahrenheitToCelsius\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 95 Tm
+(        this.celsius = \(this.fahrenheit - 32\) * 5 / 9;) Tj
+/F3 8 Tf
+1 0 0 1 52 84 Tm
+(        return this.celsius;) Tj
+/F3 8 Tf
+1 0 0 1 52 73 Tm
+(    }) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 3109 >>
+stream
+BT
+/F3 8 Tf
+1 0 0 1 52 742 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 52 731 Tm
+(    fahrenheitToKelvin\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 720 Tm
+(        this.kelvin = \(this.fahrenheit - 32\) * 5 / 9 + 273.15;) Tj
+/F3 8 Tf
+1 0 0 1 52 709 Tm
+(        return this.kelvin;) Tj
+/F3 8 Tf
+1 0 0 1 52 698 Tm
+(    }) Tj
+/F2 13 Tf
+1 0 0 1 52 673 Tm
+(Paso 6: Metodos desde Kelvin) Tj
+/F1 10 Tf
+1 0 0 1 52 653 Tm
+(Cuando el usuario elige Kelvin, script.js llena conversor.kelvin. Luego estos metodos) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(calculan Celsius y Fahrenheit.) Tj
+/F3 8 Tf
+1 0 0 1 52 616 Tm
+(    kelvinToCelsius\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 605 Tm
+(        this.celsius = this.kelvin - 273.15;) Tj
+/F3 8 Tf
+1 0 0 1 52 594 Tm
+(        return this.celsius;) Tj
+/F3 8 Tf
+1 0 0 1 52 583 Tm
+(    }) Tj
+/F3 8 Tf
+1 0 0 1 52 572 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 52 561 Tm
+(    kelvinToFahrenheit\(\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 550 Tm
+(        this.fahrenheit = \(this.kelvin - 273.15\) * 9 / 5 + 32;) Tj
+/F3 8 Tf
+1 0 0 1 52 539 Tm
+(        return this.fahrenheit;) Tj
+/F3 8 Tf
+1 0 0 1 52 528 Tm
+(    }) Tj
+/F2 13 Tf
+1 0 0 1 52 503 Tm
+(Paso 7: Clase validador) Tj
+/F1 10 Tf
+1 0 0 1 52 483 Tm
+(La clase validador permite validar un input por separado. En el flujo actual no se) Tj
+/F1 10 Tf
+1 0 0 1 52 469 Tm
+(importa ni se instancia, asi que no participa en la conversion.) Tj
+/F1 10 Tf
+1 0 0 1 52 450 Tm
+(- Puede quedarse en funciones.js sin afectar la app.) Tj
+/F1 10 Tf
+1 0 0 1 52 434 Tm
+(- Si luego decides usarla, los IDs que reciba deben existir en index.html.) Tj
+/F2 16 Tf
+1 0 0 1 52 410 Tm
+(Parte B: script.js) Tj
+/F2 13 Tf
+1 0 0 1 52 382 Tm
+(Paso 8: Importar la clase) Tj
+/F1 10 Tf
+1 0 0 1 52 362 Tm
+(script.js trae ConversorTemperatura desde funciones.js. Esto permite usar los metodos de) Tj
+/F1 10 Tf
+1 0 0 1 52 348 Tm
+(conversion.) Tj
+/F3 8 Tf
+1 0 0 1 52 325 Tm
+(    import { ConversorTemperatura } from './funciones.js';) Tj
+/F2 13 Tf
+1 0 0 1 52 300 Tm
+(Paso 9: Crear una instancia) Tj
+/F1 10 Tf
+1 0 0 1 52 280 Tm
+(new ConversorTemperatura\(\) ejecuta el constructor y crea un objeto listo para guardar) Tj
+/F1 10 Tf
+1 0 0 1 52 266 Tm
+(temperaturas.) Tj
+/F3 8 Tf
+1 0 0 1 52 243 Tm
+(    const conversor = new ConversorTemperatura\(\);) Tj
+/F2 13 Tf
+1 0 0 1 52 218 Tm
+(Paso 10: Conectar con el HTML) Tj
+/F1 10 Tf
+1 0 0 1 52 198 Tm
+(document.getElementById busca cada elemento por su id. Esta parte ya coincide con tu) Tj
+/F1 10 Tf
+1 0 0 1 52 184 Tm
+(HTML actual.) Tj
+/F3 8 Tf
+1 0 0 1 52 161 Tm
+(    const inputTemperatura = document.getElementById\('temperatura'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 150 Tm
+(    const selectUnidad = document.getElementById\('unidad-medida'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 139 Tm
+(    const mensaje = document.getElementById\('mensaje'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 128 Tm
+(    const resultado = document.getElementById\('resultado'\);) Tj
+/F3 8 Tf
+1 0 0 1 52 117 Tm
+(    const botonConvertir = document.getElementById\('convertir'\);) Tj
+/F2 13 Tf
+1 0 0 1 52 92 Tm
+(Paso 11: Esperar el click) Tj
+/F1 10 Tf
+1 0 0 1 52 72 Tm
+(El programa no convierte apenas carga la pagina. Espera a que el usuario presione el) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Length 2941 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 742 Tm
+(boton Convertir.) Tj
+/F3 8 Tf
+1 0 0 1 52 719 Tm
+(    botonConvertir.addEventListener\('click', \(\) => {) Tj
+/F3 8 Tf
+1 0 0 1 52 708 Tm
+(        // codigo que se ejecuta al hacer click) Tj
+/F3 8 Tf
+1 0 0 1 52 697 Tm
+(    }\);) Tj
+/F2 13 Tf
+1 0 0 1 52 672 Tm
+(Paso 12: Leer valor y unidad) Tj
+/F1 10 Tf
+1 0 0 1 52 652 Tm
+(value toma el contenido actual. trim\(\) elimina espacios al inicio o al final del input.) Tj
+/F3 8 Tf
+1 0 0 1 52 629 Tm
+(    const valor = inputTemperatura.value.trim\(\);) Tj
+/F3 8 Tf
+1 0 0 1 52 618 Tm
+(    const unidad = selectUnidad.value;) Tj
+/F2 13 Tf
+1 0 0 1 52 593 Tm
+(Paso 13: Validar si esta vacio) Tj
+/F1 10 Tf
+1 0 0 1 52 573 Tm
+(Si valor esta vacio, se muestra un mensaje, se limpia el resultado y return detiene la) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(funcion.) Tj
+/F3 8 Tf
+1 0 0 1 52 536 Tm
+(    if \(valor === ''\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 525 Tm
+(        mensaje.textContent = 'El campo no puede estar vacio.';) Tj
+/F3 8 Tf
+1 0 0 1 52 514 Tm
+(        mensaje.style.color = 'red';) Tj
+/F3 8 Tf
+1 0 0 1 52 503 Tm
+(        resultado.textContent = '';) Tj
+/F3 8 Tf
+1 0 0 1 52 492 Tm
+(        return;) Tj
+/F3 8 Tf
+1 0 0 1 52 481 Tm
+(    }) Tj
+/F1 10 Tf
+1 0 0 1 52 464 Tm
+(Nota: en tu archivo el texto puede tener tilde. Eso esta bien; aqui se muestra sin tilde) Tj
+/F1 10 Tf
+1 0 0 1 52 450 Tm
+(solo por compatibilidad del generador simple de PDF.) Tj
+/F2 13 Tf
+1 0 0 1 52 423 Tm
+(Paso 14: Convertir texto a numero) Tj
+/F1 10 Tf
+1 0 0 1 52 403 Tm
+(Aunque el input sea type="number", JavaScript lee su valor como texto. Por eso se usa) Tj
+/F1 10 Tf
+1 0 0 1 52 389 Tm
+(Number\(valor\).) Tj
+/F3 8 Tf
+1 0 0 1 52 366 Tm
+(    const temperatura = Number\(valor\);) Tj
+/F2 13 Tf
+1 0 0 1 52 341 Tm
+(Paso 15: Validar numero) Tj
+/F1 10 Tf
+1 0 0 1 52 321 Tm
+(Number.isFinite confirma que el valor convertido sea un numero valido. Si no lo es, se) Tj
+/F1 10 Tf
+1 0 0 1 52 307 Tm
+(detiene.) Tj
+/F3 8 Tf
+1 0 0 1 52 284 Tm
+(    if \(!Number.isFinite\(temperatura\)\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 273 Tm
+(        mensaje.textContent = 'Por favor, ingresa un numero valido.';) Tj
+/F3 8 Tf
+1 0 0 1 52 262 Tm
+(        mensaje.style.color = 'red';) Tj
+/F3 8 Tf
+1 0 0 1 52 251 Tm
+(        resultado.textContent = '';) Tj
+/F3 8 Tf
+1 0 0 1 52 240 Tm
+(        return;) Tj
+/F3 8 Tf
+1 0 0 1 52 229 Tm
+(    }) Tj
+/F2 13 Tf
+1 0 0 1 52 204 Tm
+(Paso 16: Mostrar validacion positiva) Tj
+/F1 10 Tf
+1 0 0 1 52 184 Tm
+(Si pasa las validaciones, el mensaje cambia a verde.) Tj
+/F3 8 Tf
+1 0 0 1 52 161 Tm
+(    mensaje.textContent = 'Valor valido.';) Tj
+/F3 8 Tf
+1 0 0 1 52 150 Tm
+(    mensaje.style.color = 'green';) Tj
+/F2 13 Tf
+1 0 0 1 52 125 Tm
+(Paso 17: Convertir desde Celsius) Tj
+/F1 10 Tf
+1 0 0 1 52 105 Tm
+(Si unidad es celsius, se guarda la temperatura en conversor.celsius y se calculan) Tj
+/F1 10 Tf
+1 0 0 1 52 91 Tm
+(Fahrenheit y Kelvin.) Tj
+/F3 8 Tf
+1 0 0 1 52 68 Tm
+(    if \(unidad === 'celsius'\) {) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Length 3084 >>
+stream
+BT
+/F3 8 Tf
+1 0 0 1 52 742 Tm
+(        conversor.celsius = temperatura;) Tj
+/F3 8 Tf
+1 0 0 1 52 731 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 52 720 Tm
+(        resultado.innerHTML = `) Tj
+/F3 8 Tf
+1 0 0 1 52 709 Tm
+(            Fahrenheit: ${conversor.celsiusToFahrenheit\(\).toFixed\(2\)} grados F<br>) Tj
+/F3 8 Tf
+1 0 0 1 52 698 Tm
+(            Kelvin: ${conversor.celsiusToKelvin\(\).toFixed\(2\)} K) Tj
+/F3 8 Tf
+1 0 0 1 52 687 Tm
+(        `;) Tj
+/F3 8 Tf
+1 0 0 1 52 676 Tm
+(    }) Tj
+/F2 13 Tf
+1 0 0 1 52 651 Tm
+(Paso 18: Convertir desde Fahrenheit) Tj
+/F1 10 Tf
+1 0 0 1 52 631 Tm
+(Si unidad es fahrenheit, se guarda la temperatura en conversor.fahrenheit. El llamado a) Tj
+/F1 10 Tf
+1 0 0 1 52 617 Tm
+(conversor.fahrenheitToKelvin\(\) esta correcto en tu codigo actual.) Tj
+/F3 8 Tf
+1 0 0 1 52 594 Tm
+(    if \(unidad === 'fahrenheit'\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 583 Tm
+(        conversor.fahrenheit = temperatura;) Tj
+/F3 8 Tf
+1 0 0 1 52 572 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 52 561 Tm
+(        resultado.innerHTML = `) Tj
+/F3 8 Tf
+1 0 0 1 52 550 Tm
+(            Celsius: ${conversor.fahrenheitToCelsius\(\).toFixed\(2\)} grados C<br>) Tj
+/F3 8 Tf
+1 0 0 1 52 539 Tm
+(            Kelvin: ${conversor.fahrenheitToKelvin\(\).toFixed\(2\)} K) Tj
+/F3 8 Tf
+1 0 0 1 52 528 Tm
+(        `;) Tj
+/F3 8 Tf
+1 0 0 1 52 517 Tm
+(    }) Tj
+/F2 13 Tf
+1 0 0 1 52 492 Tm
+(Paso 19: Convertir desde Kelvin) Tj
+/F1 10 Tf
+1 0 0 1 52 472 Tm
+(Si unidad es kelvin, se guarda la temperatura en conversor.kelvin y se calculan Celsius) Tj
+/F1 10 Tf
+1 0 0 1 52 458 Tm
+(y Fahrenheit.) Tj
+/F3 8 Tf
+1 0 0 1 52 435 Tm
+(    if \(unidad === 'kelvin'\) {) Tj
+/F3 8 Tf
+1 0 0 1 52 424 Tm
+(        conversor.kelvin = temperatura;) Tj
+/F3 8 Tf
+1 0 0 1 52 413 Tm
+(    ) Tj
+/F3 8 Tf
+1 0 0 1 52 402 Tm
+(        resultado.innerHTML = `) Tj
+/F3 8 Tf
+1 0 0 1 52 391 Tm
+(            Celsius: ${conversor.kelvinToCelsius\(\).toFixed\(2\)} grados C<br>) Tj
+/F3 8 Tf
+1 0 0 1 52 380 Tm
+(            Fahrenheit: ${conversor.kelvinToFahrenheit\(\).toFixed\(2\)} grados F) Tj
+/F3 8 Tf
+1 0 0 1 52 369 Tm
+(        `;) Tj
+/F3 8 Tf
+1 0 0 1 52 358 Tm
+(    }) Tj
+/F2 16 Tf
+1 0 0 1 52 333 Tm
+(Revision final del codigo actual) Tj
+/F1 10 Tf
+1 0 0 1 52 313 Tm
+(- Bien: import/export estan alineados con script type="module".) Tj
+/F1 10 Tf
+1 0 0 1 52 297 Tm
+(- Bien: los IDs usados en script.js existen en index.html.) Tj
+/F1 10 Tf
+1 0 0 1 52 281 Tm
+(- Bien: la variable conversor esta escrita correctamente en las conversiones.) Tj
+/F1 10 Tf
+1 0 0 1 52 265 Tm
+(- Bien: los labels for ya coinciden con sus inputs/select.) Tj
+/F1 10 Tf
+1 0 0 1 52 249 Tm
+(- Bien: no queda texto suelto antes del script type="module" en index.html.) Tj
+/F1 10 Tf
+1 0 0 1 52 233 Tm
+(- No pendiente: no cambiar los textos con tilde solo porque esta terminal los muestre) Tj
+/F1 10 Tf
+1 0 0 1 52 219 Tm
+(  raro.) Tj
+/F2 16 Tf
+1 0 0 1 52 195 Tm
+(Idea central) Tj
+/F1 10 Tf
+1 0 0 1 52 175 Tm
+(funciones.js se encarga de calcular. script.js se encarga de hablar con la pagina: leer) Tj
+/F1 10 Tf
+1 0 0 1 52 161 Tm
+(el input, validar, llamar los metodos y escribir el resultado.) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 4 0 R >>
+endobj
+9 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+10 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 6 0 R >>
+endobj
+11 0 obj
+<< /Type /Page /Parent 12 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 7 0 R >>
+endobj
+12 0 obj
+<< /Type /Pages /Kids [8 0 R 9 0 R 10 0 R 11 0 R] /Count 4 >>
+endobj
+13 0 obj
+<< /Type /Catalog /Pages 12 0 R >>
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000003199 00000 n 
+0000006360 00000 n 
+0000009353 00000 n 
+0000012489 00000 n 
+0000012636 00000 n 
+0000012783 00000 n 
+0000012931 00000 n 
+0000013079 00000 n 
+0000013157 00000 n 
+trailer
+<< /Size 14 /Root 13 0 R >>
+startxref
+13208
+%%EOF

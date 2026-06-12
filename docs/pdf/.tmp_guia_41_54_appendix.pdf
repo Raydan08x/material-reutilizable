@@ -1,0 +1,169 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Length 1900 >>
+stream
+BT
+/F2 18 Tf
+1 0 0 1 50 736 Tm
+(Actualizacion del bloque 41 a 54) Tj
+/F1 10 Tf
+1 0 0 1 50 712 Tm
+(Este anexo conserva el PDF original 41 a 50 y agrega solo las cuatro funcionalidades) Tj
+/F1 10 Tf
+1 0 0 1 50 698 Tm
+(nuevas o ajustadas para que la numeracion del proyecto quede alineada hasta la 54.) Tj
+/F2 14 Tf
+1 0 0 1 50 671 Tm
+(51. Version normal sin modulos) Tj
+/F1 10 Tf
+1 0 0 1 50 651 Tm
+(Permite usar JavaScript en un solo archivo sin import y export. Sirve en ejercicios) Tj
+/F1 10 Tf
+1 0 0 1 50 637 Tm
+(academicos, demos sencillas y entregas rapidas donde no necesitas modularizar.) Tj
+/F1 10 Tf
+1 0 0 1 50 618 Tm
+(Para reutilizarlo: crea script-normal.js, pega helpers y clases en el orden correcto,) Tj
+/F1 10 Tf
+1 0 0 1 50 604 Tm
+(cargalo al final del body y evita mezclarlo con imports.) Tj
+/F2 11 Tf
+1 0 0 1 50 585 Tm
+(Checklist rapido:) Tj
+/F1 10 Tf
+1 0 0 1 50 569 Tm
+(- No dejes export o import en el archivo.) Tj
+/F1 10 Tf
+1 0 0 1 50 553 Tm
+(- Carga primero helpers y luego inicializacion.) Tj
+/F1 10 Tf
+1 0 0 1 50 537 Tm
+(- Verifica que los IDs del HTML existan antes de ejecutar el script.) Tj
+/F2 14 Tf
+1 0 0 1 50 513 Tm
+(52. Responsive design reutilizable) Tj
+/F1 10 Tf
+1 0 0 1 50 493 Tm
+(Hace que la pagina se adapte a movil, tablet y escritorio. Ajusta grid, padding, radios y) Tj
+/F1 10 Tf
+1 0 0 1 50 479 Tm
+(tipografia segun el ancho disponible.) Tj
+/F1 10 Tf
+1 0 0 1 50 460 Tm
+(Para reutilizarlo: usa contenedores con width min\(...\), convierte layouts de varias) Tj
+/F1 10 Tf
+1 0 0 1 50 446 Tm
+(columnas a una sola en tablet y movil, y prueba en menos de 520px.) Tj
+/F2 11 Tf
+1 0 0 1 50 427 Tm
+(Checklist rapido:) Tj
+/F1 10 Tf
+1 0 0 1 50 411 Tm
+(- No debe aparecer scroll horizontal.) Tj
+/F1 10 Tf
+1 0 0 1 50 395 Tm
+(- Las cards deben pasar a una columna en pantallas pequenas.) Tj
+/F1 10 Tf
+1 0 0 1 50 379 Tm
+(- Navbar, tablas y formularios deben seguir legibles.) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Length 1708 >>
+stream
+BT
+/F2 14 Tf
+1 0 0 1 50 736 Tm
+(53. Tarjeta de presentacion Bootstrap) Tj
+/F1 10 Tf
+1 0 0 1 50 716 Tm
+(Actividad guiada basada en LAB1. La meta es construir una card personal con avatar,) Tj
+/F1 10 Tf
+1 0 0 1 50 702 Tm
+(nombre, rol, badges y enlaces, manteniendo la logica de Bootstrap pero con el estilo de) Tj
+/F1 10 Tf
+1 0 0 1 50 688 Tm
+(este proyecto.) Tj
+/F1 10 Tf
+1 0 0 1 50 669 Tm
+(Paso a paso: crea el contenedor principal, arma la card frontal, agrega la vista de) Tj
+/F1 10 Tf
+1 0 0 1 50 655 Tm
+(tecnologias, aplica estilos tipo card y conecta un boton para alternar el estado visual.) Tj
+/F2 11 Tf
+1 0 0 1 50 636 Tm
+(Puntos clave:) Tj
+/F1 10 Tf
+1 0 0 1 50 620 Tm
+(- Reutiliza ideas como card, badge, btn y grid.) Tj
+/F1 10 Tf
+1 0 0 1 50 604 Tm
+(- Separa estructura HTML, look visual y cambio de estado.) Tj
+/F1 10 Tf
+1 0 0 1 50 588 Tm
+(- Verifica legibilidad en tema claro y oscuro.) Tj
+/F2 14 Tf
+1 0 0 1 50 564 Tm
+(54. Carrito de compras DOM) Tj
+/F1 10 Tf
+1 0 0 1 50 544 Tm
+(Actividad guiada para practicar DOM: agregar productos, actualizar badge, calcular total,) Tj
+/F1 10 Tf
+1 0 0 1 50 530 Tm
+(eliminar items y vaciar el carrito sin recargar la pagina.) Tj
+/F1 10 Tf
+1 0 0 1 50 511 Tm
+(Paso a paso: selecciona los botones de producto, lee data-name y data-price, crea items) Tj
+/F1 10 Tf
+1 0 0 1 50 497 Tm
+(dinamicos con createElement, recalcula total y conecta vaciado general.) Tj
+/F2 11 Tf
+1 0 0 1 50 478 Tm
+(Puntos clave:) Tj
+/F1 10 Tf
+1 0 0 1 50 462 Tm
+(- Convierte precios a numero antes de sumarlos.) Tj
+/F1 10 Tf
+1 0 0 1 50 446 Tm
+(- Actualiza badge y total despues de cada accion.) Tj
+/F1 10 Tf
+1 0 0 1 50 430 Tm
+(- Prueba agregar, eliminar y vaciar para validar consistencia.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 7 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 4 0 R >>
+endobj
+7 0 obj
+<< /Type /Pages /Kids [5 0 R 6 0 R] /Count 2 >>
+endobj
+8 0 obj
+<< /Type /Catalog /Pages 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000002106 00000 n 
+0000003866 00000 n 
+0000004002 00000 n 
+0000004138 00000 n 
+0000004201 00000 n 
+trailer
+<< /Size 9 /Root 8 0 R >>
+startxref
+4250
+%%EOF

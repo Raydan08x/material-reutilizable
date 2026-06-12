@@ -1,0 +1,162 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 715 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividades Guiadas - Componentes Web 2026) Tj
+0 -22 Td () Tj
+0 -22 Td (Este documento agrega tres actividades guiadas al banco de componentes) Tj
+0 -22 Td (sin modificar las guias anteriores. Se penso como complemento practico) Tj
+0 -22 Td (para aprender haciendo dentro de la misma pagina del proyecto.) Tj
+0 -22 Td () Tj
+0 -22 Td (Contenido) Tj
+0 -22 Td (1. Conversor de temperatura en JavaScript) Tj
+0 -22 Td (2. Tarjeta de presentacion Bootstrap) Tj
+0 -22 Td (3. Carrito de compras DOM) Tj
+0 -22 Td () Tj
+0 -22 Td (Cada actividad incluye:) Tj
+0 -22 Td (- objetivo) Tj
+0 -22 Td (- explicacion conceptual) Tj
+0 -22 Td (- pasos de implementacion) Tj
+0 -22 Td (- puntos de validacion) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Length 1140 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 1 - Conversor de temperatura en JavaScript) Tj
+0 -22 Td () Tj
+0 -22 Td (Objetivo) Tj
+0 -22 Td (Recibir un valor en grados Celsius, validarlo y convertirlo a) Tj
+0 -22 Td (Fahrenheit y Kelvin usando JavaScript.) Tj
+0 -22 Td () Tj
+0 -22 Td (Condiciones de la actividad) Tj
+0 -22 Td (- pedir Celsius con prompt o input) Tj
+0 -22 Td (- validar que el dato sea numerico) Tj
+0 -22 Td (- mostrar Kelvin y Fahrenheit) Tj
+0 -22 Td (- repetir o mostrar error si el dato no es valido) Tj
+0 -22 Td (- probar con 45 y 14) Tj
+0 -22 Td (- subir el resultado al repo logica-programacion-2) Tj
+0 -22 Td () Tj
+0 -22 Td (Paso a paso) Tj
+0 -22 Td (1. Lee el valor escrito por el usuario.) Tj
+0 -22 Td (2. Convierte el texto con Number\(valor\).) Tj
+0 -22 Td (3. Valida con Number.isFinite.) Tj
+0 -22 Td (4. Si falla, muestra un mensaje de error.) Tj
+0 -22 Td (5. Si pasa, calcula Kelvin = C + 273.15.) Tj
+0 -22 Td (6. Calcula Fahrenheit = \(C * 9 / 5\) + 32.) Tj
+0 -22 Td (7. Imprime ambos resultados en DOM o consola.) Tj
+0 -22 Td (8. Verifica 45 => 318.15 K y 113 F.) Tj
+0 -22 Td (9. Verifica 14 => 287.15 K y 57.2 F.) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Length 1126 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 2 - Tarjeta de presentacion Bootstrap) Tj
+0 -22 Td () Tj
+0 -22 Td (Objetivo) Tj
+0 -22 Td (Construir una card personal inspirada en Bootstrap y adaptarla al) Tj
+0 -22 Td (estilo visual de este proyecto.) Tj
+0 -22 Td () Tj
+0 -22 Td (Que se practica) Tj
+0 -22 Td (- estructura tipo card) Tj
+0 -22 Td (- jerarquia visual con avatar, nombre, rol y enlaces) Tj
+0 -22 Td (- badges para tecnologias) Tj
+0 -22 Td (- composicion responsiva) Tj
+0 -22 Td (- interaccion extra con flip frontal y trasero) Tj
+0 -22 Td () Tj
+0 -22 Td (Paso a paso) Tj
+0 -22 Td (1. Crea un contenedor principal para la actividad.) Tj
+0 -22 Td (2. Agrega un bloque interno que girara con transform 3D.) Tj
+0 -22 Td (3. Disena la cara frontal con avatar, nombre y descripcion.) Tj
+0 -22 Td (4. Disena la cara trasera con tecnologias y herramientas.) Tj
+0 -22 Td (5. Agrega botones para ver tecnologias y volver.) Tj
+0 -22 Td (6. En CSS usa perspective, preserve-3d y backface-visibility.) Tj
+0 -22 Td (7. En JS agrega o quita la clase is-flipped.) Tj
+0 -22 Td (8. Prueba contraste, espaciado y responsive en ambos temas.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 1162 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 3 - Carrito de compras DOM) Tj
+0 -22 Td () Tj
+0 -22 Td (Objetivo) Tj
+0 -22 Td (Practicar manipulacion del DOM creando una mini tienda con carrito,) Tj
+0 -22 Td (contador, total acumulado y borrado de items.) Tj
+0 -22 Td () Tj
+0 -22 Td (Que se practica) Tj
+0 -22 Td (- querySelectorAll y addEventListener) Tj
+0 -22 Td (- dataset para leer nombre y precio) Tj
+0 -22 Td (- createElement y appendChild) Tj
+0 -22 Td (- actualizacion del badge) Tj
+0 -22 Td (- calculo del total) Tj
+0 -22 Td (- eliminacion individual y vaciado completo) Tj
+0 -22 Td () Tj
+0 -22 Td (Paso a paso) Tj
+0 -22 Td (1. Crea varios productos con boton Agregar.) Tj
+0 -22 Td (2. Guarda nombre y precio en data-name y data-price.) Tj
+0 -22 Td (3. Crea la lista del carrito y el badge del contador.) Tj
+0 -22 Td (4. Al agregar, crea un li dinamico con boton Eliminar.) Tj
+0 -22 Td (5. Suma el precio al total y actualiza la interfaz.) Tj
+0 -22 Td (6. Cuando se elimina un item, resta el valor y borra la fila.) Tj
+0 -22 Td (7. El boton Vaciar debe reiniciar lista, badge y total.) Tj
+0 -22 Td (8. Verifica que todo siga correcto al mezclar varias acciones.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Pages /Kids [7 0 R 8 0 R 9 0 R 10 0 R] /Count 4 >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+9 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+endobj
+10 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 5 0 R >>
+endobj
+11 0 obj
+<< /Type /Catalog /Pages 6 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000845 00000 n 
+0000002037 00000 n 
+0000003215 00000 n 
+0000004429 00000 n 
+0000004505 00000 n 
+0000004631 00000 n 
+0000004757 00000 n 
+0000004883 00000 n 
+0000005010 00000 n 
+trailer
+<< /Size 12 /Root 11 0 R >>
+startxref
+5060
+%%EOF

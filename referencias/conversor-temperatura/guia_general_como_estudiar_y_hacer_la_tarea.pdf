@@ -1,0 +1,254 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 3176 >>
+stream
+BT
+/F2 18 Tf
+1 0 0 1 50 736 Tm
+(Guia general: como estudiar y hacer la tarea) Tj
+/F1 10 Tf
+1 0 0 1 50 712 Tm
+(Esta guia te explica como estudiar el proyecto completo del conversor de temperatura. La) Tj
+/F1 10 Tf
+1 0 0 1 50 698 Tm
+(idea no es memorizar codigo: la idea es entender que papel cumple cada archivo, como se) Tj
+/F1 10 Tf
+1 0 0 1 50 684 Tm
+(conectan entre si y como construir una tarea web de forma ordenada.) Tj
+/F2 14 Tf
+1 0 0 1 50 657 Tm
+(1. Que significa cada extension) Tj
+/F1 10 Tf
+1 0 0 1 50 637 Tm
+(- .html significa HyperText Markup Language. Sirve para crear la estructura de la) Tj
+/F1 10 Tf
+1 0 0 1 50 623 Tm
+(  pagina.) Tj
+/F1 10 Tf
+1 0 0 1 50 607 Tm
+(- .css significa Cascading Style Sheets. Sirve para disenar la apariencia: colores,) Tj
+/F1 10 Tf
+1 0 0 1 50 593 Tm
+(  espacios, tamanos y responsive.) Tj
+/F1 10 Tf
+1 0 0 1 50 577 Tm
+(- .js significa JavaScript. Sirve para dar comportamiento: eventos, validaciones,) Tj
+/F1 10 Tf
+1 0 0 1 50 563 Tm
+(  calculos y cambios en pantalla.) Tj
+/F1 10 Tf
+1 0 0 1 50 547 Tm
+(- .pdf es Portable Document Format. Sirve para entregar una guia o documento que se vea) Tj
+/F1 10 Tf
+1 0 0 1 50 533 Tm
+(  igual en distintos equipos.) Tj
+/F2 14 Tf
+1 0 0 1 50 509 Tm
+(2. Orden recomendado para estudiar) Tj
+/F1 10 Tf
+1 0 0 1 50 489 Tm
+(- Primero mira index.html. Preguntate: que elementos existen en la pagina?) Tj
+/F1 10 Tf
+1 0 0 1 50 473 Tm
+(- Despues mira styles.css. Preguntate: como se ven esos elementos?) Tj
+/F1 10 Tf
+1 0 0 1 50 457 Tm
+(- Luego mira funciones.js. Preguntate: que logica reutilizable existe?) Tj
+/F1 10 Tf
+1 0 0 1 50 441 Tm
+(- Por ultimo mira script.js. Preguntate: como se conecta el usuario con la logica?) Tj
+/F2 14 Tf
+1 0 0 1 50 417 Tm
+(3. El modelo mental mas importante) Tj
+/F1 10 Tf
+1 0 0 1 50 397 Tm
+(Piensa en el proyecto como una casa. HTML es la estructura: paredes, puertas y ventanas.) Tj
+/F1 10 Tf
+1 0 0 1 50 383 Tm
+(CSS es la decoracion y organizacion visual: pintura, muebles, iluminacion y distribucion.) Tj
+/F1 10 Tf
+1 0 0 1 50 369 Tm
+(JavaScript es la electricidad y los interruptores: cuando haces algo, la pagina responde.) Tj
+/F2 14 Tf
+1 0 0 1 50 342 Tm
+(4. Como hacer la tarea desde cero) Tj
+/F2 14 Tf
+1 0 0 1 50 314 Tm
+(Paso 1: Crear la estructura de archivos) Tj
+/F1 10 Tf
+1 0 0 1 50 294 Tm
+(Crea una carpeta del proyecto y dentro agrega index.html, styles.css, funciones.js y) Tj
+/F1 10 Tf
+1 0 0 1 50 280 Tm
+(script.js.) Tj
+/F2 14 Tf
+1 0 0 1 50 253 Tm
+(Paso 2: Escribir el HTML) Tj
+/F1 10 Tf
+1 0 0 1 50 233 Tm
+(Agrega titulo, input, selector, boton, mensajes y resultado. Cada elemento que JavaScript) Tj
+/F1 10 Tf
+1 0 0 1 50 219 Tm
+(necesite debe tener id.) Tj
+/F2 14 Tf
+1 0 0 1 50 192 Tm
+(Paso 3: Conectar CSS) Tj
+/F1 10 Tf
+1 0 0 1 50 172 Tm
+(En head agrega link rel="stylesheet" href="styles.css" para que el HTML cargue los) Tj
+/F1 10 Tf
+1 0 0 1 50 158 Tm
+(estilos.) Tj
+/F2 14 Tf
+1 0 0 1 50 131 Tm
+(Paso 4: Conectar JavaScript) Tj
+/F1 10 Tf
+1 0 0 1 50 111 Tm
+(Al final del body agrega script type="module" src="script.js". type="module" permite usar) Tj
+/F1 10 Tf
+1 0 0 1 50 97 Tm
+(import y export.) Tj
+/F2 14 Tf
+1 0 0 1 50 70 Tm
+(Paso 5: Crear funciones.js) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 2528 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 50 744 Tm
+(Define una clase con los metodos de conversion. Esa clase no debe depender del HTML.) Tj
+/F2 14 Tf
+1 0 0 1 50 717 Tm
+(Paso 6: Crear script.js) Tj
+/F1 10 Tf
+1 0 0 1 50 697 Tm
+(Importa la clase, busca elementos con getElementById, escucha el click del boton, valida y) Tj
+/F1 10 Tf
+1 0 0 1 50 683 Tm
+(muestra resultados.) Tj
+/F2 14 Tf
+1 0 0 1 50 656 Tm
+(Paso 7: Probar casos) Tj
+/F1 10 Tf
+1 0 0 1 50 636 Tm
+(Prueba Celsius, Fahrenheit, Kelvin, campo vacio, numeros negativos y decimales.) Tj
+/F2 14 Tf
+1 0 0 1 50 609 Tm
+(Paso 8: Mejorar diseno) Tj
+/F1 10 Tf
+1 0 0 1 50 589 Tm
+(Despues de funcionar, mejora CSS: layout, colores, sombras, responsive y estados visuales.) Tj
+/F2 14 Tf
+1 0 0 1 50 562 Tm
+(5. Preguntas que debes hacerte mientras estudias) Tj
+/F1 10 Tf
+1 0 0 1 50 542 Tm
+(- Que archivo estoy leyendo?) Tj
+/F1 10 Tf
+1 0 0 1 50 526 Tm
+(- Ese archivo crea estructura, estilo o comportamiento?) Tj
+/F1 10 Tf
+1 0 0 1 50 510 Tm
+(- Que nombres son IDs y cuales son clases CSS?) Tj
+/F1 10 Tf
+1 0 0 1 50 494 Tm
+(- Que datos entran al programa?) Tj
+/F1 10 Tf
+1 0 0 1 50 478 Tm
+(- Que datos salen como resultado?) Tj
+/F1 10 Tf
+1 0 0 1 50 462 Tm
+(- Que funcion se ejecuta cuando hago click?) Tj
+/F1 10 Tf
+1 0 0 1 50 446 Tm
+(- Que formula matematica usa cada conversion?) Tj
+/F2 14 Tf
+1 0 0 1 50 422 Tm
+(6. Ruta de aprendizaje sugerida) Tj
+/F1 10 Tf
+1 0 0 1 50 402 Tm
+(- Dia 1: entiende HTML y copia a mano la estructura.) Tj
+/F1 10 Tf
+1 0 0 1 50 386 Tm
+(- Dia 2: entiende CSS basico y cambia colores, espacios y tamanos.) Tj
+/F1 10 Tf
+1 0 0 1 50 370 Tm
+(- Dia 3: entiende funciones.js y prueba formulas con ejemplos.) Tj
+/F1 10 Tf
+1 0 0 1 50 354 Tm
+(- Dia 4: entiende script.js y explica cada linea en voz alta.) Tj
+/F1 10 Tf
+1 0 0 1 50 338 Tm
+(- Dia 5: mejora responsive y prueba en pantalla pequena.) Tj
+/F2 14 Tf
+1 0 0 1 50 314 Tm
+(7. Checklist final de entrega) Tj
+/F1 10 Tf
+1 0 0 1 50 294 Tm
+(- El HTML tiene title claro, lang correcto y meta viewport.) Tj
+/F1 10 Tf
+1 0 0 1 50 278 Tm
+(- Los labels usan for que coincide con el id del input o select.) Tj
+/F1 10 Tf
+1 0 0 1 50 262 Tm
+(- El CSS se ve bien en escritorio y celular.) Tj
+/F1 10 Tf
+1 0 0 1 50 246 Tm
+(- El JS no busca IDs inexistentes.) Tj
+/F1 10 Tf
+1 0 0 1 50 230 Tm
+(- El boton convierte desde las tres unidades.) Tj
+/F1 10 Tf
+1 0 0 1 50 214 Tm
+(- El programa valida campo vacio.) Tj
+/F1 10 Tf
+1 0 0 1 50 198 Tm
+(- El resultado se muestra con claridad.) Tj
+/F1 10 Tf
+1 0 0 1 50 182 Tm
+(- El codigo esta indentado y ordenado.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 8 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 4 0 R >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 8 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+8 0 obj
+<< /Type /Pages /Kids [6 0 R 7 0 R] /Count 2 >>
+endobj
+9 0 obj
+<< /Type /Catalog /Pages 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000003450 00000 n 
+0000006030 00000 n 
+0000006176 00000 n 
+0000006322 00000 n 
+0000006385 00000 n 
+trailer
+<< /Size 10 /Root 9 0 R >>
+startxref
+6434
+%%EOF

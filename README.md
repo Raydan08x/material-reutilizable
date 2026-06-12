@@ -2,13 +2,35 @@
 
 Este kit contiene una sola pagina demo con mas de 40 funcionalidades reutilizables para proyectos web con HTML, CSS y JavaScript.
 
-## Archivos incluidos
+## Estructura del proyecto
+
+```
+├── index.html
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       ├── funciones.js
+│       ├── script.js
+│       ├── script-normal.js
+│       ├── guide-data.js
+│       └── guide-details-data.js
+├── docs/
+│   └── pdf/
+│       └── (guías y actividades en PDF)
+├── referencias/
+│   └── (proyectos de ejemplo)
+└── tools/
+    └── (scripts auxiliares)
+```
+
+## Archivos principales
 
 - `index.html`: estructura completa de la pagina y ejemplos de uso.
-- `styles.css`: estilos reutilizables, glassmorphism, responsive, componentes y variables.
-- `funciones.js`: version modular con `export` para usar desde otros archivos.
-- `script.js`: archivo principal que importa `initApp()` desde `funciones.js`.
-- `script-normal.js`: version sin modulos, lista para usar con `<script src="script-normal.js"></script>`.
+- `assets/css/styles.css`: estilos reutilizables, glassmorphism, responsive, componentes y variables.
+- `assets/js/funciones.js`: version modular con `export` para usar desde otros archivos.
+- `assets/js/script.js`: archivo principal que importa `initApp()` desde `funciones.js`.
+- `assets/js/script-normal.js`: version sin modulos, lista para usar con `<script src="assets/js/script-normal.js"></script>`.
 - `README.md`: guia corta de uso.
 
 ## Como ejecutar
@@ -16,13 +38,13 @@ Este kit contiene una sola pagina demo con mas de 40 funcionalidades reutilizabl
 Abre `index.html` con Live Server o desde un servidor local. Para modulos JS se recomienda Live Server.
 
 ```html
-<script type="module" src="script.js"></script>
+<script type="module" src="assets/js/script.js"></script>
 ```
 
 Si necesitas la version normal sin `import/export`, comenta la linea anterior y usa:
 
 ```html
-<script src="script-normal.js"></script>
+<script src="assets/js/script-normal.js"></script>
 ```
 
 ## Funcionalidades incluidas
@@ -79,6 +101,8 @@ Si necesitas la version normal sin `import/export`, comenta la linea anterior y 
 50. Imprimir pagina.
 51. Reset visual de demo.
 52. Helpers reutilizables para DOM, storage y debounce.
+53. Tarjeta de presentacion Bootstrap como actividad guiada.
+54. Carrito de compras DOM como actividad guiada.
 
 ## Como agregar una nueva seccion
 
@@ -114,7 +138,7 @@ El valor real se guarda en el input hidden:
 
 ## Como cambiar colores globales
 
-Edita variables en `styles.css`:
+Edita variables en `assets/css/styles.css`:
 
 ```css
 :root {
@@ -126,7 +150,7 @@ Edita variables en `styles.css`:
 
 ## Como crear una clase nueva modular
 
-En `funciones.js`:
+En `assets/js/funciones.js`:
 
 ```js
 export class MiComponente {
@@ -136,7 +160,7 @@ export class MiComponente {
 }
 ```
 
-En `script.js`:
+En `assets/js/script.js`:
 
 ```js
 import { MiComponente } from "./funciones.js";

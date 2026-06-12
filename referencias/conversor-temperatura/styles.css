@@ -1,0 +1,312 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+
+    background:
+        radial-gradient(circle at top left, #38bdf8, transparent 35%),
+        radial-gradient(circle at bottom right, #8b5cf6, transparent 35%),
+        linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+/* Contenedor principal */
+.app {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* Tarjeta flotante con blur */
+.converter-card {
+    width: 100%;
+    max-width: 480px;
+
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 24px;
+    padding: 32px;
+
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Brillo sutil arriba de la tarjeta */
+.converter-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 60%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+    filter: blur(2px);
+}
+
+h1 {
+    margin: 0 0 28px;
+    font-size: 30px;
+    line-height: 1.2;
+    text-align: center;
+    color: #ffffff;
+}
+
+.field-group,
+.input-section {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 48px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 14px;
+
+    padding: 12px 14px;
+    font-size: 16px;
+
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.14);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Color del texto placeholder */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Para que las opciones del select se lean */
+select option {
+    color: #111827;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18);
+}
+
+button {
+    width: 100%;
+    min-height: 50px;
+
+    border: 0;
+    border-radius: 14px;
+
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #ffffff;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 35px rgba(37, 99, 235, 0.5);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.mensaje {
+    min-height: 20px;
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: #fecaca;
+}
+
+/* Resultado también estilo glass */
+.result-section {
+    margin-top: 24px;
+    padding: 18px;
+
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.result-section h2 {
+    margin: 0 0 10px;
+    font-size: 19px;
+    color: #ffffff;
+}
+
+#resultado {
+    margin: 0;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 480px) {
+    .app {
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .converter-card {
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+}
+
+
+
+/* IMPORTANTE:
+   Cambiamos esto para que el menú no se corte dentro de la tarjeta */
+.converter-card {
+    overflow: visible;
+}
+
+/* Contenedor del selector personalizado */
+.custom-select {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Botón principal del selector */
+.custom-select__button {
+    width: 100%;
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 16px;
+
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.16);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* Hover del botón */
+.custom-select__button:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* Flechita */
+.custom-select__arrow {
+    font-size: 22px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.85);
+    transition: transform 0.2s ease;
+}
+
+/* Contenedor de las opciones */
+.custom-select__options {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+
+    list-style: none;
+
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Cuando el selector está abierto */
+.custom-select.is-open .custom-select__options {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Flecha girada al abrir */
+.custom-select.is-open .custom-select__arrow {
+    transform: rotate(180deg);
+}
+
+/* Cada opción */
+.custom-select__option {
+    padding: 12px 14px;
+    border-radius: 12px;
+
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Opción al pasar el mouse */
+.custom-select__option:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+/* Opción seleccionada */
+.custom-select__option.is-selected {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #ffffff;
+    font-weight: 700;
+}
