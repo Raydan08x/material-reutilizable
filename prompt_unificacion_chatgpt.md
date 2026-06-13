@@ -93,6 +93,152 @@ Generar un único archivo unificado que sirva como una guía de aprendizaje paso
    - Profesional, didáctico y directo al grano.
    - Evita textos genéricos o vacíos. Cada funcionalidad debe tener su explicación técnica correspondiente para que sirva como material de aprendizaje real.
 
+---
+
+### ANÁLISIS DE CONSISTENCIA ENTRE WEB Y PDF (IMPORTANTE):
+
+He comparado el código de la aplicación web actual con el código presente en los PDFs. A continuación te indico qué componentes coinciden exactamente y cuáles tienen diferencias. Para los que difieren, al final de este prompt encontrarás el código oficial y correcto que DEBES usar.
+
+**Funcionalidades 1 a 50 (Bloques 1, 2, 3 y base del 4):**
+- ✅ COINCIDEN: Todos los componentes de los bloques 1 a 3 (funcionalidades 1 a 40) tienen el mismo código en la web y en el PDF. Usa el código de los PDFs tal como está.
+- ✅ COINCIDEN: Funcionalidades 41 a 50 del Bloque 4 base también coinciden.
+
+**Funcionalidades 51 a 57 (Apéndice del Bloque 4 — ATENCIÓN):**
+
+- ✅ 51. Confirmación visual de copia → El PDF contiene el código correcto. Úsalo tal cual.
+- ✅ 52. Debounce para buscador → El PDF contiene el código correcto. Úsalo tal cual.
+- ✅ 53. Tarjeta de presentación Bootstrap → El PDF contiene el código correcto. Úsalo tal cual.
+- ⚠️ **54. Carrito de compras interactivo → DIFERENCIA ENCONTRADA.** El PDF usa texto `"X"` para el botón eliminar. La web usa el carácter `"✕"`. Usa el código corregido que aparece abajo (Sección A).
+- ✅ 55. Footer dinámico y adaptable → El PDF contiene el código correcto. Úsalo tal cual.
+- ✅ 56. Tarjetas de precios Bootstrap → El PDF contiene el código correcto. Úsalo tal cual.
+- ✅ 57. Barra de desplazamiento personalizada → El PDF contiene el código correcto. Úsalo tal cual.
+
+**También verifica el componente 43 (Conversor C/F/K):**
+- ⚠️ **43. Conversor de temperatura → DIFERENCIA ENCONTRADA.** El PDF muestra un código más antiguo sin validación de campo vacío. La web tiene la versión actualizada. Usa el código corregido que aparece abajo (Sección B).
+
+---
+
+### CÓDIGO OFICIAL CORREGIDO (DEBE REEMPLAZAR AL DEL PDF DONDE DIFIERE):
+
+**[SECCIÓN A] — Funcionalidad 54: Carrito de compras interactivo (código correcto para el botón eliminar)**
+
+El único cambio es el botón eliminar que en el código oficial usa el símbolo `✕` (no la letra `X`). El resto del código es idéntico al PDF. Cuando llegues a la funcionalidad 54, usa el siguiente bloque JS (sustituye solo la línea del `innerHTML` del botón):
+
+```javascript
+// Línea del botón eliminar — versión correcta (reemplazar "X" por ✕):
+item.innerHTML = `
+  <div>
+    <strong>${name}</strong>
+    <p class="muted">${this.formatPrice(price)}</p>
+  </div>
+  <button type="button" class="danger-button">✕</button>
+`;
+```
+
+**[SECCIÓN B] — Funcionalidad 43: Conversor de temperatura C/F/K (código correcto con validación de campo vacío)**
+
+El PDF puede mostrar código sin validar campo vacío. Usa esta versión oficial completa:
+
+```javascript
+// funciones.js — versión modular exportada
+export class TemperatureTool {
+  constructor(toast) {
+    this.toast = toast;
+    this.selectedUnit = 'celsius';
+    this.buttons = document.querySelectorAll('.unit-button');
+    this.input = document.getElementById('temperatureInput');
+    this.result = document.getElementById('temperatureResult');
+    this.message = document.getElementById('temperatureMessage');
+    this.calculateButton = document.getElementById('calculateTemperature');
+    this.container = document.getElementById('temperatureTool');
+    if (this.container && this.input && this.calculateButton && this.result) {
+      this.init();
+    }
+  }
+
+  init() {
+    this.buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        this.selectedUnit = button.dataset.unit;
+        this.buttons.forEach((b) => b.classList.remove('is-active'));
+        button.classList.add('is-active');
+        this.applyBackground();
+      });
+    });
+    this.calculateButton.addEventListener('click', () => this.calculate());
+    this.buttons.forEach((b) => b.classList.toggle('is-active', b.dataset.unit === 'celsius'));
+    this.message.textContent = 'Unidad seleccionada: celsius';
+  }
+
+  applyBackground() {
+    this.container.classList.remove('unit-celsius', 'unit-fahrenheit', 'unit-kelvin');
+    this.container.classList.add(`unit-${this.selectedUnit}`);
+  }
+
+  calculate() {
+    // VALIDACIÓN CAMPO VACÍO — diferencia clave respecto a versión antigua del PDF
+    const rawValue = this.input.value.trim();
+    if (rawValue === '') {
+      this.message.textContent = 'El campo está vacío. Ingresa una temperatura para convertir.';
+      this.result.textContent = 'No se pudo calcular.';
+      return;
+    }
+    const value = Number(rawValue);
+    if (!Number.isFinite(value)) {
+      this.message.textContent = 'Ingresa un número válido.';
+      this.result.textContent = 'No se pudo calcular.';
+      return;
+    }
+    let celsius;
+    if (this.selectedUnit === 'celsius') celsius = value;
+    if (this.selectedUnit === 'fahrenheit') celsius = (value - 32) * 5 / 9;
+    if (this.selectedUnit === 'kelvin') celsius = value - 273.15;
+
+    const fahrenheit = (celsius * 9 / 5) + 32;
+    const kelvin = celsius + 273.15;
+
+    this.result.innerHTML = `
+      <strong>Resultado desde ${this.selectedUnit}</strong><br>
+      Celsius: ${celsius.toFixed(2)} °C<br>
+      Fahrenheit: ${fahrenheit.toFixed(2)} °F<br>
+      Kelvin: ${kelvin.toFixed(2)} K
+    `;
+    this.toast?.show('Temperatura calculada.');
+  }
+}
+
+// script.js
+import { TemperatureTool } from './funciones.js';
+document.addEventListener('DOMContentLoaded', () => {
+  const toast = new ToastManager();
+  new TemperatureTool(toast);
+});
+```
+
+```javascript
+// script-normal.js — versión sin módulos (igual pero sin export)
+class TemperatureTool {
+  constructor(toast) {
+    this.toast = toast;
+    this.selectedUnit = 'celsius';
+    this.buttons = document.querySelectorAll('.unit-button');
+    this.input = document.getElementById('temperatureInput');
+    this.result = document.getElementById('temperatureResult');
+    this.message = document.getElementById('temperatureMessage');
+    this.calculateButton = document.getElementById('calculateTemperature');
+    this.container = document.getElementById('temperatureTool');
+    if (this.container && this.input && this.calculateButton && this.result) {
+      this.init();
+    }
+  }
+  // ... (mismos métodos init, applyBackground, calculate que la versión modular)
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const toast = new ToastManager();
+  new TemperatureTool(toast);
+});
+```
+
 Por favor, lee detalladamente los 4 archivos adjuntos y genera el documento Markdown unificado listo para ser exportado a PDF.
 ```
 
