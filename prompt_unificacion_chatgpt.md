@@ -93,6 +93,17 @@ Generar un único archivo unificado que sirva como una guía de aprendizaje paso
    - Profesional, didáctico y directo al grano.
    - Evita textos genéricos o vacíos. Cada funcionalidad debe tener su explicación técnica correspondiente para que sirva como material de aprendizaje real.
 
+5. **🔑 IMPORTANTE — Guarda y Entrega el Script de Generación del PDF**:
+   - Una vez que termines de generar el documento Markdown unificado y lo conviertas a PDF (o expliques cómo hacerlo), **debes entregar también el script o código completo que usaste para generar o compilar ese PDF** (por ejemplo: el script de Python con `fpdf2`, `reportlab`, `weasyprint`, `pandoc`, o el comando/herramienta que hayas usado).
+   - El motivo es que en el futuro se agregarán nuevas funcionalidades y necesitamos poder **regenerar el PDF actualizado sin tener que rehacer todo el trabajo desde cero**.
+   - El script debe estar bien comentado en español e incluir:
+     - La ruta de entrada del archivo Markdown (o fuente equivalente).
+     - La ruta de salida del PDF generado.
+     - Las dependencias o librerías que necesita instalar para ejecutarlo (por ejemplo: `pip install fpdf2`).
+     - Instrucciones de uso en 2 o 3 pasos para que cualquier persona pueda ejecutarlo en su computadora.
+   - Si usas Pandoc u otra herramienta externa, entrega el comando exacto completo que se debe ejecutar en terminal.
+   - **Si no usas un script y el PDF lo genera directamente el editor de Markdown**, especifica cuál herramienta, qué ajustes de página utilizaste (tamaño, márgenes, fuente) y cómo replicar exactamente el mismo resultado.
+
 ---
 
 ### ANÁLISIS DE CONSISTENCIA ENTRE WEB Y PDF (IMPORTANTE):
