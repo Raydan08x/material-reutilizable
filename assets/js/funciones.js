@@ -779,7 +779,14 @@ export class TemperatureTool {
     }
 
     calculate() {
-        const value = Number(this.input.value);
+        const rawValue = this.input.value.trim();
+        if (rawValue === "") {
+            this.message.textContent = "El campo está vacío. Ingresa una temperatura para convertir.";
+            this.result.textContent = "No se pudo calcular.";
+            return;
+        }
+
+        const value = Number(rawValue);
         if (!Number.isFinite(value)) {
             this.message.textContent = "Ingresa un numero valido.";
             this.result.textContent = "No se pudo calcular.";
@@ -2835,6 +2842,149 @@ document.addEventListener("DOMContentLoaded", () => {
         flex-direction: column;
     }
 }`
+        },
+        56: {
+            html: `<div class="pricing-lab">
+    <article class="pricing-lab__card">
+        <span class="pricing-lab__badge">Basico</span>
+        <h4>Starter</h4>
+        <p class="pricing-lab__price">$19<span>/mes</span></p>
+        <ul class="pricing-lab__list">
+            <li>1 proyecto</li>
+            <li>Soporte por correo</li>
+            <li>Componentes base</li>
+        </ul>
+        <button type="button" class="secondary-button">Elegir plan</button>
+    </article>
+    <article class="pricing-lab__card pricing-lab__card--featured">
+        <span class="pricing-lab__badge">Popular</span>
+        <h4>Pro</h4>
+        <p class="pricing-lab__price">$49<span>/mes</span></p>
+        <ul class="pricing-lab__list">
+            <li>10 proyectos</li>
+            <li>Soporte prioritario</li>
+            <li>Layouts premium</li>
+        </ul>
+        <button type="button" class="primary-button">Elegir plan</button>
+    </article>
+    <article class="pricing-lab__card">
+        <span class="pricing-lab__badge">Equipo</span>
+        <h4>Scale</h4>
+        <p class="pricing-lab__price">$99<span>/mes</span></p>
+        <ul class="pricing-lab__list">
+            <li>Proyectos ilimitados</li>
+            <li>Equipo colaborativo</li>
+            <li>Soporte dedicado</li>
+        </ul>
+        <button type="button" class="secondary-button">Elegir plan</button>
+    </article>
+</div>`,
+            css: `.pricing-lab {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+.pricing-lab__card {
+    display: grid;
+    gap: 14px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.06);
+}
+.pricing-lab__card--featured {
+    background: linear-gradient(180deg, rgba(37, 99, 235, 0.2), rgba(255, 255, 255, 0.08));
+    border-color: rgba(37, 99, 235, 0.5);
+    box-shadow: 0 18px 36px rgba(37, 99, 235, 0.16);
+}
+[data-theme="light"] .pricing-lab__card {
+    background: rgba(255, 255, 255, 0.82);
+}
+.pricing-lab__badge {
+    display: inline-flex;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.16);
+    color: #bfdbfe;
+    font-size: 12px;
+    font-weight: 700;
+}
+[data-theme="light"] .pricing-lab__badge {
+    color: #1d4ed8;
+    background: rgba(37, 99, 235, 0.1);
+}
+.pricing-lab__price {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+}
+.pricing-lab__price span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+.pricing-lab__list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+}`,
+            jsModular: `// No requiere JS. Esta actividad es de maquetación de componentes.`,
+            jsNormal: `// No requiere JS. Esta actividad es de maquetación de componentes.`
+        },
+        57: {
+            html: `<div class="custom-scrollable-container">
+    <h3>Contenido desplazable</h3>
+    <p>Desplaza este panel verticalmente para ver el estilo de la barra de movimiento personalizada en accion. Puedes adaptar los colores y radios segun tu diseño.</p>
+    <div class="custom-scrollable-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum, dolor id pellentesque accumsan, tortor elit tincidunt nulla, a placerat risus sem a sem.</p>
+        <p>Vivamus id urna quis eros sodales accumsan quis ac mi. Mauris tincidunt felis vitae lorem congue, sed dictum massa molestie.</p>
+        <p>Proin sit amet elementum nulla. Aliquam convallis tellus sed leo congue feugiat. Vestibulum tristique risus eu nisl sodales efficitur.</p>
+        <p>Donec feugiat tellus et elementum hendrerit. Etiam feugiat leo id lorem tristique, sit amet molestie leo tristique. Cras tempus feugiat nisl in accumsan.</p>
+    </div>
+</div>`,
+            css: `/* Estilos de la barra de desplazamiento y el contenedor de demo */
+.custom-scrollable-container {
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.custom-scrollable-content {
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 10px;
+    
+    /* Reglas para Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.18) rgba(255, 255, 255, 0.02);
+}
+
+/* Reglas para navegadores basados en Webkit (Chrome, Safari, Edge) */
+.custom-scrollable-content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollable-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 999px;
+}
+
+.custom-scrollable-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+}
+
+.custom-scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+}`,
+            jsModular: `// No requiere JS. Estilo de scroll puro con CSS.`,
+            jsNormal: `// No requiere JS. Estilo de scroll puro con CSS.`
         }
     };
 
@@ -2925,12 +3075,8 @@ export class ImplementationGuide {
         this.searchQuery = "";
         this.selectedId = null;
         this.pdfGroups = [
-            { label: "Guia 1 a 10", file: "docs/pdf/guia_reciclaje_componentes_web_01_10_actualizada_2026.pdf" },
-            { label: "Guia 10 a 25", file: "docs/pdf/guia_reciclaje_componentes_web_10_25_actualizada_2026.pdf" },
-            { label: "Guia 26 a 40", file: "docs/pdf/guia_reciclaje_componentes_web_26_40_actualizada_2026.pdf" },
-            { label: "Guia 41 a 55", file: "docs/pdf/guia_reciclaje_componentes_web_41_54_actualizada_2026.pdf" },
-            { label: "Actividades guiadas", file: "docs/pdf/actividades_guiadas_componentes_web_2026.pdf" },
-            { label: "Recurso unificado", file: "docs/pdf/recurso_unificado_40_componentes_web.pdf" }
+            { label: "Guía de Reciclaje Completa", file: "docs/pdf/guia_reciclaje_completa_2026.pdf" },
+            { label: "Actividades Guiadas", file: "docs/pdf/actividades_guiadas_componentes_web_2026.pdf" }
         ];
         if (this.container && this.detailPanel) {
             this.init();
@@ -3306,11 +3452,7 @@ export class ImplementationGuide {
     }
 
     getPdfForFeature(id) {
-        if (id <= 10) return this.pdfGroups[0];
-        if (id <= 25) return this.pdfGroups[1];
-        if (id <= 40) return this.pdfGroups[2];
-        if (id <= 55) return this.pdfGroups[3];
-        return this.pdfGroups[4];
+        return this.pdfGroups[0];
     }
 
     renderSearchPanel() {

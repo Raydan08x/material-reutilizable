@@ -1,6 +1,6 @@
 # Proyecto Web Reutilizable 40+ Componentes
 
-Este kit contiene una sola pagina demo con 55 funcionalidades reutilizables para proyectos web con HTML, CSS, JavaScript y actividades guiadas para practicar Bootstrap.
+Este kit contiene una sola pagina demo con 57 funcionalidades reutilizables para proyectos web con HTML, CSS, JavaScript y actividades guiadas para practicar Bootstrap.
 
 ## Mantenimiento de guias
 
@@ -112,6 +112,8 @@ Si necesitas la version normal sin `import/export`, comenta la linea anterior y 
 53. Tarjeta de presentacion Bootstrap como actividad guiada.
 54. Carrito de compras DOM como actividad guiada.
 55. Footer reutilizable como pie de pagina profesional.
+56. Tarjetas de precios Bootstrap como actividad guiada completa.
+57. Barra de desplazamiento personalizada.
 
 ## Como agregar una nueva seccion
 

@@ -779,7 +779,14 @@ class TemperatureTool {
     }
 
     calculate() {
-        const value = Number(this.input.value);
+        const rawValue = this.input.value.trim();
+        if (rawValue === "") {
+            this.message.textContent = "El campo está vacío. Ingresa una temperatura para convertir.";
+            this.result.textContent = "No se pudo calcular.";
+            return;
+        }
+
+        const value = Number(rawValue);
         if (!Number.isFinite(value)) {
             this.message.textContent = "Ingresa un numero valido.";
             this.result.textContent = "No se pudo calcular.";
@@ -995,12 +1002,8 @@ class ImplementationGuide {
         this.data = window.GUIDE_DATA || [];
         this.details = window.GUIDE_DETAILS || {};
         this.pdfGroups = [
-            { label: "Guia 1 a 10", file: "docs/pdf/guia_reciclaje_componentes_web_01_10_actualizada_2026.pdf" },
-            { label: "Guia 10 a 25", file: "docs/pdf/guia_reciclaje_componentes_web_10_25_actualizada_2026.pdf" },
-            { label: "Guia 26 a 40", file: "docs/pdf/guia_reciclaje_componentes_web_26_40_actualizada_2026.pdf" },
-            { label: "Guia 41 a 54", file: "docs/pdf/guia_reciclaje_componentes_web_41_54_actualizada_2026.pdf" },
-            { label: "Actividades guiadas", file: "docs/pdf/actividades_guiadas_componentes_web_2026.pdf" },
-            { label: "Recurso unificado", file: "docs/pdf/recurso_unificado_40_componentes_web.pdf" }
+            { label: "Guía de Reciclaje Completa", file: "docs/pdf/guia_reciclaje_completa_2026.pdf" },
+            { label: "Actividades Guiadas", file: "docs/pdf/actividades_guiadas_componentes_web_2026.pdf" }
         ];
         if (this.container && this.detailPanel) {
             this.init();
@@ -1328,11 +1331,7 @@ class ImplementationGuide {
     }
 
     getPdfForFeature(id) {
-        if (id <= 10) return this.pdfGroups[0];
-        if (id <= 25) return this.pdfGroups[1];
-        if (id <= 40) return this.pdfGroups[2];
-        if (id <= 54) return this.pdfGroups[3];
-        return this.pdfGroups[4];
+        return this.pdfGroups[0];
     }
 
     renderDownloadsPanel() {
