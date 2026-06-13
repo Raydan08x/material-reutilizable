@@ -11,7 +11,9 @@ Debes subir los siguientes **4 archivos PDF** que se encuentran en tu carpeta `d
 1. **`guia_reciclaje_componentes_web_01_10_actualizada_2026.pdf`** (Bloque 1: Funcionalidades 1 a 10)
 2. **`guia_reciclaje_componentes_web_10_25_actualizada_2026.pdf`** (Bloque 2: Funcionalidades 11 a 25)
 3. **`guia_reciclaje_componentes_web_26_40_actualizada_2026.pdf`** (Bloque 3: Funcionalidades 26 a 40)
-4. **`guia_reciclaje_componentes_web_41_57_actualizada_2026.pdf`** (Bloque 4: Funcionalidades 41 a 57)
+4. **`guia_reciclaje_componentes_web_41_50_orden_correcto.pdf`** (Bloque 4: Funcionalidades 41 a 57)
+5. **`guia_reciclaje_componentes_web_41_57_actualizada_2026.pdf`** (Bloque 4: Funcionalidades 41 a 57)
+este ultimo tiene errores.
 
 ---
 
@@ -48,13 +50,22 @@ Generar un único archivo unificado que sirva como una guía de aprendizaje paso
    ### Descripción
    [Explicación clara y concisa de qué hace este componente, su propósito práctico en una web y qué problemas resuelve].
 
-   ### Parámetros y Variables de Personalización
-   [Si aplica, listar en formato de viñetas claras las variables, IDs, clases CSS o configuraciones de JavaScript que el usuario puede o debe cambiar para adaptar el código a su gusto. Ejemplo:
-   - `idContenedor`: ID del elemento HTML principal.
-   - `--color-primario`: Variable CSS para cambiar el color del botón.]
+   ### Tabla de Elementos, Variables y Propiedades
+   [Incluir una tabla detallada con los elementos HTML clave, clases, IDs, variables CSS o variables JS usadas en el código, con el siguiente formato]:
+   | Elemento / Variable | Tipo / Selector | Función / Propósito | ¿Es Modificable? | Impacto o Valor Sugerido |
+   | :--- | :--- | :--- | :--- | :--- |
+   | `id-ejemplo` | ID HTML | Contenedor principal de la funcionalidad | Sí | Puede cambiarse, requiere actualizar el JS |
+   | `--color-accent` | Variable CSS | Color del borde y foco del elemento | Sí | Cambiar por cualquier color HSL/Hex |
+   | `const delay` | Variable JS | Tiempo en ms del debounce | Sí | Por defecto 300ms, ajustar según necesidad |
+
+   ### Explicación Detallada del Código
+   [Proporcionar un análisis didáctico del código para estudiantes, desglosando]:
+   - **Lógica HTML**: Qué etiquetas se usaron (semántica) y por qué estructuran el componente de esa manera.
+   - **Estilos CSS**: Explicación de las propiedades críticas de diseño (flexbox, grid, transiciones, variables, responsive).
+   - **Comportamiento JS**: Explicación detallada de cómo funcionan los eventos, las funciones asociadas, y el manejo de datos paso a paso.
 
    ### Paso a Paso para la Implementación
-   1. **HTML**: Explicación breve de la estructura HTML básica necesaria.
+   1. **HTML**: Explicación breve de la estructura HTML básica necesaria para empezar.
    2. **CSS**: Explicación de los estilos visuales clave y clases aplicadas.
    3. **JavaScript (si aplica)**: Explicación de la lógica del script (eventos, funciones y flujo de datos).
 
