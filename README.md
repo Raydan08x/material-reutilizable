@@ -1,6 +1,14 @@
 # Proyecto Web Reutilizable 40+ Componentes
 
-Este kit contiene una sola pagina demo con mas de 40 funcionalidades reutilizables para proyectos web con HTML, CSS y JavaScript.
+Este kit contiene una sola pagina demo con 55 funcionalidades reutilizables para proyectos web con HTML, CSS, JavaScript y actividades guiadas para practicar Bootstrap.
+
+## Mantenimiento de guias
+
+Si actualizas snippets o detalles de la guia, puedes resincronizar las fuentes consumidas por la web con:
+
+```bash
+python tools/sync_guide_sources.py
+```
 
 ## Estructura del proyecto
 
@@ -103,6 +111,7 @@ Si necesitas la version normal sin `import/export`, comenta la linea anterior y 
 52. Helpers reutilizables para DOM, storage y debounce.
 53. Tarjeta de presentacion Bootstrap como actividad guiada.
 54. Carrito de compras DOM como actividad guiada.
+55. Footer reutilizable como pie de pagina profesional.
 
 ## Como agregar una nueva seccion
 
@@ -170,3 +179,6 @@ new MiComponente();
 ## Recomendacion
 
 Usa este proyecto como plantilla. Copia solamente los componentes que necesites y conserva los nombres de clases, ids y atributos `data-*` para que el JavaScript siga funcionando.
+
+
+

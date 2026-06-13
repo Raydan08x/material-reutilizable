@@ -106,7 +106,7 @@ export class ThemeManager {
 
     applyTheme() {
         document.documentElement.dataset.theme = this.theme;
-        this.button.textContent = this.theme === "dark" ? "☾" : "☀";
+        this.button.textContent = this.theme === "dark" ? "Dark" : "Light";
     }
 }
 
@@ -914,10 +914,1937 @@ export class CopyToClipboard {
     }
 }
 
+export function buildFunctionalGuideData(rawData) {
+    const lines = (...parts) => parts.filter(Boolean).join("\n\n");
+    const indent = (text, spaces = 4) => String(text)
+        .split("\n")
+        .map((line) => line ? `${" ".repeat(spaces)}${line}` : line)
+        .join("\n");
+    const onReady = (body) => `document.addEventListener("DOMContentLoaded", () => {\n${indent(body)}\n});`;
+    const toNormal = (code) => code.replace(/^export\s+/gm, "");
+    const classSource = (ClassRef) => ClassRef.toString();
+
+    const domHelpers = `const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];`;
+
+    const storageHelpers = `function saveJSON(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function readJSON(key, fallback = null) {
+    try {
+        const value = localStorage.getItem(key);
+        return value ? JSON.parse(value) : fallback;
+    } catch {
+        return fallback;
+    }
+}`;
+
+    const debounceHelper = `function debounce(callback, delay = 300) {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => callback(...args), delay);
+    };
+}`;
+
+    const copyHelper = `async function copyText(value) {
+    if (navigator.clipboard?.writeText && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+        return true;
+    }
+
+    const helper = document.createElement("textarea");
+    helper.value = value;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "fixed";
+    helper.style.opacity = "0";
+    document.body.appendChild(helper);
+    helper.select();
+
+    try {
+        document.execCommand("copy");
+        return true;
+    } finally {
+        helper.remove();
+    }
+}`;
+
+    const baseToastClass = classSource(ToastManager);
+    const moduleClass = (ClassRef, initCode, helpers = "") => {
+        const code = lines(helpers, `export ${classSource(ClassRef)}`, onReady(initCode));
+        return { jsModular: code, jsNormal: toNormal(code) };
+    };
+    const moduleFunction = (fnSource, initCode = "", helpers = "") => {
+        const code = lines(helpers, fnSource, initCode ? onReady(initCode) : "");
+        return { jsModular: code, jsNormal: toNormal(code) };
+    };
+
+    const overrides = {
+        1: {
+            html: `<header class="glass-navbar">
+    <a href="#inicio" class="brand">
+        <span class="brand__mark">CW</span>
+        <span class="brand__text">Componentes Web</span>
+    </a>
+
+    <nav class="navbar-links" aria-label="Navegacion principal">
+        <button class="nav-link is-active" type="button">Inicio</button>
+        <button class="nav-link" type="button">Componentes</button>
+        <button class="nav-link" type="button">Formularios</button>
+
+        <div class="dropdown is-open">
+            <button class="nav-link dropdown__button" type="button">Mas</button>
+            <div class="dropdown__menu">
+                <button type="button">Login demo</button>
+                <button type="button">Storage</button>
+                <button type="button">Guia</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="navbar-actions">
+        <button class="icon-button icon-button--label" type="button">Dark</button>
+        <button class="icon-button icon-button--label" type="button">Menu</button>
+    </div>
+</header>`,
+            css: `:root {
+    --nav-primary: #4f46e5;
+    --nav-secondary: #0ea5e9;
+    --nav-bg: rgba(15, 23, 42, 0.72);
+    --nav-border: rgba(255, 255, 255, 0.16);
+    --nav-text: #e5eefc;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 32px;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(14, 165, 233, 0.22), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(79, 70, 229, 0.28), transparent 36%),
+        linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.glass-navbar {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    border: 1px solid var(--nav-border);
+    border-radius: 999px;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.28);
+}
+
+.brand,
+.navbar-links,
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.brand__mark {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--nav-secondary), var(--nav-primary));
+    color: #ffffff;
+}
+
+.nav-link,
+.icon-button,
+.dropdown__menu button {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: inherit;
+    padding: 10px 14px;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.nav-link:hover,
+.icon-button:hover,
+.dropdown__menu button:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.nav-link.is-active {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--nav-secondary), var(--nav-primary));
+    box-shadow: 0 12px 24px rgba(79, 70, 229, 0.28);
+}
+
+.icon-button--label {
+    min-width: 72px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown__menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 190px;
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 18px;
+    border: 1px solid var(--nav-border);
+    background: rgba(15, 23, 42, 0.92);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.34);
+}
+
+@media (max-width: 860px) {
+    .glass-navbar {
+        border-radius: 28px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .navbar-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .navbar-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector(".glass-navbar");
+    if (!nav) return;
+
+    const links = nav.querySelectorAll(".nav-link:not(.dropdown__button)");
+    links.forEach((link) => {
+        link.addEventListener("click", () => {
+            links.forEach((item) => item.classList.remove("is-active"));
+            link.classList.add("is-active");
+        });
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector(".glass-navbar");
+    if (!nav) return;
+
+    const links = nav.querySelectorAll(".nav-link:not(.dropdown__button)");
+    links.forEach((link) => {
+        link.addEventListener("click", () => {
+            links.forEach((item) => item.classList.remove("is-active"));
+            link.classList.add("is-active");
+        });
+    });
+});`
+        },
+        2: {
+            html: `<aside class="sidebar" id="sidebar">
+    <div class="sidebar__header">
+        <strong>Menu lateral</strong>
+        <button id="closeSidebar" type="button">Cerrar</button>
+    </div>
+    <nav class="sidebar__content">
+        <button type="button">Inicio</button>
+        <button type="button">Servicios</button>
+        <button type="button">Contacto</button>
+    </nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+<button id="openSidebar" type="button">Abrir menu</button>`,
+            css: `.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    padding: 20px;
+    background: #0f172a;
+    color: #ffffff;
+    transform: translateX(-105%);
+    transition: transform 0.25s ease;
+}
+.sidebar.is-open { transform: translateX(0); }
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+.overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar__content {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+}
+.sidebar__content button,
+#openSidebar,
+#closeSidebar {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}`
+        },
+        3: {
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".side-group__button").forEach((button) => {
+        button.addEventListener("click", () => {
+            button.parentElement.classList.toggle("is-open");
+        });
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".side-group__button").forEach((button) => {
+        button.addEventListener("click", () => {
+            button.parentElement.classList.toggle("is-open");
+        });
+    });
+});`
+        },
+        4: {
+            html: `<nav class="router-nav">
+    <button type="button" data-section="inicio" class="is-active">Inicio</button>
+    <button type="button" data-section="servicios">Servicios</button>
+    <button type="button" data-section="contacto">Contacto</button>
+</nav>
+
+<section id="inicio" data-view-section class="view-section is-active">Contenido inicio</section>
+<section id="servicios" data-view-section class="view-section">Contenido servicios</section>
+<section id="contacto" data-view-section class="view-section">Contenido contacto</section>`,
+            css: `.router-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.router-nav button {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #ffffff;
+    cursor: pointer;
+}
+.router-nav button.is-active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+.view-section { display: none; }
+.view-section.is-active { display: block; }`,
+            ...moduleClass(RouterSections, `new RouterSections();`, domHelpers)
+        },
+        5: {
+            html: `<div class="dropdown" data-dropdown>
+    <button type="button" data-dropdown-button>Mas opciones</button>
+    <div class="dropdown__menu">
+        <button type="button">Perfil</button>
+        <button type="button">Configuracion</button>
+        <button type="button">Salir</button>
+    </div>
+</div>`,
+            css: `.dropdown { position: relative; display: inline-block; }
+.dropdown__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 180px;
+    display: grid;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+.dropdown.is-open .dropdown__menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.dropdown button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+}`,
+            ...moduleClass(Dropdowns, `new Dropdowns();`, domHelpers)
+        },
+        6: {
+            html: `<button id="themeToggle" type="button">Tema</button>`,
+            css: `:root {
+    --bg: #0f172a;
+    --text: #ffffff;
+}
+[data-theme="light"] {
+    --bg: #f8fafc;
+    --text: #0f172a;
+}
+body {
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+#themeToggle {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+}`,
+            ...moduleClass(ThemeManager, `new ThemeManager();`)
+        },
+        7: {
+            html: `<div class="scroll-progress" id="scrollProgress"></div>
+<button class="back-to-top" id="backToTop" type="button">Subir</button>
+<div style="min-height: 200vh; padding-top: 24px;">Haz scroll para probar.</div>`,
+            css: `.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+.back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    opacity: 0;
+    pointer-events: none;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #ffffff;
+}
+.back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}`,
+            ...moduleClass(ScrollTools, `new ScrollTools();`, domHelpers)
+        },
+        8: {
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("backToTop");
+    if (!button) return;
+
+    const update = () => {
+        button.classList.toggle("is-visible", window.scrollY > 320);
+    };
+
+    window.addEventListener("scroll", update);
+    button.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    update();
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("backToTop");
+    if (!button) return;
+
+    const update = () => {
+        button.classList.toggle("is-visible", window.scrollY > 320);
+    };
+
+    window.addEventListener("scroll", update);
+    button.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    update();
+});`
+        },
+        9: {
+            ...moduleClass(RevealOnScroll, `new RevealOnScroll();`, domHelpers)
+        },
+        10: {
+            css: `[data-counter] {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+}`,
+            ...moduleClass(CounterAnimation, `new CounterAnimation();`, domHelpers)
+        },
+        11: {
+            html: `<form id="loginForm" class="demo-form" novalidate>
+    <label for="loginEmail">Correo</label>
+    <input id="loginEmail" type="email" placeholder="usuario@correo.com" required>
+
+    <label for="loginPassword">Contrasena</label>
+    <input id="loginPassword" type="password" placeholder="Minimo 6 caracteres" required minlength="6">
+
+    <label class="check-line">
+        <input type="checkbox" id="rememberUser">
+        Recordar usuario
+    </label>
+
+    <button type="submit">Ingresar</button>
+    <button id="logoutButton" type="button">Cerrar sesion</button>
+</form>
+<p id="sessionStatus">Aun no hay sesion iniciada.</p>
+<div id="toastContainer"></div>`,
+            css: `.demo-form {
+    display: grid;
+    gap: 10px;
+    max-width: 420px;
+}
+.demo-form input,
+.demo-form button {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+}
+.check-line {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+#toastContainer {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: grid;
+    gap: 10px;
+}
+.toast {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #0f172a;
+    color: #ffffff;
+}`,
+            ...moduleClass(LoginDemo, `const toast = new ToastManager();\nnew LoginDemo(toast);`, lines(domHelpers, storageHelpers, baseToastClass))
+        },
+        12: {
+            html: `<button id="logoutButton" type="button">Cerrar sesion</button>
+<p id="sessionStatus">Sesión simulada activa.</p>`,
+            css: `#logoutButton {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #ef4444;
+    color: #ffffff;
+    cursor: pointer;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("logoutButton");
+    const status = document.getElementById("sessionStatus");
+    sessionStorage.setItem("kit-session", JSON.stringify({ active: true }));
+
+    button?.addEventListener("click", () => {
+        sessionStorage.removeItem("kit-session");
+        localStorage.removeItem("kit-user");
+        if (status) status.textContent = "Sesion cerrada correctamente.";
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("logoutButton");
+    const status = document.getElementById("sessionStatus");
+    sessionStorage.setItem("kit-session", JSON.stringify({ active: true }));
+
+    button?.addEventListener("click", () => {
+        sessionStorage.removeItem("kit-session");
+        localStorage.removeItem("kit-user");
+        if (status) status.textContent = "Sesion cerrada correctamente.";
+    });
+});`
+        },
+        13: {
+            html: `<form id="rememberForm" class="demo-form">
+    <input id="rememberEmail" type="email" placeholder="usuario@correo.com">
+    <label class="check-line">
+        <input type="checkbox" id="rememberUser">
+        Recordar usuario
+    </label>
+    <button type="submit">Guardar preferencia</button>
+</form>
+<p id="rememberStatus">Sin datos guardados.</p>`,
+            css: `.demo-form {
+    display: grid;
+    gap: 10px;
+    max-width: 420px;
+}
+.demo-form input,
+.demo-form button {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+}
+.check-line {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("rememberForm");
+    const email = document.getElementById("rememberEmail");
+    const remember = document.getElementById("rememberUser");
+    const status = document.getElementById("rememberStatus");
+    const saved = localStorage.getItem("remember-email");
+
+    if (saved && email && remember) {
+        email.value = saved;
+        remember.checked = true;
+        status.textContent = \`Usuario recordado: \${saved}\`;
+    }
+
+    form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!email || !remember || !status) return;
+        if (remember.checked && email.value.trim()) {
+            localStorage.setItem("remember-email", email.value.trim());
+            status.textContent = \`Usuario recordado: \${email.value.trim()}\`;
+        } else {
+            localStorage.removeItem("remember-email");
+            status.textContent = "Recordatorio eliminado.";
+        }
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("rememberForm");
+    const email = document.getElementById("rememberEmail");
+    const remember = document.getElementById("rememberUser");
+    const status = document.getElementById("rememberStatus");
+    const saved = localStorage.getItem("remember-email");
+
+    if (saved && email && remember) {
+        email.value = saved;
+        remember.checked = true;
+        status.textContent = \`Usuario recordado: \${saved}\`;
+    }
+
+    form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!email || !remember || !status) return;
+        if (remember.checked && email.value.trim()) {
+            localStorage.setItem("remember-email", email.value.trim());
+            status.textContent = \`Usuario recordado: \${email.value.trim()}\`;
+        } else {
+            localStorage.removeItem("remember-email");
+            status.textContent = "Recordatorio eliminado.";
+        }
+    });
+});`
+        },
+        14: {
+            ...moduleClass(PasswordToggle, `new PasswordToggle();`, domHelpers)
+        },
+        15: {
+            html: `<form id="contactForm" novalidate class="demo-form">
+    <input id="contactName" type="text" placeholder="Nombre" required minlength="3">
+    <small class="field-error" data-error="contactName"></small>
+
+    <input id="contactEmail" type="email" placeholder="Correo" required>
+    <small class="field-error" data-error="contactEmail"></small>
+
+    <textarea id="contactMessage" placeholder="Mensaje" required minlength="10"></textarea>
+    <small class="field-error" data-error="contactMessage"></small>
+
+    <button type="submit">Enviar</button>
+</form>
+<div id="toastContainer"></div>`,
+            css: `.demo-form {
+    display: grid;
+    gap: 10px;
+    max-width: 420px;
+}
+.demo-form input,
+.demo-form textarea,
+.demo-form button {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+}
+.field-error {
+    min-height: 18px;
+    color: #ef4444;
+    font-size: 0.875rem;
+}
+.toast {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #0f172a;
+    color: #ffffff;
+}`,
+            ...moduleClass(FormValidation, `const toast = new ToastManager();\nnew FormValidation("contactForm", toast);`, lines(domHelpers, baseToastClass))
+        },
+        16: {
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contactForm");
+    const email = document.getElementById("emailInput");
+    const error = document.querySelector('[data-error="emailInput"]');
+
+    form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!email || !error) return;
+        error.textContent = email.value.includes("@") ? "" : "Correo no valido.";
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contactForm");
+    const email = document.getElementById("emailInput");
+    const error = document.querySelector('[data-error="emailInput"]');
+
+    form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!email || !error) return;
+        error.textContent = email.value.includes("@") ? "" : "Correo no valido.";
+    });
+});`
+        },
+        17: {
+            css: `#msg {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+}
+#counter {
+    font-weight: 700;
+    color: #2563eb;
+}`,
+            ...moduleClass(CharacterCounter, `new CharacterCounter("msg", "counter");`)
+        },
+        18: {
+            css: `#range {
+    width: 100%;
+    accent-color: #2563eb;
+}
+#rangeVal {
+    display: inline-block;
+    min-width: 40px;
+    font-weight: 700;
+}`,
+            ...moduleClass(RangePreview, `new RangePreview("range", "rangeVal");`)
+        },
+        19: {
+            css: `#file {
+    display: block;
+    margin-bottom: 10px;
+}
+#fileInfo {
+    color: #475569;
+    font-size: 0.95rem;
+}`,
+            ...moduleClass(FileInfo, `new FileInfo("file", "fileInfo");`)
+        },
+        20: {
+            html: `<textarea id="msg" rows="4" placeholder="Escribe tu borrador"></textarea>
+<button id="clearDraft" type="button">Limpiar borrador</button>
+<div id="toastContainer"></div>`,
+            css: `#msg {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+}
+#clearDraft {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #ef4444;
+    color: #ffffff;
+}`,
+            ...moduleClass(AutoSaveDraft, `const toast = new ToastManager();\nnew AutoSaveDraft("msg", "clearDraft", "draft-demo", toast);`, lines(debounceHelper, baseToastClass))
+        },
+        21: {
+            html: `<div class="stepper" data-stepper>
+    <div class="stepper__steps">
+        <span class="is-active">1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+    <p class="stepper__text">Paso 1: Datos personales</p>
+    <button data-step-prev type="button">Anterior</button>
+    <button data-step-next type="button">Siguiente</button>
+</div>`,
+            css: `.stepper { display: grid; gap: 12px; }
+.stepper__steps {
+    display: flex;
+    gap: 10px;
+}
+.stepper__steps span {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e2e8f0;
+}
+.stepper__steps span.is-active {
+    background: #2563eb;
+    color: #ffffff;
+}`,
+            ...moduleClass(Stepper, `new Stepper();`, domHelpers)
+        },
+        22: {
+            html: `<button id="loadSkeleton" type="button">Simular carga</button>
+<div id="skeletonArea"></div>
+<div id="toastContainer"></div>`,
+            css: `.skeleton {
+    height: 18px;
+    margin-top: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #e2e8f0, #f8fafc, #e2e8f0);
+    background-size: 200% 100%;
+    animation: loading 1.2s infinite;
+}
+@keyframes loading {
+    to { background-position: -200% 0; }
+}`,
+            ...moduleClass(SkeletonLoader, `const toast = new ToastManager();\nnew SkeletonLoader("loadSkeleton", "skeletonArea", toast);`, baseToastClass)
+        },
+        23: {
+            css: `.custom-select {
+    position: relative;
+    max-width: 260px;
+}
+.custom-select__button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    cursor: pointer;
+}
+.custom-select__options {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    display: none;
+}
+.custom-select.is-open .custom-select__options {
+    display: grid;
+    gap: 6px;
+}
+.custom-select__option {
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.custom-select__option.is-selected {
+    background: #dbeafe;
+}`,
+            ...moduleClass(CustomSelect, `new CustomSelect();`, domHelpers)
+        },
+        24: {
+            html: `<div class="tabs" data-tabs>
+    <div class="tabs__buttons">
+        <button type="button" data-tab="panel1" class="is-active">HTML</button>
+        <button type="button" data-tab="panel2">CSS</button>
+    </div>
+    <div class="tab-panel is-active" id="panel1">Contenido HTML</div>
+    <div class="tab-panel" id="panel2">Contenido CSS</div>
+</div>`,
+            css: `.tabs__buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.tabs__buttons button {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #ffffff;
+    cursor: pointer;
+}
+.tabs__buttons button.is-active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+.tab-panel { display: none; }
+.tab-panel.is-active { display: block; }`,
+            ...moduleClass(Tabs, `new Tabs();`, domHelpers)
+        },
+        25: {
+            css: `.accordion {
+    max-width: 520px;
+}
+.accordion__button {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    text-align: left;
+    cursor: pointer;
+}
+.accordion__content {
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 8px;
+    border-radius: 12px;
+    background: #f8fafc;
+    transition: max-height 0.2s ease, padding 0.2s ease;
+}
+.accordion__content.is-open {
+    max-height: 140px;
+    padding: 12px;
+}`,
+            ...moduleClass(Accordion, `new Accordion();`, domHelpers)
+        },
+        26: {
+            html: `<button type="button" data-open-modal="demoModal">Abrir modal</button>
+<dialog id="demoModal">
+    <p>Este modal ya es funcional.</p>
+    <button type="button" data-close-modal>Cerrar</button>
+</dialog>`,
+            css: `dialog {
+    padding: 24px;
+    border: 0;
+    border-radius: 16px;
+    max-width: 420px;
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.24);
+}
+.modal__content {
+    display: grid;
+    gap: 12px;
+}
+dialog::backdrop {
+    background: rgba(15, 23, 42, 0.45);
+}`,
+            ...moduleClass(ModalManager, `new ModalManager();`, domHelpers)
+        },
+        27: {
+            html: `<button id="showToast" type="button">Mostrar toast</button>
+<div id="toastContainer"></div>`,
+            css: `#toastContainer {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: grid;
+    gap: 10px;
+}
+.toast {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #0f172a;
+    color: #ffffff;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}`,
+            jsModular: `${baseToastClass}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toast = new ToastManager();
+    document.getElementById("showToast")?.addEventListener("click", () => {
+        toast.show("Toast mostrado correctamente.");
+    });
+});`,
+            jsNormal: `${baseToastClass}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toast = new ToastManager();
+    document.getElementById("showToast")?.addEventListener("click", () => {
+        toast.show("Toast mostrado correctamente.");
+    });
+});`
+        },
+        28: {
+            html: `<div class="carousel" data-carousel>
+    <div class="carousel__slide is-active">Slide 1</div>
+    <div class="carousel__slide">Slide 2</div>
+    <div class="carousel__slide">Slide 3</div>
+    <div class="carousel__actions">
+        <button type="button" data-carousel-prev>Anterior</button>
+        <button type="button" data-carousel-next>Siguiente</button>
+    </div>
+</div>`,
+            css: `.carousel {
+    display: grid;
+    gap: 12px;
+    max-width: 420px;
+}
+.carousel__slide {
+    display: none;
+    padding: 24px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    background: #f8fafc;
+}
+.carousel__slide.is-active {
+    display: block;
+}
+.carousel__actions {
+    display: flex;
+    gap: 8px;
+}`,
+            ...moduleClass(Carousel, `new Carousel();`, domHelpers)
+        },
+        29: {
+            css: `.tooltip {
+    position: relative;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #ffffff;
+    cursor: help;
+}
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #0f172a;
+    color: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.tooltip:hover::after {
+    opacity: 1;
+}`
+        },
+        31: {
+            css: `button[data-copy] {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #ffffff;
+    cursor: pointer;
+}
+code {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #e2e8f0;
+}`,
+            ...moduleClass(CopyToClipboard, `const toast = new ToastManager();\nnew CopyToClipboard(toast);`, lines(domHelpers, copyHelper, baseToastClass))
+        },
+        32: {
+            html: `<div class="card-grid" id="catalogGrid"></div>`,
+            css: `.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+.product-card {
+    padding: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+    background: #ffffff;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const data = [
+        { name: "APA", price: 12000 },
+        { name: "Stout", price: 14000 },
+        { name: "Cheesecake", price: 11000 }
+    ];
+    const grid = document.getElementById("catalogGrid");
+    if (!grid) return;
+
+    grid.innerHTML = data.map((item) => \`
+        <article class="product-card">
+            <h3>\${item.name}</h3>
+            <p>$\${item.price.toLocaleString("es-CO")}</p>
+        </article>
+    \`).join("");
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const data = [
+        { name: "APA", price: 12000 },
+        { name: "Stout", price: 14000 },
+        { name: "Cheesecake", price: 11000 }
+    ];
+    const grid = document.getElementById("catalogGrid");
+    if (!grid) return;
+
+    grid.innerHTML = data.map((item) => \`
+        <article class="product-card">
+            <h3>\${item.name}</h3>
+            <p>$\${item.price.toLocaleString("es-CO")}</p>
+        </article>
+    \`).join("");
+});`
+        },
+        33: {
+            html: `<input id="catalogSearch" type="search" placeholder="Buscar producto">
+<div class="card-grid" id="catalogGrid"></div>`,
+            css: `.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+.product-card {
+    padding: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+}
+#catalogSearch {
+    width: 100%;
+    max-width: 320px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+}`,
+            jsModular: `${debounceHelper}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const data = ["APA", "Stout", "Sour", "Cheesecake"];
+    const input = document.getElementById("catalogSearch");
+    const grid = document.getElementById("catalogGrid");
+    if (!input || !grid) return;
+
+    const render = (term = "") => {
+        grid.innerHTML = data
+            .filter((item) => item.toLowerCase().includes(term.toLowerCase()))
+            .map((item) => \`<article class="product-card"><h3>\${item}</h3></article>\`)
+            .join("") || "<p>No hay resultados.</p>";
+    };
+
+    input.addEventListener("input", debounce((event) => {
+        render(event.target.value);
+    }, 250));
+
+    render();
+});`,
+            jsNormal: `${debounceHelper}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const data = ["APA", "Stout", "Sour", "Cheesecake"];
+    const input = document.getElementById("catalogSearch");
+    const grid = document.getElementById("catalogGrid");
+    if (!input || !grid) return;
+
+    const render = (term = "") => {
+        grid.innerHTML = data
+            .filter((item) => item.toLowerCase().includes(term.toLowerCase()))
+            .map((item) => \`<article class="product-card"><h3>\${item}</h3></article>\`)
+            .join("") || "<p>No hay resultados.</p>";
+    };
+
+    input.addEventListener("input", debounce((event) => {
+        render(event.target.value);
+    }, 250));
+
+    render();
+});`
+        },
+        34: {
+            html: `<div id="catalogChips">
+    <button class="chip is-active" type="button" data-category="all">Todos</button>
+    <button class="chip" type="button" data-category="cerveza">Cerveza</button>
+    <button class="chip" type="button" data-category="postre">Postre</button>
+</div>
+<div class="card-grid" id="catalogGrid"></div>`,
+            css: `.chip {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #ffffff;
+    cursor: pointer;
+}
+.chip.is-active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const data = [
+        { name: "APA", category: "cerveza" },
+        { name: "Stout", category: "cerveza" },
+        { name: "Cheesecake", category: "postre" }
+    ];
+    const chips = document.querySelectorAll("#catalogChips .chip");
+    const grid = document.getElementById("catalogGrid");
+    if (!grid || !chips.length) return;
+
+    const render = (category = "all") => {
+        grid.innerHTML = data
+            .filter((item) => category === "all" || item.category === category)
+            .map((item) => \`<article class="product-card"><h3>\${item.name}</h3><p>\${item.category}</p></article>\`)
+            .join("");
+    };
+
+    chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+            chips.forEach((item) => item.classList.remove("is-active"));
+            chip.classList.add("is-active");
+            render(chip.dataset.category);
+        });
+    });
+
+    render();
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const data = [
+        { name: "APA", category: "cerveza" },
+        { name: "Stout", category: "cerveza" },
+        { name: "Cheesecake", category: "postre" }
+    ];
+    const chips = document.querySelectorAll("#catalogChips .chip");
+    const grid = document.getElementById("catalogGrid");
+    if (!grid || !chips.length) return;
+
+    const render = (category = "all") => {
+        grid.innerHTML = data
+            .filter((item) => category === "all" || item.category === category)
+            .map((item) => \`<article class="product-card"><h3>\${item.name}</h3><p>\${item.category}</p></article>\`)
+            .join("");
+    };
+
+    chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+            chips.forEach((item) => item.classList.remove("is-active"));
+            chip.classList.add("is-active");
+            render(chip.dataset.category);
+        });
+    });
+
+    render();
+});`
+        },
+        35: {
+            html: `<select id="catalogSort">
+    <option value="name">Nombre</option>
+    <option value="price">Precio</option>
+</select>
+<div class="card-grid" id="catalogGrid"></div>`,
+            css: `#catalogSort {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const data = [
+        { name: "APA", price: 12000 },
+        { name: "Stout", price: 14000 },
+        { name: "Cheesecake", price: 11000 }
+    ];
+    const select = document.getElementById("catalogSort");
+    const grid = document.getElementById("catalogGrid");
+    if (!select || !grid) return;
+
+    const render = () => {
+        const items = [...data].sort((a, b) => {
+            if (select.value === "price") return a.price - b.price;
+            return a.name.localeCompare(b.name);
+        });
+        grid.innerHTML = items.map((item) => \`<article class="product-card"><h3>\${item.name}</h3><p>$\${item.price}</p></article>\`).join("");
+    };
+
+    select.addEventListener("change", render);
+    render();
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const data = [
+        { name: "APA", price: 12000 },
+        { name: "Stout", price: 14000 },
+        { name: "Cheesecake", price: 11000 }
+    ];
+    const select = document.getElementById("catalogSort");
+    const grid = document.getElementById("catalogGrid");
+    if (!select || !grid) return;
+
+    const render = () => {
+        const items = [...data].sort((a, b) => {
+            if (select.value === "price") return a.price - b.price;
+            return a.name.localeCompare(b.name);
+        });
+        grid.innerHTML = items.map((item) => \`<article class="product-card"><h3>\${item.name}</h3><p>$\${item.price}</p></article>\`).join("");
+    };
+
+    select.addEventListener("change", render);
+    render();
+});`
+        },
+        36: {
+            html: `<div class="card-grid" id="catalogGrid"></div>
+<div class="pagination" id="catalogPagination"></div>`,
+            css: `.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+.pagination {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+.pagination button {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #ffffff;
+}
+.pagination button.is-active {
+    background: #2563eb;
+    color: #ffffff;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const data = Array.from({ length: 10 }, (_, index) => ({ name: \`Producto \${index + 1}\` }));
+    const grid = document.getElementById("catalogGrid");
+    const pagination = document.getElementById("catalogPagination");
+    let page = 1;
+    const perPage = 4;
+    if (!grid || !pagination) return;
+
+    const render = () => {
+        const totalPages = Math.ceil(data.length / perPage);
+        const items = data.slice((page - 1) * perPage, page * perPage);
+        grid.innerHTML = items.map((item) => \`<article class="product-card"><h3>\${item.name}</h3></article>\`).join("");
+        pagination.innerHTML = Array.from({ length: totalPages }, (_, index) => \`
+            <button type="button" data-page="\${index + 1}" class="\${index + 1 === page ? "is-active" : ""}">\${index + 1}</button>
+        \`).join("");
+        pagination.querySelectorAll("button").forEach((button) => {
+            button.addEventListener("click", () => {
+                page = Number(button.dataset.page);
+                render();
+            });
+        });
+    };
+
+    render();
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const data = Array.from({ length: 10 }, (_, index) => ({ name: \`Producto \${index + 1}\` }));
+    const grid = document.getElementById("catalogGrid");
+    const pagination = document.getElementById("catalogPagination");
+    let page = 1;
+    const perPage = 4;
+    if (!grid || !pagination) return;
+
+    const render = () => {
+        const totalPages = Math.ceil(data.length / perPage);
+        const items = data.slice((page - 1) * perPage, page * perPage);
+        grid.innerHTML = items.map((item) => \`<article class="product-card"><h3>\${item.name}</h3></article>\`).join("");
+        pagination.innerHTML = Array.from({ length: totalPages }, (_, index) => \`
+            <button type="button" data-page="\${index + 1}" class="\${index + 1 === page ? "is-active" : ""}">\${index + 1}</button>
+        \`).join("");
+        pagination.querySelectorAll("button").forEach((button) => {
+            button.addEventListener("click", () => {
+                page = Number(button.dataset.page);
+                render();
+            });
+        });
+    };
+
+    render();
+});`
+        },
+        37: {
+            html: `<input id="tableSearch" type="search" placeholder="Filtrar filas">
+<table id="demoTable" class="data-table">
+    <thead>
+        <tr>
+            <th data-sort-table="name">Nombre</th>
+            <th data-sort-table="price">Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>APA</td><td>12000</td></tr>
+        <tr><td>Stout</td><td>14000</td></tr>
+        <tr><td>Sour</td><td>13000</td></tr>
+    </tbody>
+</table>`,
+            css: `.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-table th,
+.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #cbd5e1;
+    text-align: left;
+}
+.data-table th {
+    cursor: pointer;
+    color: #2563eb;
+}`,
+            ...moduleClass(SortableTable, `new SortableTable("demoTable", "tableSearch");`, domHelpers)
+        },
+        38: {
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("tableSearch");
+    const rows = document.querySelectorAll("#demoTable tbody tr");
+    input?.addEventListener("input", () => {
+        const term = input.value.toLowerCase();
+        rows.forEach((row) => {
+            row.style.display = row.textContent.toLowerCase().includes(term) ? "" : "none";
+        });
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("tableSearch");
+    const rows = document.querySelectorAll("#demoTable tbody tr");
+    input?.addEventListener("input", () => {
+        const term = input.value.toLowerCase();
+        rows.forEach((row) => {
+            row.style.display = row.textContent.toLowerCase().includes(term) ? "" : "none";
+        });
+    });
+});`
+        },
+        39: {
+            html: `<textarea id="noteInput" rows="4" placeholder="Escribe una nota"></textarea>
+<button id="saveNote" type="button">Guardar</button>
+<button id="exportNotes" type="button">Exportar JSON</button>
+<ul id="noteList"></ul>
+<div id="toastContainer"></div>`,
+            css: `#noteInput {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+}
+#noteList {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+}
+#noteList li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+}`,
+            ...moduleClass(NotesManager, `const toast = new ToastManager();\nnew NotesManager(toast);`, lines(domHelpers, storageHelpers, baseToastClass))
+        },
+        40: {
+            html: `<button id="exportNotes" type="button">Descargar notas.json</button>`,
+            css: `#exportNotes {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #ffffff;
+    cursor: pointer;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const notes = [
+        { id: 1, text: "Primera nota" },
+        { id: 2, text: "Segunda nota" }
+    ];
+    document.getElementById("exportNotes")?.addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify(notes, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "notas.json";
+        link.click();
+        URL.revokeObjectURL(link.href);
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const notes = [
+        { id: 1, text: "Primera nota" },
+        { id: 2, text: "Segunda nota" }
+    ];
+    document.getElementById("exportNotes")?.addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify(notes, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "notas.json";
+        link.click();
+        URL.revokeObjectURL(link.href);
+    });
+});`
+        },
+        41: {
+            html: `<input id="todoInput" placeholder="Nueva tarea">
+<button id="addTodo" type="button">Agregar</button>
+<button id="clearTodos" type="button">Borrar tareas</button>
+<ul id="todoList" class="draggable-list"></ul>
+<div id="toastContainer"></div>`,
+            css: `.draggable-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+.draggable-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+}
+.check-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}`,
+            ...moduleClass(TodoManager, `const toast = new ToastManager();\nnew TodoManager(toast);`, lines(domHelpers, storageHelpers, baseToastClass))
+        },
+        42: {
+            html: `<ul id="dragList" class="draggable-list">
+    <li draggable="true">Tarea 1</li>
+    <li draggable="true">Tarea 2</li>
+    <li draggable="true">Tarea 3</li>
+</ul>`,
+            css: `.draggable-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+.draggable-list li {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    cursor: grab;
+    background: #ffffff;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const list = document.getElementById("dragList");
+    let dragged = null;
+    if (!list) return;
+
+    list.querySelectorAll("li").forEach((item) => {
+        item.addEventListener("dragstart", () => { dragged = item; });
+        item.addEventListener("dragover", (event) => event.preventDefault());
+        item.addEventListener("drop", () => {
+            if (dragged && dragged !== item) {
+                list.insertBefore(dragged, item);
+            }
+        });
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const list = document.getElementById("dragList");
+    let dragged = null;
+    if (!list) return;
+
+    list.querySelectorAll("li").forEach((item) => {
+        item.addEventListener("dragstart", () => { dragged = item; });
+        item.addEventListener("dragover", (event) => event.preventDefault());
+        item.addEventListener("drop", () => {
+            if (dragged && dragged !== item) {
+                list.insertBefore(dragged, item);
+            }
+        });
+    });
+});`
+        },
+        43: {
+            html: `<button id="saveVisualState" type="button">Guardar cambio</button>
+<div id="toastContainer"></div>`,
+            css: `#toastContainer {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: grid;
+    gap: 10px;
+}
+.toast {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #0f172a;
+    color: #ffffff;
+}`,
+            jsModular: `${baseToastClass}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toast = new ToastManager();
+    document.getElementById("saveVisualState")?.addEventListener("click", () => {
+        toast.show("Cambio guardado correctamente.");
+    });
+});`,
+            jsNormal: `${baseToastClass}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toast = new ToastManager();
+    document.getElementById("saveVisualState")?.addEventListener("click", () => {
+        toast.show("Cambio guardado correctamente.");
+    });
+});`
+        },
+        44: {
+            html: `<div id="temperatureTool" class="temperature-tool">
+    <div class="unit-buttons">
+        <button type="button" class="unit-button is-active" data-unit="celsius">C</button>
+        <button type="button" class="unit-button" data-unit="fahrenheit">F</button>
+        <button type="button" class="unit-button" data-unit="kelvin">K</button>
+    </div>
+    <input id="temperatureInput" type="number" placeholder="Ingresa un valor">
+    <button id="calculateTemperature" type="button">Calcular</button>
+    <p id="temperatureMessage">Unidad seleccionada: celsius</p>
+    <div id="temperatureResult"></div>
+</div>
+<div id="toastContainer"></div>`,
+            css: `.temperature-tool {
+    display: grid;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 18px;
+}
+.unit-buttons {
+    display: flex;
+    gap: 8px;
+}
+.unit-button {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #ffffff;
+}
+.unit-button.is-active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}`,
+            ...moduleClass(TemperatureTool, `const toast = new ToastManager();\nnew TemperatureTool(toast);`, lines(domHelpers, baseToastClass))
+        },
+        45: {
+            html: `<div id="temperatureTool" class="temperature-tool">
+    <button class="unit-button" type="button" data-unit="celsius">C</button>
+    <button class="unit-button" type="button" data-unit="fahrenheit">F</button>
+    <button class="unit-button" type="button" data-unit="kelvin">K</button>
+</div>`,
+            css: `.temperature-tool {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+.temperature-tool.unit-celsius {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+}
+.temperature-tool.unit-fahrenheit {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+}
+.temperature-tool.unit-kelvin {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("temperatureTool");
+    const buttons = document.querySelectorAll(".unit-button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            if (!container) return;
+            container.classList.remove("unit-celsius", "unit-fahrenheit", "unit-kelvin");
+            container.classList.add(\`unit-\${button.dataset.unit}\`);
+        });
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("temperatureTool");
+    const buttons = document.querySelectorAll(".unit-button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            if (!container) return;
+            container.classList.remove("unit-celsius", "unit-fahrenheit", "unit-kelvin");
+            container.classList.add(\`unit-\${button.dataset.unit}\`);
+        });
+    });
+});`
+        },
+        46: {
+            css: `#printPage {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #ffffff;
+    cursor: pointer;
+}`
+        },
+        47: {
+            html: `<div id="temperatureTool" class="temperature-tool unit-fahrenheit">Demo con estado aplicado</div>
+<button id="resetDemo" type="button">Reiniciar demo</button>`,
+            css: `.temperature-tool {
+    padding: 20px;
+    border-radius: 18px;
+    background: #fee2e2;
+}
+.temperature-tool.unit-fahrenheit {
+    background: #fecaca;
+}`,
+            jsModular: `document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("resetDemo");
+    const container = document.getElementById("temperatureTool");
+    button?.addEventListener("click", () => {
+        container?.classList.remove("unit-celsius", "unit-fahrenheit", "unit-kelvin");
+    });
+});`,
+            jsNormal: `document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("resetDemo");
+    const container = document.getElementById("temperatureTool");
+    button?.addEventListener("click", () => {
+        container?.classList.remove("unit-celsius", "unit-fahrenheit", "unit-kelvin");
+    });
+});`
+        },
+        48: {
+            ...moduleFunction(`export function debounce(callback, delay = 300) {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => callback(...args), delay);
+    };
+}`)
+        },
+        49: {
+            jsModular: `export const $ = (selector, parent = document) => parent.querySelector(selector);
+export const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+
+export function saveJSON(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+export function readJSON(key, fallback = null) {
+    try {
+        const value = localStorage.getItem(key);
+        return value ? JSON.parse(value) : fallback;
+    } catch {
+        return fallback;
+    }
+}`,
+            jsNormal: `const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+
+function saveJSON(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function readJSON(key, fallback = null) {
+    try {
+        const value = localStorage.getItem(key);
+        return value ? JSON.parse(value) : fallback;
+    } catch {
+        return fallback;
+    }
+}`
+        },
+        50: {
+            html: `<script type="module" src="script.js"></script>`,
+            jsModular: `export function saludar() {
+    console.log("Modulo cargado correctamente.");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    saludar();
+});`,
+            jsNormal: `// Esta funcionalidad es para proyectos con ES Modules.
+// Copia este archivo como script.js y cargalo con:
+// <script type="module" src="script.js"></script>`
+        },
+        51: {
+            html: `<script src="script-normal.js"></script>`,
+            jsModular: `// Esta funcionalidad es para proyectos sin modulos.`,
+            jsNormal: `function saludar() {
+    console.log("Script tradicional cargado correctamente.");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    saludar();
+});`
+        },
+        53: {
+            css: `.profile-lab {
+    max-width: 340px;
+    perspective: 1200px;
+}
+.profile-lab__flip {
+    position: relative;
+    min-height: 320px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+.profile-lab__flip.is-flipped {
+    transform: rotateY(180deg);
+}
+.profile-lab__face {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    padding: 24px;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    background: #ffffff;
+    backface-visibility: hidden;
+}
+.profile-lab__face--back {
+    transform: rotateY(180deg);
+}
+.profile-lab__avatar {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #ffffff;
+    font-weight: 700;
+}`,
+            ...moduleClass(ProfilePresentationActivity, `new ProfilePresentationActivity();`, domHelpers)
+        },
+        54: {
+            html: `<div class="shop-lab">
+    <div class="shop-lab__topbar">
+        <strong>Mini tienda</strong>
+        <span class="shop-lab__badge" id="shopBadge">0</span>
+    </div>
+    <div class="shop-lab__grid">
+        <article class="shop-product">
+            <h4>Pack IPA</h4>
+            <p>$18,000</p>
+            <button class="shop-add-button" type="button" data-name="Pack IPA" data-price="18000">Agregar</button>
+        </article>
+        <article class="shop-product">
+            <h4>Cheesecake</h4>
+            <p>$11,000</p>
+            <button class="shop-add-button" type="button" data-name="Cheesecake" data-price="11000">Agregar</button>
+        </article>
+    </div>
+    <div class="shop-cart">
+        <div class="shop-cart__head">
+            <h4>Carrito</h4>
+            <button id="clearShopCart" type="button">Vaciar</button>
+        </div>
+        <p id="shopEmptyMessage">Tu carrito esta vacio.</p>
+        <ul id="shopCartList"></ul>
+        <strong id="shopCartTotal">$0</strong>
+    </div>
+</div>
+<div id="toastContainer"></div>`,
+            css: `.shop-lab {
+    display: grid;
+    gap: 18px;
+}
+.shop-lab__topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.shop-lab__badge {
+    min-width: 34px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #ffffff;
+    text-align: center;
+}
+.shop-lab__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+.shop-product,
+.shop-cart {
+    padding: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+}
+.shop-cart__item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+}`,
+            ...moduleClass(ShoppingCartActivity, `const toast = new ToastManager();\nnew ShoppingCartActivity(toast);`, lines(domHelpers, baseToastClass))
+        },
+        55: {
+            css: `.site-footer {
+    margin-top: 40px;
+    padding: 48px 32px 24px;
+    background: #0f172a;
+    color: #ffffff;
+}
+.site-footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 32px;
+}
+.site-footer__links a,
+.site-footer__contact a {
+    display: block;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    margin-top: 8px;
+}
+.site-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+@media (max-width: 720px) {
+    .site-footer__grid,
+    .site-footer__bottom {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+}`
+        }
+    };
+
+    return rawData.map((feature) => ({ ...feature, ...(overrides[feature.id] || {}) }));
+}
+
 export class FeatureList {
     constructor() {
-        this.features = (window.GUIDE_DATA || []).map((feature) => feature.name);
         this.data = window.GUIDE_DATA || [];
+        this.features = this.data.map((feature) => feature.name);
         this.container = $("#featureList");
         this.bindEvents();
         this.render();
@@ -993,12 +2920,15 @@ export class ImplementationGuide {
         this.container = $("#guideCategories");
         this.detailPanel = $("#guideDetail");
         this.data = window.GUIDE_DATA || [];
+        this.filteredData = [...this.data];
         this.details = window.GUIDE_DETAILS || {};
+        this.searchQuery = "";
+        this.selectedId = null;
         this.pdfGroups = [
             { label: "Guia 1 a 10", file: "docs/pdf/guia_reciclaje_componentes_web_01_10_actualizada_2026.pdf" },
             { label: "Guia 10 a 25", file: "docs/pdf/guia_reciclaje_componentes_web_10_25_actualizada_2026.pdf" },
             { label: "Guia 26 a 40", file: "docs/pdf/guia_reciclaje_componentes_web_26_40_actualizada_2026.pdf" },
-            { label: "Guia 41 a 54", file: "docs/pdf/guia_reciclaje_componentes_web_41_54_actualizada_2026.pdf" },
+            { label: "Guia 41 a 55", file: "docs/pdf/guia_reciclaje_componentes_web_41_54_actualizada_2026.pdf" },
             { label: "Actividades guiadas", file: "docs/pdf/actividades_guiadas_componentes_web_2026.pdf" },
             { label: "Recurso unificado", file: "docs/pdf/recurso_unificado_40_componentes_web.pdf" }
         ];
@@ -1021,52 +2951,86 @@ export class ImplementationGuide {
 
     renderSidebar() {
         const categories = {};
-        this.data.forEach((item) => {
+        this.filteredData.forEach((item) => {
             if (!categories[item.category]) {
                 categories[item.category] = [];
             }
             categories[item.category].push(item);
         });
 
-        let html = "";
-        Object.entries(categories)
-            .sort(([, a], [, b]) => a[0].id - b[0].id)
-            .forEach(([cat, items], index) => {
+        let html = this.renderSearchPanel();
+        if (this.filteredData.length) {
+            Object.entries(categories)
+                .sort(([, a], [, b]) => a[0].id - b[0].id)
+                .forEach(([cat, items], index) => {
+                    html += `
+                        <button class="accordion__button" type="button">
+                            <span>${index + 1}. ${cat}</span>
+                            <span class="guide-category-count">${items.length}</span>
+                        </button>
+                        <div class="accordion__content">
+                            <ul class="guide-item-list">
+                                ${items.map((feat) => `
+                                    <li>
+                                        <button class="guide-item-btn" type="button" data-id="${feat.id}">
+                                            ${feat.id}. ${feat.name}
+                                        </button>
+                                    </li>
+                                `).join("")}
+                            </ul>
+                        </div>
+                    `;
+                });
+        } else {
             html += `
-                <button class="accordion__button" type="button">
-                    <span>${index + 1}. ${cat}</span>
-                    <span class="guide-category-count">${items.length}</span>
-                </button>
-                <div class="accordion__content">
-                    <ul class="guide-item-list">
-                        ${items.map((feat) => `
-                            <li>
-                                <button class="guide-item-btn" type="button" data-id="${feat.id}">
-                                    ${feat.id}. ${feat.name}
-                                </button>
-                            </li>
-                        `).join("")}
-                    </ul>
+                <div class="guide-empty">
+                    <strong>Sin coincidencias</strong>
+                    <p class="muted">Prueba con otro nombre, categoría, número o palabra clave.</p>
                 </div>
             `;
-            });
+        }
 
         this.container.innerHTML = html;
         this.container.insertAdjacentHTML("beforeend", this.renderDownloadsPanel());
-        new Accordion("#guideCategories");
+        if (this.filteredData.length) {
+            new Accordion("#guideCategories");
+        }
     }
 
     bindSidebarEvents() {
+        this.container.addEventListener("input", (e) => {
+            const input = e.target.closest("[data-guide-search]");
+            if (!input) return;
+            this.updateFilter(input.value);
+        });
+
         this.container.addEventListener("click", (e) => {
             const btn = e.target.closest(".guide-item-btn");
-            if (!btn) return;
-            this.selectFeature(parseInt(btn.dataset.id, 10));
+            if (btn) {
+                this.selectFeature(parseInt(btn.dataset.id, 10));
+                return;
+            }
+
+            const preset = e.target.closest("[data-guide-preset]");
+            if (preset) {
+                this.updateFilter(preset.dataset.guidePreset || "");
+                return;
+            }
+
+            const clear = e.target.closest("[data-guide-clear]");
+            if (clear) {
+                this.updateFilter("");
+            }
         });
     }
 
     bindExternalSelection() {
         document.addEventListener("guide:select-feature", (event) => {
-            this.selectFeature(event.detail.id, { scrollToDetail: true });
+            const targetId = event.detail.id;
+            if (!this.filteredData.some((item) => item.id === targetId)) {
+                this.updateFilter("");
+            }
+            this.selectFeature(targetId, { scrollToDetail: true });
         });
     }
 
@@ -1119,6 +3083,7 @@ export class ImplementationGuide {
                         <span>Código JavaScript Modular</span>
                         <button class="secondary-button copy-code-btn" data-target="codeJSMod">Copiar</button>
                     </div>
+                    <p class="muted">Listo para usar en <code>&lt;script type="module"&gt;</code>. Puede venir como <code>class</code>, <code>function</code> o modulo autoejecutable, segun convenga a la funcionalidad.</p>
                     <pre><code id="codeJSMod">${this.escapeHTML(feat.jsModular)}</code></pre>
                 </div>
                 
@@ -1132,6 +3097,9 @@ export class ImplementationGuide {
             </div>
 
             <div class="guide-actions">
+                <button type="button" class="secondary-button guide-copy-all">
+                    Copiar pack completo
+                </button>
                 <button type="button" class="secondary-button guide-more-toggle" aria-expanded="false">
                     Saber más
                 </button>
@@ -1140,7 +3108,7 @@ export class ImplementationGuide {
 
             <div class="guide-downloads">
                 <a class="secondary-button" href="${pdfInfo.file}" download>Descargar PDF del bloque</a>
-                <span class="muted">${pdfInfo.label}</span>
+                <span class="muted">${pdfInfo.label}. El PDF sirve como apoyo; para implementar, usa como fuente principal los bloques HTML, CSS y JS de arriba.</span>
             </div>
 
             <section class="guide-more" hidden>
@@ -1169,6 +3137,16 @@ export class ImplementationGuide {
 
         const moreButton = $(".guide-more-toggle", this.detailPanel);
         const moreSection = $(".guide-more", this.detailPanel);
+        const copyAllButton = $(".guide-copy-all", this.detailPanel);
+        copyAllButton?.addEventListener("click", async () => {
+            try {
+                await copyText(this.buildCombinedSnippet(feat));
+                this.toast?.show("Paquete completo copiado.");
+            } catch {
+                this.toast?.show("No se pudo copiar el paquete completo.");
+            }
+        });
+
         moreButton?.addEventListener("click", () => {
             const expanded = moreButton.getAttribute("aria-expanded") === "true";
             moreButton.setAttribute("aria-expanded", String(!expanded));
@@ -1331,8 +3309,37 @@ export class ImplementationGuide {
         if (id <= 10) return this.pdfGroups[0];
         if (id <= 25) return this.pdfGroups[1];
         if (id <= 40) return this.pdfGroups[2];
-        if (id <= 54) return this.pdfGroups[3];
+        if (id <= 55) return this.pdfGroups[3];
         return this.pdfGroups[4];
+    }
+
+    renderSearchPanel() {
+        return `
+            <div class="guide-search">
+                <label class="guide-search__label" for="guideSearchInput">Buscar funcionalidad</label>
+                <div class="guide-search__row">
+                    <input
+                        id="guideSearchInput"
+                        class="guide-search__input"
+                        type="search"
+                        placeholder="Ej: navbar, modal, carrito, bootstrap..."
+                        value="${this.escapeHTML(this.searchQuery)}"
+                        data-guide-search
+                    >
+                    <button class="secondary-button" type="button" data-guide-clear>Limpiar</button>
+                </div>
+                <div class="guide-search__meta">
+                    <span class="guide-results-count">${this.filteredData.length} resultados</span>
+                    <span class="muted">Busca por nombre, categoría, id o descripción.</span>
+                </div>
+                <div class="guide-search__chips">
+                    <button type="button" class="guide-search__chip" data-guide-preset="bootstrap">Bootstrap</button>
+                    <button type="button" class="guide-search__chip" data-guide-preset="formulario">Formularios</button>
+                    <button type="button" class="guide-search__chip" data-guide-preset="tabla">Tablas</button>
+                    <button type="button" class="guide-search__chip" data-guide-preset="carrito">Carrito</button>
+                </div>
+            </div>
+        `;
     }
 
     renderDownloadsPanel() {
@@ -1367,10 +3374,91 @@ export class ImplementationGuide {
         `;
     }
 
+    renderNoResultsState() {
+        this.detailPanel.innerHTML = `
+            <div class="guide-detail__welcome">
+                <h3>Sin coincidencias en la guía</h3>
+                <p>Prueba con otra palabra clave o usa los accesos rápidos para explorar funcionalidades relacionadas.</p>
+            </div>
+        `;
+    }
+
+    updateFilter(query) {
+        const activeSearch = document.activeElement?.matches?.("[data-guide-search]") || false;
+        const caretPosition = activeSearch ? document.activeElement.selectionStart : null;
+        this.searchQuery = query.trim();
+        const normalizedQuery = this.normalizeSearch(this.searchQuery);
+
+        if (!normalizedQuery) {
+            this.filteredData = [...this.data];
+        } else {
+            this.filteredData = this.data.filter((item) => {
+                const haystack = this.normalizeSearch(`${item.id} ${item.name} ${item.category} ${item.description}`);
+                return haystack.includes(normalizedQuery);
+            });
+        }
+
+        this.renderSidebar();
+        this.restoreSearchFocus(activeSearch, caretPosition);
+
+        if (!this.filteredData.length) {
+            this.selectedId = null;
+            this.renderNoResultsState();
+            return;
+        }
+
+        const stillVisible = this.selectedId && this.filteredData.some((item) => item.id === this.selectedId);
+        if (stillVisible) {
+            this.selectFeature(this.selectedId);
+            return;
+        }
+
+        this.activateFirstItem();
+    }
+
+    normalizeSearch(value) {
+        return String(value || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase();
+    }
+
+    buildCombinedSnippet(feat) {
+        return [
+            `${feat.id}. ${feat.name}`,
+            "",
+            "HTML",
+            feat.html,
+            "",
+            "CSS",
+            feat.css,
+            "",
+            "JS Modular",
+            feat.jsModular,
+            "",
+            "JS Normal",
+            feat.jsNormal
+        ].join("\n");
+    }
+
+    restoreSearchFocus(shouldFocus, caretPosition) {
+        if (!shouldFocus) return;
+        const input = this.container.querySelector("[data-guide-search]");
+        if (!input) return;
+        input.focus({ preventScroll: true });
+        const safePosition = typeof caretPosition === "number" ? caretPosition : input.value.length;
+        input.setSelectionRange(safePosition, safePosition);
+    }
+
     selectFeature(id, options = {}) {
         const { scrollToDetail = false } = options;
-        const button = this.container.querySelector(`.guide-item-btn[data-id="${id}"]`);
+        let button = this.container.querySelector(`.guide-item-btn[data-id="${id}"]`);
+        if (!button && this.data.some((item) => item.id === id)) {
+            this.updateFilter("");
+            button = this.container.querySelector(`.guide-item-btn[data-id="${id}"]`);
+        }
         if (!button) return;
+        this.selectedId = id;
 
         $$(".guide-item-btn", this.container).forEach((item) => item.classList.remove("is-active"));
         $$(".accordion__content", this.container).forEach((content) => content.classList.remove("is-open"));
@@ -1390,9 +3478,26 @@ class UtilityBadgeToggle {
     constructor() {
         this.bar = document.getElementById("utilityBadgeBar");
         if (!this.bar) return;
+        this.grid = document.querySelector("#utilidades .utilities-cards-grid");
+        this.bootstrapCard = document.getElementById("bootstrapLearn");
+        if (this.grid && this.bootstrapCard && this.bootstrapCard.parentElement !== this.grid) {
+            this.grid.appendChild(this.bootstrapCard);
+        }
         this.cards = document.querySelectorAll("#utilidades .utility-card");
         this.activeId = null;
+        this.setInitialState();
         this.bindEvents();
+    }
+
+    setInitialState() {
+        const activeBadge = this.bar.querySelector(".utility-badge.is-active");
+        if (!activeBadge) {
+            this.hideAllCards();
+            return;
+        }
+
+        this.activeId = activeBadge.dataset.target;
+        this.showCard(this.activeId);
     }
 
     bindEvents() {

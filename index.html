@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Proyecto unificado con componentes reutilizables de HTML, CSS y JavaScript para paginas web profesionales.">
-    <title>Kit Web Reutilizable 40+ Componentes</title>
-    <link rel="stylesheet" href="assets/css/styles.css?v=6">
+    <meta name="description" content="Kit de estudio con 55 funcionalidades reutilizables de HTML, CSS, JavaScript y actividades guiadas para practicar Bootstrap, DOM e interfaces web.">
+    <title>Kit Web Reutilizable 55 Funcionalidades</title>
+    <link rel="stylesheet" href="assets/css/styles.css?v=8">
 </head>
 <body>
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -24,7 +24,7 @@
             <button class="nav-link" data-section="utilidades">Utilidades</button>
 
             <div class="dropdown" data-dropdown>
-                <button class="nav-link dropdown__button" data-dropdown-button type="button">Mas ▾</button>
+                <button class="nav-link dropdown__button" data-dropdown-button type="button">Mas</button>
                 <div class="dropdown__menu" data-dropdown-menu>
                     <button data-section="login">Login demo</button>
                     <button data-section="storage">Storage</button>
@@ -34,22 +34,22 @@
         </nav>
 
         <div class="navbar-actions">
-            <button class="icon-button" id="themeToggle" type="button" aria-label="Cambiar tema">☾</button>
-            <button class="icon-button" id="openSidebar" type="button" aria-label="Abrir menu lateral">☰</button>
+            <button class="icon-button icon-button--label" id="themeToggle" type="button" aria-label="Cambiar tema">Dark</button>
+            <button class="icon-button icon-button--label" id="openSidebar" type="button" aria-label="Abrir menu lateral">Menu</button>
         </div>
     </header>
 
     <aside class="sidebar" id="sidebar" aria-label="Menu lateral">
         <div class="sidebar__header">
             <strong>Menu lateral</strong>
-            <button class="icon-button" id="closeSidebar" type="button" aria-label="Cerrar menu lateral">×</button>
+            <button class="icon-button icon-button--label" id="closeSidebar" type="button" aria-label="Cerrar menu lateral">Cerrar</button>
         </div>
 
         <div class="sidebar__content">
             <button class="side-link is-active" data-section="inicio">Panel principal</button>
 
             <div class="side-group">
-                <button class="side-group__button" type="button">Interfaz ▾</button>
+                <button class="side-group__button" type="button">Interfaz</button>
                 <div class="side-group__content">
                     <button data-section="componentes">Componentes UI</button>
                     <button data-section="formularios">Formularios</button>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="side-group">
-                <button class="side-group__button" type="button">Datos y estado ▾</button>
+                <button class="side-group__button" type="button">Datos y estado</button>
                 <div class="side-group__content">
                     <button data-section="datos">Catalogos y tablas</button>
                     <button data-section="storage">LocalStorage</button>
@@ -102,6 +102,60 @@
                     <span>pagina demo unificada</span>
                 </article>
             </div>
+
+            <section class="study-path reveal" aria-labelledby="studyPathTitle">
+                <div class="section-heading section-heading--compact">
+                    <span class="eyebrow">Ruta sugerida</span>
+                    <h2 id="studyPathTitle">Orden recomendado para estudiar sin perderte</h2>
+                    <p>La idea no es solo copiar componentes, sino entender qué resuelve cada capa: HTML estructura, CSS comunica y JavaScript conecta la interacción.</p>
+                </div>
+
+                <div class="learning-grid">
+                    <article class="glass-panel learning-card">
+                        <span class="learning-card__step">Paso 1</span>
+                        <h3>Navegación y layout</h3>
+                        <p>Empieza por navbar, sidebar, router y footer. Ahí entiendes estructura global, estados activos y jerarquía visual.</p>
+                        <div class="badge-row">
+                            <span class="badge">HTML semántico</span>
+                            <span class="badge">Layouts</span>
+                            <span class="badge">UX base</span>
+                        </div>
+                    </article>
+
+                    <article class="glass-panel learning-card">
+                        <span class="learning-card__step">Paso 2</span>
+                        <h3>Interacción UI</h3>
+                        <p>Luego practica tabs, acordeón, modal, dropdown y toast. Son perfectos para aprender eventos, clases activas y accesibilidad básica.</p>
+                        <div class="badge-row">
+                            <span class="badge">Eventos</span>
+                            <span class="badge">Estados</span>
+                            <span class="badge">DOM</span>
+                        </div>
+                    </article>
+
+                    <article class="glass-panel learning-card">
+                        <span class="learning-card__step">Paso 3</span>
+                        <h3>Formularios y datos</h3>
+                        <p>Después entra a validación, drafts, tablas, filtros y localStorage. Aquí ya ves cómo un sitio responde a datos reales del usuario.</p>
+                        <div class="badge-row">
+                            <span class="badge">Validación</span>
+                            <span class="badge">Persistencia</span>
+                            <span class="badge">Listas</span>
+                        </div>
+                    </article>
+
+                    <article class="glass-panel learning-card">
+                        <span class="learning-card__step">Paso 4</span>
+                        <h3>Bootstrap y actividades</h3>
+                        <p>Cierra con la tarjeta y el carrito para comparar utilidades de Bootstrap con CSS propio y practicar componentes completos de punta a punta.</p>
+                        <div class="badge-row">
+                            <span class="badge">Bootstrap</span>
+                            <span class="badge">Cards</span>
+                            <span class="badge">Mini apps</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
             <div class="feature-grid reveal" id="featureList"></div>
         </section>
@@ -368,6 +422,159 @@
                 <p>Aquí puedes practicar dos laboratorios guiados nuevos además del conversor: una tarjeta de presentación inspirada en Bootstrap y una mini tienda con carrito DOM.</p>
             </div>
 
+            <article class="glass-panel utility-card is-hidden bootstrap-callout" id="bootstrapLearn">
+                <div>
+                    <span class="eyebrow">Aprende algo de Bootstrap</span>
+                    <h3>Que pone Bootstrap y que debes entender tu</h3>
+                    <p class="muted">Bootstrap acelera clases visuales, pero no reemplaza conceptos. Este bloque te ayuda a reconocer la estructura que Bootstrap te da y la logica que igual debes dominar con HTML, CSS y JS.</p>
+                </div>
+
+                <div class="bootstrap-map" aria-label="Mapa de conceptos Bootstrap">
+                    <article class="bootstrap-map__card">
+                        <strong><code>.container</code> / <code>.row</code> / <code>.col</code></strong>
+                        <p>Te ensena composicion y grid. Luego puedes replicarlo con <code>display: grid</code> o <code>flex</code>.</p>
+                    </article>
+                    <article class="bootstrap-map__card">
+                        <strong><code>.card</code> / <code>.badge</code> / <code>.btn</code></strong>
+                        <p>Sirven para entender jerarquia, espaciado, variantes visuales y reutilizacion de componentes.</p>
+                    </article>
+                    <article class="bootstrap-map__card">
+                        <strong><code>.modal</code> / <code>.accordion</code> / <code>.toast</code></strong>
+                        <p>Son una puerta para practicar estados, capas, foco, eventos y comportamiento interactivo real.</p>
+                    </article>
+                </div>
+
+                <ul class="learning-points">
+                    <li>Primero mira la version resuelta.</li>
+                    <li>Luego identifica que parte es solo estructura HTML.</li>
+                    <li>Despues separa que hace Bootstrap y que hace tu CSS.</li>
+                    <li>Al final reescribe el comportamiento en JavaScript sin depender de magia externa.</li>
+                </ul>
+
+                <div class="bootstrap-study-lab">
+                    <div class="bootstrap-study-lab__header">
+                        <div>
+                            <span class="eyebrow">Laboratorio Bootstrap</span>
+                            <h3>Traduce clases de Bootstrap a decisiones reales de maquetacion</h3>
+                            <p class="muted">Aqui no solo ves nombres de clases: ves que problema resuelven y con que herramientas nativas puedes reconstruir el mismo patron.</p>
+                        </div>
+                        <button type="button" class="secondary-button" data-section="guia" data-guide-feature-action="53">Abrir guia 53</button>
+                    </div>
+
+                    <div class="bootstrap-cheatsheet">
+                        <article class="bootstrap-cheatsheet__item">
+                            <strong>Layout</strong>
+                            <code>.container .row .col-md-6</code>
+                            <p>Equivale a pensar en ancho maximo, separacion interna, columnas y breakpoint.</p>
+                            <span>HTML semantico + <code>display: grid</code> + <code>@media</code></span>
+                        </article>
+                        <article class="bootstrap-cheatsheet__item">
+                            <strong>Card</strong>
+                            <code>.card .card-body .shadow</code>
+                            <p>Equivale a una superficie con jerarquia, padding, radio, borde y profundidad visual.</p>
+                            <span><code>background</code> + <code>padding</code> + <code>border-radius</code> + <code>box-shadow</code></span>
+                        </article>
+                        <article class="bootstrap-cheatsheet__item">
+                            <strong>Acciones</strong>
+                            <code>.btn .btn-primary .badge</code>
+                            <p>Equivale a estados visuales, contraste, feedback hover y pequenos indicadores.</p>
+                            <span>Variables CSS + estados <code>:hover</code> + chips reutilizables</span>
+                        </article>
+                    </div>
+
+                    <div class="bootstrap-compare">
+                        <section class="bootstrap-compare__panel">
+                            <span class="bootstrap-compare__label">Mentalidad Bootstrap</span>
+                            <pre><code>&lt;div class="container py-4"&gt;
+  &lt;div class="row g-3"&gt;
+    &lt;div class="col-md-6"&gt;
+      &lt;article class="card shadow-sm"&gt;
+        &lt;div class="card-body"&gt;
+          &lt;span class="badge text-bg-primary"&gt;Frontend&lt;/span&gt;
+          &lt;h3 class="h5 mt-3"&gt;Componente reutilizable&lt;/h3&gt;
+          &lt;p class="text-body-secondary"&gt;Resumen corto del bloque.&lt;/p&gt;
+          &lt;a class="btn btn-primary" href="#"&gt;Usar base&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </section>
+
+                        <section class="bootstrap-compare__panel">
+                            <span class="bootstrap-compare__label">Mentalidad nativa</span>
+                            <pre><code>&lt;section class="study-shell"&gt;
+  &lt;article class="study-card"&gt;
+    &lt;span class="study-badge"&gt;Frontend&lt;/span&gt;
+    &lt;h3&gt;Componente reutilizable&lt;/h3&gt;
+    &lt;p&gt;Resumen corto del bloque.&lt;/p&gt;
+    &lt;a class="study-button" href="#"&gt;Usar base&lt;/a&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+
+.study-shell { width: min(960px, calc(100% - 32px)); margin: 0 auto; }
+.study-card { padding: 24px; border-radius: 20px; box-shadow: 0 18px 40px rgba(15,23,42,.16); }
+.study-badge { display: inline-flex; padding: 6px 10px; border-radius: 999px; }
+.study-button { display: inline-flex; padding: 12px 16px; }</code></pre>
+                        </section>
+                    </div>
+
+                    <div class="bootstrap-reto">
+                        <strong>Reto sugerido</strong>
+                        <p class="muted">Recrea la card anterior sin Bootstrap y luego vuelve a implementarla con Bootstrap. Compara que parte resolviste con clases ya hechas y que parte igual tuviste que entender para que el resultado se viera bien.</p>
+                    </div>
+
+                    <div class="utility-steps">
+                        <div class="utility-card__actions">
+                            <button type="button" class="secondary-button" data-section="guia" data-guide-feature-action="53">Saber mas</button>
+                            <span class="muted">Abre la funcionalidad 53 con la explicacion completa.</span>
+                        </div>
+                        <h4>Actividad 4: Pricing cards Bootstrap</h4>
+                        <p class="muted">Practica otro patron comun de Bootstrap: tarjetas de planes con badge, precio destacado, lista de beneficios y boton principal.</p>
+                        <div class="pricing-lab">
+                            <article class="pricing-lab__card">
+                                <span class="pricing-lab__badge">Basico</span>
+                                <h4>Starter</h4>
+                                <p class="pricing-lab__price">$19<span>/mes</span></p>
+                                <ul class="pricing-lab__list">
+                                    <li>1 proyecto</li>
+                                    <li>Soporte por correo</li>
+                                    <li>Componentes base</li>
+                                </ul>
+                                <button type="button" class="secondary-button">Elegir plan</button>
+                            </article>
+                            <article class="pricing-lab__card pricing-lab__card--featured">
+                                <span class="pricing-lab__badge">Popular</span>
+                                <h4>Pro</h4>
+                                <p class="pricing-lab__price">$49<span>/mes</span></p>
+                                <ul class="pricing-lab__list">
+                                    <li>10 proyectos</li>
+                                    <li>Soporte prioritario</li>
+                                    <li>Layouts premium</li>
+                                </ul>
+                                <button type="button" class="primary-button">Elegir plan</button>
+                            </article>
+                            <article class="pricing-lab__card">
+                                <span class="pricing-lab__badge">Equipo</span>
+                                <h4>Scale</h4>
+                                <p class="pricing-lab__price">$99<span>/mes</span></p>
+                                <ul class="pricing-lab__list">
+                                    <li>Proyectos ilimitados</li>
+                                    <li>Equipo colaborativo</li>
+                                    <li>Soporte dedicado</li>
+                                </ul>
+                                <button type="button" class="secondary-button">Elegir plan</button>
+                            </article>
+                        </div>
+                        <ol>
+                            <li>Observa como Bootstrap suele resolver esto con <code>.container</code>, <code>.row</code>, <code>.col</code>, <code>.card</code> y <code>.btn</code>.</li>
+                            <li>Replica la misma idea con HTML semantico, grid, bordes, sombras y variables CSS.</li>
+                            <li>Cambia el plan destacado y prueba una variante para movil.</li>
+                        </ol>
+                    </div>
+                </div>
+            </article>
+
             <div class="utility-badge-bar" id="utilityBadgeBar">
                 <button type="button" class="utility-badge is-active" data-target="temperatureTool">
                     <span>Actividad 1</span>
@@ -380,6 +587,10 @@
                 <button type="button" class="utility-badge" data-target="shopLab">
                     <span>Actividad 3</span>
                     <strong>Mini carrito de compras</strong>
+                </button>
+                <button type="button" class="utility-badge" data-target="bootstrapLearn">
+                    <span>Actividad 4</span>
+                    <strong>Aprende algo de Bootstrap</strong>
                 </button>
             </div>
 
@@ -569,7 +780,7 @@
             <div class="section-heading">
                 <span class="eyebrow">Guía interactiva</span>
                 <h2>Guía de Implementación y Reciclaje</h2>
-                <p>Selecciona una de las 54 funcionalidades organizadas en 9 categorías para ver su descripción y el código exacto (HTML, CSS y JS modular o normal) para copiar y pegar en tus proyectos.</p>
+                <p>Selecciona una de las 55 funcionalidades organizadas en 9 categorías, usa el buscador para encontrarlas más rápido y copia el paquete completo o cada bloque por separado para pegarlo en tus proyectos.</p>
             </div>
 
             <div class="guide-layout">
@@ -625,7 +836,7 @@
 
     <dialog class="modal" id="demoModal">
         <div class="modal__content">
-            <button class="modal__close" data-close-modal type="button">×</button>
+            <button class="modal__close" data-close-modal type="button">Cerrar</button>
             <h3>Modal reutilizable</h3>
             <p>Este modal se puede usar para alertas, confirmaciones, detalles de producto o formularios cortos.</p>
             <button class="primary-button" data-close-modal type="button">Entendido</button>

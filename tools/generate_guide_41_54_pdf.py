@@ -4,9 +4,11 @@ from textwrap import wrap
 from pypdf import PdfReader, PdfWriter
 
 
-BASE_PDF = Path("guia_reciclaje_componentes_web_41_50_orden_correcto.pdf")
-APPENDIX_PDF = Path("tools/.tmp_guia_41_54_appendix.pdf")
-OUTPUT = Path("guia_reciclaje_componentes_web_41_54_actualizada_2026.pdf")
+ROOT = Path(__file__).resolve().parents[1]
+PDF_DIR = ROOT / "docs" / "pdf"
+BASE_PDF = PDF_DIR / "guia_reciclaje_componentes_web_41_50_orden_correcto.pdf"
+APPENDIX_PDF = PDF_DIR / ".tmp_guia_41_54_appendix.pdf"
+OUTPUT = PDF_DIR / "guia_reciclaje_componentes_web_41_54_actualizada_2026.pdf"
 
 
 def plain(text: str) -> str:
@@ -66,6 +68,13 @@ class Pdf:
         for index, line in enumerate(lines):
             self.line(("- " if index == 0 else "  ") + line, leading=14)
         self.y -= 2
+
+    def code(self, text):
+        for raw_line in text.splitlines():
+            chunks = wrap(plain(raw_line) or " ", width=82, replace_whitespace=False, drop_whitespace=False) or [" "]
+            for chunk in chunks:
+                self.line(f"    {chunk}", size=9, font="F1", leading=12)
+        self.y -= 4
 
     def render(self, path: Path):
         if self.current:
@@ -162,6 +171,12 @@ def build_appendix() -> None:
             [
                 "Actividad guiada basada en LAB1. La meta es construir una card personal con avatar, nombre, rol, badges y enlaces, manteniendo la logica de Bootstrap pero con el estilo de este proyecto.",
                 "Paso a paso: crea el contenedor principal, arma la card frontal, agrega la vista de tecnologias, aplica estilos tipo card y conecta un boton para alternar el estado visual.",
+                "HTML funcional base:",
+                "CODE::PROFILE_HTML",
+                "CSS funcional base:",
+                "CODE::PROFILE_CSS",
+                "JS funcional base:",
+                "CODE::PROFILE_JS",
                 "Puntos clave:",
                 "- Reutiliza ideas como card, badge, btn y grid.",
                 "- Separa estructura HTML, look visual y cambio de estado.",
@@ -173,6 +188,12 @@ def build_appendix() -> None:
             [
                 "Actividad guiada para practicar DOM: agregar productos, actualizar badge, calcular total, eliminar items y vaciar el carrito sin recargar la pagina.",
                 "Paso a paso: selecciona los botones de producto, lee data-name y data-price, crea items dinamicos con createElement, recalcula total y conecta vaciado general.",
+                "HTML funcional base:",
+                "CODE::CART_HTML",
+                "CSS funcional base:",
+                "CODE::CART_CSS",
+                "JS funcional base:",
+                "CODE::CART_JS",
                 "Puntos clave:",
                 "- Convierte precios a numero antes de sumarlos.",
                 "- Actualiza badge y total despues de cada accion.",
@@ -180,6 +201,76 @@ def build_appendix() -> None:
             ],
         ),
     ]
+
+    code_map = {
+        "CODE::PROFILE_HTML": """<article class="profile-lab">
+  <div class="profile-lab__flip" id="profileLabFlip">
+    <section class="profile-lab__face profile-lab__face--front">
+      <div class="profile-lab__avatar">CM</div>
+      <h4>Carlos Madero</h4>
+      <button id="showProfileTech" type="button">Ver tecnologias</button>
+    </section>
+    <section class="profile-lab__face profile-lab__face--back">
+      <h4>Tecnologias</h4>
+      <button id="hideProfileTech" type="button">Volver</button>
+    </section>
+  </div>
+</article>""",
+        "CODE::PROFILE_CSS": """.profile-lab { max-width: 340px; perspective: 1200px; }
+.profile-lab__flip {
+  position: relative; min-height: 320px;
+  transform-style: preserve-3d; transition: transform 0.8s ease;
+}
+.profile-lab__flip.is-flipped { transform: rotateY(180deg); }
+.profile-lab__face {
+  position: absolute; inset: 0; padding: 24px;
+  border: 1px solid #cbd5e1; border-radius: 20px;
+  background: #ffffff; backface-visibility: hidden;
+}
+.profile-lab__face--back { transform: rotateY(180deg); }""",
+        "CODE::PROFILE_JS": """document.addEventListener('DOMContentLoaded', () => {
+  const flip = document.getElementById('profileLabFlip');
+  document.getElementById('showProfileTech')?.addEventListener('click', () => {
+    flip?.classList.add('is-flipped');
+  });
+  document.getElementById('hideProfileTech')?.addEventListener('click', () => {
+    flip?.classList.remove('is-flipped');
+  });
+});""",
+        "CODE::CART_HTML": """<div class="shop-lab">
+  <button class="shop-add-button" data-name="Pack IPA" data-price="18000">Agregar</button>
+  <span id="shopBadge">0</span>
+  <p id="shopEmptyMessage">Tu carrito esta vacio.</p>
+  <ul id="shopCartList"></ul>
+  <strong id="shopCartTotal">$0</strong>
+  <button id="clearShopCart" type="button">Vaciar</button>
+</div>""",
+        "CODE::CART_CSS": """.shop-lab { display: grid; gap: 18px; }
+.shop-cart__item {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid #e2e8f0;
+}""",
+        "CODE::CART_JS": """class ShoppingCartActivity {
+  constructor() {
+    this.buttons = [...document.querySelectorAll('.shop-add-button')];
+    this.list = document.getElementById('shopCartList');
+    this.badge = document.getElementById('shopBadge');
+    this.total = document.getElementById('shopCartTotal');
+    this.emptyMessage = document.getElementById('shopEmptyMessage');
+    this.clearButton = document.getElementById('clearShopCart');
+    this.itemsCount = 0;
+    this.totalAmount = 0;
+    this.init();
+  }
+  init() {
+    this.buttons.forEach((button) => button.addEventListener('click', () => {
+      this.addItem(button.dataset.name, Number(button.dataset.price));
+    }));
+    this.clearButton?.addEventListener('click', () => this.clear());
+    this.renderSummary();
+  }
+}""",
+    }
 
     pdf.h1("Actualizacion del bloque 41 a 54")
     pdf.p(
@@ -193,6 +284,8 @@ def build_appendix() -> None:
         for paragraph in paragraphs:
             if paragraph == "Checklist rapido:" or paragraph == "Puntos clave:":
                 pdf.line(paragraph, size=11, font="F2", leading=16)
+            elif paragraph in code_map:
+                pdf.code(code_map[paragraph])
             elif paragraph.startswith("- "):
                 pdf.bullet(paragraph[2:])
             else:

@@ -3,14 +3,14 @@
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 2 0 obj
-<< /Length 715 >>
+<< /Length 760 >>
 stream
 BT
 /F1 18 Tf
 50 790 Td
 (Actividades Guiadas - Componentes Web 2026) Tj
 0 -22 Td () Tj
-0 -22 Td (Este documento agrega tres actividades guiadas al banco de componentes) Tj
+0 -22 Td (Este documento agrega cuatro actividades guiadas al banco de componentes) Tj
 0 -22 Td (sin modificar las guias anteriores. Se penso como complemento practico) Tj
 0 -22 Td (para aprender haciendo dentro de la misma pagina del proyecto.) Tj
 0 -22 Td () Tj
@@ -18,6 +18,7 @@ BT
 0 -22 Td (1. Conversor de temperatura en JavaScript) Tj
 0 -22 Td (2. Tarjeta de presentacion Bootstrap) Tj
 0 -22 Td (3. Carrito de compras DOM) Tj
+0 -22 Td (4. Aprende algo de Bootstrap) Tj
 0 -22 Td () Tj
 0 -22 Td (Cada actividad incluye:) Tj
 0 -22 Td (- objetivo) Tj
@@ -61,6 +62,115 @@ ET
 endstream
 endobj
 4 0 obj
+<< /Length 977 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 1 - HTML copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (<div id="temperatureTool" class="temperature-tool">) Tj
+0 -22 Td (  <div class="unit-buttons">) Tj
+0 -22 Td (    <button type="button" class="unit-button is-active") Tj
+0 -22 Td (      data-unit="celsius">C</button>) Tj
+0 -22 Td (    <button type="button" class="unit-button") Tj
+0 -22 Td (      data-unit="fahrenheit">F</button>) Tj
+0 -22 Td (    <button type="button" class="unit-button") Tj
+0 -22 Td (      data-unit="kelvin">K</button>) Tj
+0 -22 Td (  </div>) Tj
+0 -22 Td (  <input id="temperatureInput" type="number") Tj
+0 -22 Td (    placeholder="Ingresa un valor">) Tj
+0 -22 Td (  <button id="calculateTemperature" type="button">) Tj
+0 -22 Td (    Calcular) Tj
+0 -22 Td (  </button>) Tj
+0 -22 Td (  <p id="temperatureMessage">Unidad seleccionada: celsius</p>) Tj
+0 -22 Td (  <div id="temperatureResult"></div>) Tj
+0 -22 Td (</div>) Tj
+0 -22 Td (<div id="toastContainer"></div>) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 716 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 1 - CSS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (.temperature-tool {) Tj
+0 -22 Td (  display: grid;) Tj
+0 -22 Td (  gap: 12px;) Tj
+0 -22 Td (  padding: 20px;) Tj
+0 -22 Td (  border: 1px solid #cbd5e1;) Tj
+0 -22 Td (  border-radius: 18px;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.unit-buttons { display: flex; gap: 8px; }) Tj
+0 -22 Td (.unit-button {) Tj
+0 -22 Td (  padding: 10px 14px;) Tj
+0 -22 Td (  border: 1px solid #cbd5e1;) Tj
+0 -22 Td (  border-radius: 999px;) Tj
+0 -22 Td (  background: #ffffff;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.unit-button.is-active {) Tj
+0 -22 Td (  background: #2563eb;) Tj
+0 -22 Td (  color: #ffffff;) Tj
+0 -22 Td (  border-color: #2563eb;) Tj
+0 -22 Td (}) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Length 2306 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 1 - JS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (class ToastManager {) Tj
+0 -22 Td (  constructor\(id = 'toastContainer'\) {) Tj
+0 -22 Td (    this.container = document.getElementById\(id\);) Tj
+0 -22 Td (  }) Tj
+0 -22 Td (  show\(message, time = 2800\) {) Tj
+0 -22 Td (    const toast = document.createElement\('div'\);) Tj
+0 -22 Td (    toast.className = 'toast';) Tj
+0 -22 Td (    toast.textContent = message;) Tj
+0 -22 Td (    this.container?.appendChild\(toast\);) Tj
+0 -22 Td (    setTimeout\(\(\) => toast.remove\(\), time\);) Tj
+0 -22 Td (  }) Tj
+0 -22 Td (}) Tj
+0 -22 Td (document.addEventListener\('DOMContentLoaded', \(\) => {) Tj
+0 -22 Td (  const buttons = [...document.querySelectorAll\('.unit-button'\)];) Tj
+0 -22 Td (  const input = document.getElementById\('temperatureInput'\);) Tj
+0 -22 Td (  const result = document.getElementById\('temperatureResult'\);) Tj
+0 -22 Td (  const message = document.getElementById\('temperatureMessage'\);) Tj
+0 -22 Td (  const calc = document.getElementById\('calculateTemperature'\);) Tj
+0 -22 Td (  const toast = new ToastManager\(\);) Tj
+0 -22 Td (  let selectedUnit = 'celsius';) Tj
+0 -22 Td (  buttons.forEach\(\(button\) => button.addEventListener\('click', \(\) => {) Tj
+0 -22 Td (    selectedUnit = button.dataset.unit;) Tj
+0 -22 Td (    buttons.forEach\(\(item\) => item.classList.remove\('is-active'\)\);) Tj
+0 -22 Td (    button.classList.add\('is-active'\);) Tj
+0 -22 Td (    message.textContent = `Unidad seleccionada: ${selectedUnit}`;) Tj
+0 -22 Td (  }\)\);) Tj
+0 -22 Td (  calc?.addEventListener\('click', \(\) => {) Tj
+0 -22 Td (    const value = Number\(input.value\);) Tj
+0 -22 Td (    if \(!Number.isFinite\(value\)\) return;) Tj
+0 -22 Td (    let celsius = value;) Tj
+0 -22 Td (    if \(selectedUnit === 'fahrenheit'\) celsius = \(value - 32\) * 5 / 9;) Tj
+0 -22 Td (    if \(selectedUnit === 'kelvin'\) celsius = value - 273.15;) Tj
+0 -22 Td (    const fahrenheit = \(celsius * 9 / 5\) + 32;) Tj
+0 -22 Td (    const kelvin = celsius + 273.15;) Tj
+0 -22 Td (    result.innerHTML = `C: ${celsius.toFixed\(2\)}<br>F:) Tj
+0 -22 Td (      ${fahrenheit.toFixed\(2\)}<br>K: ${kelvin.toFixed\(2\)}`;) Tj
+0 -22 Td (    toast.show\('Temperatura calculada.'\);) Tj
+0 -22 Td (  }\);) Tj
+0 -22 Td (}\);) Tj
+ET
+endstream
+endobj
+7 0 obj
 << /Length 1126 >>
 stream
 BT
@@ -91,7 +201,89 @@ BT
 ET
 endstream
 endobj
-5 0 obj
+8 0 obj
+<< /Length 934 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 2 - HTML copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (<article class="profile-lab">) Tj
+0 -22 Td (  <div class="profile-lab__flip" id="profileLabFlip">) Tj
+0 -22 Td (    <section class="profile-lab__face profile-lab__face--front">) Tj
+0 -22 Td (      <div class="profile-lab__avatar">CM</div>) Tj
+0 -22 Td (      <h4>Carlos Madero</h4>) Tj
+0 -22 Td (      <p class="profile-lab__role">Full Stack Java Developer</p>) Tj
+0 -22 Td (      <button id="showProfileTech" type="button">) Tj
+0 -22 Td (        Ver tecnologias) Tj
+0 -22 Td (      </button>) Tj
+0 -22 Td (    </section>) Tj
+0 -22 Td (    <section class="profile-lab__face profile-lab__face--back">) Tj
+0 -22 Td (      <h4>Tecnologias</h4>) Tj
+0 -22 Td (      <button id="hideProfileTech" type="button">) Tj
+0 -22 Td (        Volver) Tj
+0 -22 Td (      </button>) Tj
+0 -22 Td (    </section>) Tj
+0 -22 Td (  </div>) Tj
+0 -22 Td (</article>) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Length 880 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 2 - CSS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (.profile-lab { max-width: 340px; perspective: 1200px; }) Tj
+0 -22 Td (.profile-lab__flip {) Tj
+0 -22 Td (  position: relative;) Tj
+0 -22 Td (  min-height: 320px;) Tj
+0 -22 Td (  transform-style: preserve-3d;) Tj
+0 -22 Td (  transition: transform 0.8s ease;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.profile-lab__flip.is-flipped { transform: rotateY\(180deg\); }) Tj
+0 -22 Td (.profile-lab__face {) Tj
+0 -22 Td (  position: absolute;) Tj
+0 -22 Td (  inset: 0;) Tj
+0 -22 Td (  display: grid;) Tj
+0 -22 Td (  gap: 12px;) Tj
+0 -22 Td (  padding: 24px;) Tj
+0 -22 Td (  border: 1px solid #cbd5e1;) Tj
+0 -22 Td (  border-radius: 20px;) Tj
+0 -22 Td (  background: #ffffff;) Tj
+0 -22 Td (  backface-visibility: hidden;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.profile-lab__face--back { transform: rotateY\(180deg\); }) Tj
+ET
+endstream
+endobj
+10 0 obj
+<< /Length 664 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 2 - JS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (document.addEventListener\('DOMContentLoaded', \(\) => {) Tj
+0 -22 Td (  const flip = document.getElementById\('profileLabFlip'\);) Tj
+0 -22 Td (  const show = document.getElementById\('showProfileTech'\);) Tj
+0 -22 Td (  const hide = document.getElementById\('hideProfileTech'\);) Tj
+0 -22 Td (  show?.addEventListener\('click', \(\) => {) Tj
+0 -22 Td (    flip?.classList.add\('is-flipped'\);) Tj
+0 -22 Td (  }\);) Tj
+0 -22 Td (  hide?.addEventListener\('click', \(\) => {) Tj
+0 -22 Td (    flip?.classList.remove\('is-flipped'\);) Tj
+0 -22 Td (  }\);) Tj
+0 -22 Td (}\);) Tj
+ET
+endstream
+endobj
+11 0 obj
 << /Length 1162 >>
 stream
 BT
@@ -123,40 +315,362 @@ BT
 ET
 endstream
 endobj
-6 0 obj
-<< /Type /Pages /Kids [7 0 R 8 0 R 9 0 R 10 0 R] /Count 4 >>
+12 0 obj
+<< /Length 1459 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 3 - HTML copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (<div class="shop-lab">) Tj
+0 -22 Td (  <div class="shop-lab__topbar">) Tj
+0 -22 Td (    <strong>Mini tienda</strong>) Tj
+0 -22 Td (    <span class="shop-lab__badge" id="shopBadge">0</span>) Tj
+0 -22 Td (  </div>) Tj
+0 -22 Td (  <div class="shop-lab__grid">) Tj
+0 -22 Td (    <article class="shop-product">) Tj
+0 -22 Td (      <h4>Pack IPA</h4>) Tj
+0 -22 Td (      <p>$18,000</p>) Tj
+0 -22 Td (      <button class="shop-add-button" type="button") Tj
+0 -22 Td (        data-name="Pack IPA" data-price="18000">Agregar</button>) Tj
+0 -22 Td (    </article>) Tj
+0 -22 Td (    <article class="shop-product">) Tj
+0 -22 Td (      <h4>Cheesecake</h4>) Tj
+0 -22 Td (      <p>$11,000</p>) Tj
+0 -22 Td (      <button class="shop-add-button" type="button") Tj
+0 -22 Td (        data-name="Cheesecake" data-price="11000">Agregar</button>) Tj
+0 -22 Td (    </article>) Tj
+0 -22 Td (  </div>) Tj
+0 -22 Td (  <div class="shop-cart">) Tj
+0 -22 Td (    <div class="shop-cart__head">) Tj
+0 -22 Td (      <h4>Carrito</h4>) Tj
+0 -22 Td (      <button id="clearShopCart" type="button">Vaciar</button>) Tj
+0 -22 Td (    </div>) Tj
+0 -22 Td (    <p id="shopEmptyMessage">Tu carrito esta vacio.</p>) Tj
+0 -22 Td (    <ul id="shopCartList"></ul>) Tj
+0 -22 Td (    <strong id="shopCartTotal">$0</strong>) Tj
+0 -22 Td (  </div>) Tj
+0 -22 Td (</div>) Tj
+0 -22 Td (<div id="toastContainer"></div>) Tj
+ET
+endstream
 endobj
-7 0 obj
-<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+13 0 obj
+<< /Length 914 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 3 - CSS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (.shop-lab { display: grid; gap: 18px; }) Tj
+0 -22 Td (.shop-lab__topbar {) Tj
+0 -22 Td (  display: flex;) Tj
+0 -22 Td (  justify-content: space-between;) Tj
+0 -22 Td (  align-items: center;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.shop-lab__badge {) Tj
+0 -22 Td (  min-width: 34px;) Tj
+0 -22 Td (  padding: 6px 10px;) Tj
+0 -22 Td (  border-radius: 999px;) Tj
+0 -22 Td (  background: #2563eb;) Tj
+0 -22 Td (  color: #ffffff;) Tj
+0 -22 Td (  text-align: center;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.shop-lab__grid {) Tj
+0 -22 Td (  display: grid;) Tj
+0 -22 Td (  grid-template-columns: repeat\(auto-fit, minmax\(180px, 1fr\)\);) Tj
+0 -22 Td (  gap: 14px;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.shop-product, .shop-cart {) Tj
+0 -22 Td (  padding: 16px;) Tj
+0 -22 Td (  border: 1px solid #cbd5e1;) Tj
+0 -22 Td (  border-radius: 16px;) Tj
+0 -22 Td (}) Tj
+ET
+endstream
 endobj
-8 0 obj
-<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+14 0 obj
+<< /Length 2551 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 3 - JS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (class ShoppingCartActivity {) Tj
+0 -22 Td (  constructor\(\) {) Tj
+0 -22 Td (    this.buttons = [...document.querySelectorAll\('.shop-add-button'\)];) Tj
+0 -22 Td (    this.list = document.getElementById\('shopCartList'\);) Tj
+0 -22 Td (    this.badge = document.getElementById\('shopBadge'\);) Tj
+0 -22 Td (    this.total = document.getElementById\('shopCartTotal'\);) Tj
+0 -22 Td (    this.empty = document.getElementById\('shopEmptyMessage'\);) Tj
+0 -22 Td (    this.clearButton = document.getElementById\('clearShopCart'\);) Tj
+0 -22 Td (    this.itemsCount = 0;) Tj
+0 -22 Td (    this.totalAmount = 0;) Tj
+0 -22 Td (    this.init\(\);) Tj
+0 -22 Td (  }) Tj
+0 -22 Td (  init\(\) {) Tj
+0 -22 Td (    this.buttons.forEach\(\(button\) => {) Tj
+0 -22 Td (      button.addEventListener\('click', \(\) => {) Tj
+0 -22 Td (        this.addItem\(button.dataset.name, Number\(button.dataset.price\)\);) Tj
+0 -22 Td (      }\);) Tj
+0 -22 Td (    }\);) Tj
+0 -22 Td (    this.clearButton?.addEventListener\('click', \(\) => this.clear\(\)\);) Tj
+0 -22 Td (    this.renderSummary\(\);) Tj
+0 -22 Td (  }) Tj
+0 -22 Td (  addItem\(name, price\) {) Tj
+0 -22 Td (    const item = document.createElement\('li'\);) Tj
+0 -22 Td (    item.className = 'shop-cart__item';) Tj
+0 -22 Td (    item.innerHTML = `<div><strong>${name}</strong><p>$${price}) Tj
+0 -22 Td (      </p></div><button type="button">X</button>`;) Tj
+0 -22 Td (    item.querySelector\('button'\)?.addEventListener\('click', \(\) => {) Tj
+0 -22 Td (      item.remove\(\);) Tj
+0 -22 Td (      this.itemsCount -= 1;) Tj
+0 -22 Td (      this.totalAmount -= price;) Tj
+0 -22 Td (      this.renderSummary\(\);) Tj
+0 -22 Td (    }\);) Tj
+0 -22 Td (    this.list?.appendChild\(item\);) Tj
+0 -22 Td (    this.itemsCount += 1;) Tj
+0 -22 Td (    this.totalAmount += price;) Tj
+0 -22 Td (    this.renderSummary\(\);) Tj
+0 -22 Td (  }) Tj
+0 -22 Td (  clear\(\) { this.list.innerHTML = ''; this.itemsCount = 0;) Tj
+0 -22 Td (    this.totalAmount = 0; this.renderSummary\(\); }) Tj
+0 -22 Td (  renderSummary\(\) {) Tj
+0 -22 Td (    this.badge.textContent = String\(this.itemsCount\);) Tj
+0 -22 Td (    this.total.textContent = `$${this.totalAmount.toLocaleString\('es-CO'\)}`;) Tj
+0 -22 Td (    this.empty.style.display = this.itemsCount ? 'none' : 'block';) Tj
+0 -22 Td (  }) Tj
+0 -22 Td (}) Tj
+0 -22 Td (document.addEventListener\('DOMContentLoaded', \(\) => {) Tj
+0 -22 Td (  new ShoppingCartActivity\(\);) Tj
+0 -22 Td (}\);) Tj
+ET
+endstream
 endobj
-9 0 obj
-<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+15 0 obj
+<< /Length 1263 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 4 - Aprende algo de Bootstrap) Tj
+0 -22 Td () Tj
+0 -22 Td (Objetivo) Tj
+0 -22 Td (Entender que parte resuelve Bootstrap con clases listas y que parte) Tj
+0 -22 Td (igual debes dominar con HTML, CSS y JavaScript propios.) Tj
+0 -22 Td () Tj
+0 -22 Td (Que se practica) Tj
+0 -22 Td (- lectura de layout con container, row y col) Tj
+0 -22 Td (- analisis de card, badge y boton) Tj
+0 -22 Td (- traduccion de patrones Bootstrap a CSS nativo) Tj
+0 -22 Td (- comparacion entre clases de utilidad y decisiones reales) Tj
+0 -22 Td (- reconstruccion de una seccion tipo pricing) Tj
+0 -22 Td () Tj
+0 -22 Td (Paso a paso) Tj
+0 -22 Td (1. Observa la estructura general del bloque y separa layout de estilo.) Tj
+0 -22 Td (2. Identifica donde Bootstrap aporta grid, padding y jerarquia visual.) Tj
+0 -22 Td (3. Reescribe el patron con clases propias y variables CSS.) Tj
+0 -22 Td (4. Crea tres cards de planes con un plan destacado.) Tj
+0 -22 Td (5. Agrega un badge, un precio fuerte y una lista de beneficios.) Tj
+0 -22 Td (6. Usa grid responsive para mover las cards sin romper la lectura.) Tj
+0 -22 Td (7. Cambia colores, radios y sombras para probar variantes.) Tj
+0 -22 Td (8. Compara el resultado con la solucion guiada de la pagina.) Tj
+ET
+endstream
 endobj
-10 0 obj
-<< /Type /Page /Parent 6 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 5 0 R >>
+16 0 obj
+<< /Length 1215 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 4 - HTML copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (<section class="pricing-lab">) Tj
+0 -22 Td (  <article class="pricing-lab__card">) Tj
+0 -22 Td (    <span class="pricing-lab__badge">Basico</span>) Tj
+0 -22 Td (    <h4>Starter</h4>) Tj
+0 -22 Td (    <p class="pricing-lab__price">$19<span>/mes</span></p>) Tj
+0 -22 Td (    <ul class="pricing-lab__list">) Tj
+0 -22 Td (      <li>1 proyecto</li>) Tj
+0 -22 Td (      <li>Soporte por correo</li>) Tj
+0 -22 Td (      <li>Componentes base</li>) Tj
+0 -22 Td (    </ul>) Tj
+0 -22 Td (    <button type="button">Elegir plan</button>) Tj
+0 -22 Td (  </article>) Tj
+0 -22 Td (  <article class="pricing-lab__card pricing-lab__card--featured">) Tj
+0 -22 Td (    <span class="pricing-lab__badge">Popular</span>) Tj
+0 -22 Td (    <h4>Pro</h4>) Tj
+0 -22 Td (    <p class="pricing-lab__price">$49<span>/mes</span></p>) Tj
+0 -22 Td (    <ul class="pricing-lab__list">) Tj
+0 -22 Td (      <li>10 proyectos</li>) Tj
+0 -22 Td (      <li>Soporte prioritario</li>) Tj
+0 -22 Td (      <li>Layouts premium</li>) Tj
+0 -22 Td (    </ul>) Tj
+0 -22 Td (    <button type="button">Elegir plan</button>) Tj
+0 -22 Td (  </article>) Tj
+0 -22 Td (</section>) Tj
+ET
+endstream
 endobj
-11 0 obj
-<< /Type /Catalog /Pages 6 0 R >>
+17 0 obj
+<< /Length 979 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 4 - CSS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (.pricing-lab {) Tj
+0 -22 Td (  display: grid;) Tj
+0 -22 Td (  grid-template-columns: repeat\(auto-fit, minmax\(220px, 1fr\)\);) Tj
+0 -22 Td (  gap: 16px;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.pricing-lab__card {) Tj
+0 -22 Td (  padding: 20px;) Tj
+0 -22 Td (  border: 1px solid #cbd5e1;) Tj
+0 -22 Td (  border-radius: 20px;) Tj
+0 -22 Td (  background: #ffffff;) Tj
+0 -22 Td (  box-shadow: 0 18px 40px rgba\(15, 23, 42, 0.12\);) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.pricing-lab__card--featured {) Tj
+0 -22 Td (  border-color: #4f46e5;) Tj
+0 -22 Td (  transform: translateY\(-6px\);) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.pricing-lab__badge {) Tj
+0 -22 Td (  display: inline-flex;) Tj
+0 -22 Td (  padding: 6px 10px;) Tj
+0 -22 Td (  border-radius: 999px;) Tj
+0 -22 Td (  background: #e0e7ff;) Tj
+0 -22 Td (  color: #3730a3;) Tj
+0 -22 Td (}) Tj
+0 -22 Td (.pricing-lab__price { font-size: 2rem; font-weight: 800; }) Tj
+ET
+endstream
+endobj
+18 0 obj
+<< /Length 648 >>
+stream
+BT
+/F1 18 Tf
+50 790 Td
+(Actividad 4 - JS copiar y pegar) Tj
+0 -22 Td () Tj
+0 -22 Td (document.addEventListener\('DOMContentLoaded', \(\) => {) Tj
+0 -22 Td (  const cards = [...document.querySelectorAll\('.pricing-lab__card'\)];) Tj
+0 -22 Td (  cards.forEach\(\(card\) => {) Tj
+0 -22 Td (    const button = card.querySelector\('button'\);) Tj
+0 -22 Td (    button?.addEventListener\('click', \(\) => {) Tj
+0 -22 Td (      cards.forEach\(\(item\) => item.classList.remove\('pricing-lab__card--featured'\)\);) Tj
+0 -22 Td (      card.classList.add\('pricing-lab__card--featured'\);) Tj
+0 -22 Td (    }\);) Tj
+0 -22 Td (  }\);) Tj
+0 -22 Td (}\);) Tj
+ET
+endstream
+endobj
+19 0 obj
+<< /Type /Pages /Kids [20 0 R 21 0 R 22 0 R 23 0 R 24 0 R 25 0 R 26 0 R 27 0 R 28 0 R 29 0 R 30 0 R 31 0 R 32 0 R 33 0 R 34 0 R 35 0 R 36 0 R] /Count 17 >>
+endobj
+20 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+21 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+22 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+endobj
+23 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 5 0 R >>
+endobj
+24 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 6 0 R >>
+endobj
+25 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 7 0 R >>
+endobj
+26 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 8 0 R >>
+endobj
+27 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 9 0 R >>
+endobj
+28 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 10 0 R >>
+endobj
+29 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 11 0 R >>
+endobj
+30 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 12 0 R >>
+endobj
+31 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 13 0 R >>
+endobj
+32 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 14 0 R >>
+endobj
+33 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 15 0 R >>
+endobj
+34 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 16 0 R >>
+endobj
+35 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 17 0 R >>
+endobj
+36 0 obj
+<< /Type /Page /Parent 19 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 18 0 R >>
+endobj
+37 0 obj
+<< /Type /Catalog /Pages 19 0 R >>
 endobj
 xref
-0 12
+0 38
 0000000000 65535 f 
 0000000009 00000 n 
 0000000079 00000 n 
-0000000845 00000 n 
-0000002037 00000 n 
-0000003215 00000 n 
-0000004429 00000 n 
-0000004505 00000 n 
-0000004631 00000 n 
-0000004757 00000 n 
-0000004883 00000 n 
-0000005010 00000 n 
+0000000890 00000 n 
+0000002082 00000 n 
+0000003110 00000 n 
+0000003877 00000 n 
+0000006235 00000 n 
+0000007413 00000 n 
+0000008398 00000 n 
+0000009329 00000 n 
+0000010045 00000 n 
+0000011260 00000 n 
+0000012772 00000 n 
+0000013738 00000 n 
+0000016342 00000 n 
+0000017658 00000 n 
+0000018926 00000 n 
+0000019957 00000 n 
+0000020657 00000 n 
+0000020829 00000 n 
+0000020957 00000 n 
+0000021085 00000 n 
+0000021213 00000 n 
+0000021341 00000 n 
+0000021469 00000 n 
+0000021597 00000 n 
+0000021725 00000 n 
+0000021853 00000 n 
+0000021982 00000 n 
+0000022111 00000 n 
+0000022240 00000 n 
+0000022369 00000 n 
+0000022498 00000 n 
+0000022627 00000 n 
+0000022756 00000 n 
+0000022885 00000 n 
+0000023014 00000 n 
 trailer
-<< /Size 12 /Root 11 0 R >>
+<< /Size 38 /Root 37 0 R >>
 startxref
-5060
+23065
 %%EOF
