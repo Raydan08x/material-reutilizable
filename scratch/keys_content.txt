@@ -1,0 +1,190 @@
+=========================================
+=== KEY 43 ===
+=========================================
+43. ConfirmaciÃ³n visual
+Â¿QuÃ© hace?
+Agrega retroalimentaciÃ³n inmediata despuÃ©s de una acciÃ³n: guardar, eliminar, copiar, iniciar sesiÃ³n o terminar una validaciÃ³n. En este proyecto normalmente se resuelve con toasts, badges de estado o mensajes cortos cerca del componente.
+
+Â¿CuÃ¡ndo usarlo?
+Ãsalo cuando quieras que el usuario sepa de inmediato si una acciÃ³n saliÃ³ bien, si faltÃ³ un dato o si algo cambiÃ³ en la interfaz.
+
+Paso a paso para reciclarlo en otro proyecto
+1. Define quÃ© acciones deben mostrar confirmaciÃ³n: guardar, borrar, copiar o actualizar.
+2. Elige el canal visual: toast flotante, badge temporal, texto de estado o combinaciÃ³n de ellos.
+3. MantÃ©n un mensaje corto y claro, por ejemplo: 
+
+=========================================
+=== KEY 48 ===
+=========================================
+48. Debounce
+Â¿QuÃ© hace?
+Retrasa la ejecuciÃ³n de una funciÃ³n hasta que el usuario deja de escribir o de disparar eventos repetidos durante unos milisegundos. Sirve para bÃºsquedas, filtros, autoguardado, validaciones en tiempo real y renderizados costosos.
+
+Â¿CuÃ¡ndo usarlo?
+Ãsalo cuando un input dispara demasiadas actualizaciones seguidas y quieres evitar renders o cÃ¡lculos innecesarios.
+
+ImplementaciÃ³n conceptual
+function debounce(callback, delay = 300) {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => callback(...args), delay);
+    };
+}
+
+Paso a paso para reciclarlo en otro proyecto
+1. Crea la funciÃ³n debounce en tu archivo de utilidades.
+2. Envuelve con debounce el callback que hoy se ejecuta demasiado seguido.
+3. Ajusta el delay segÃºn la experiencia que quieras: 200 a 350 ms suele funcionar bien para bÃºsquedas.
+4. MantÃ©n la lÃ³gica principal dentro del callback original y deja a debounce solo el control del tiempo.
+5. Prueba escribiendo rÃ¡pido y confirma que la interfaz responde sin saltos.
+
+DÃ³nde se usa mejor
+â¢ Buscadores de catÃ¡logo
+â¢ Filtros de tablas
+â¢ Autoguardado de formularios
+â¢ ValidaciÃ³n mientras se escribe
+
+Errores comunes
+â¢ Aplicarlo a acciones que deben ser instantÃ¡neas, como un botÃ³n principal.
+â¢ Usar un delay demasiado alto y hacer que la interfaz se sienta lenta.
+â¢ Mezclar debounce y lÃ³gica de render sin reiniciar correctamente el timeout.
+
+Paso a paso detallado para construirlo desde cero
+
+1. Identifica en tu proyecto el lugar exacto donde necesitas insertar el componente. Analiza si va en el header, en el main, en un sidebar o en un modal.
+2. Crea el HTML minimo con los ids y clases correctas. Si copias de este banco, asegurate de que no haya ids duplicados en tu pagina.
+3. Copia el CSS que define la apariencia del componente. Presta atencion a las variables CSS que controlan colores, espacios, radios y sombras.
+4. Si el componente usa animaciones o transiciones, verifica que las propiedades transition y animation esten definidas en CSS.
+5. Copia la clase JavaScript modular o la funcion normal. Si usas modulos, asegurate de que script.js tenga type=
+
+=========================================
+=== KEY 53 ===
+=========================================
+53. Tarjeta de presentacion Bootstrap como actividad guiada completa
+
+Que hace?
+Es una actividad guiada para construir una tarjeta de presentacion personal usando la logica de componentes de Bootstrap como referencia, pero adaptada al estilo visual de este proyecto. La card muestra informacion personal en una cara frontal (nombre, rol, descripcion, enlaces) y una cara trasera con tecnologias o habilidades. El cambio de cara se realiza con un efecto flip 3D al hacer clic en los botones. Todo sin recargar la pagina.
+
+Objetivo de la actividad
+Aprender a estructurar una card con jerarquia visual, aplicar conceptos de Bootstrap (container, row, col, card, badge, btn, shadow) en un contexto personalizado, crear un efecto flip 3D con CSS puro y controlar la interaccion con JavaScript. En esta pagina se resolvio con una interfaz que simula el laboratorio Bootstrap pero con estilos propios.
+
+Estructura general del ejercicio
+La interfaz se divide en dos caras dentro de un contenedor 3D. La cara frontal muestra un avatar circular, nombre completo, rol profesional, badges de tecnologias, descripcion breve, enlaces de contacto y un boton para ver tecnologias. La cara trasera muestra una lista de tecnologias dominadas, descripcion del perfil tecnico y un boton para volver al perfil. El contenedor padre aplica perspective y transform-style para lograr el efecto de giro.
+
+HTML minimo que debes copiar
+
+El contenedor principal usa la clase profile-lab para agrupar toda la actividad. El id profileLab es necesario para que JavaScript pueda seleccionar el contenedor si necesita manipularlo.
+
+El contenedor del flip usa la clase profile-lab__flip y el id profileLabFlip. Este es el elemento que rota. Debe tener position: relative para que las dos caras se posicionen absolutamente dentro de el.
+
+La cara frontal usa profile-lab__face y profile-lab__face--front. Dentro tiene: avatar (profile-lab__avatar con iniciales), nombre (h4), rol (profile-lab__role), badges (profile-lab__badges con span), descripcion (p.muted), enlaces (profile-lab__links con a) y boton (showProfileTech con id).
+
+La cara trasera usa profile-lab__face y profile-lab__face--back. Dentro tiene: titulo (h4), grid de tecnologias (profile-lab__tech-grid con span), descripcion (p.muted) y boton (hideProfileTech con id).
+
+Los ids showProfileTech y hideProfileTech son fundamentales porque JavaScript los busca para agregar y quitar la clase is-flipped del contenedor profileLabFlip.
+
+index.html
+<div class=
+
+=========================================
+=== KEY 54 ===
+=========================================
+54. Carrito de compras DOM
+
+Que hace?
+Es una actividad guiada para practicar manipulacion del DOM con JavaScript puro. Simula una mini tienda donde puedes agregar productos, actualizar un contador visual (badge), calcular el precio total acumulado, eliminar items individuales y vaciar el carrito completo. Todo sin recargar la pagina.
+
+Objetivo de la actividad
+Aprender a conectar botones con data-attributes, crear listas dinamicas en el DOM y mantener calculos en tiempo real. En esta pagina se resolvio con una interfaz compacta que sigue el estilo del proyecto.
+
+Estructura general del ejercicio
+La interfaz se divide en tres zonas claras. Una barra superior muestra el nombre de la tienda y el badge del carrito. El grid de productos contiene cards con nombre, precio y boton Agregar. La columna del carrito muestra la lista de items agregados, el total acumulado y un boton para vaciar todo.
+
+HTML minimo que debes copiar
+
+El contenedor principal usa la clase shop-lab para agrupar todo el componente.
+
+La barra superior shop-lab__topbar muestra el titulo Mini tienda y el badge shop-lab__badge con id shopBadge. Este badge es el numero circular que cambia cada vez que agregas un producto. El id es necesario para que JavaScript pueda seleccionarlo y actualizar su texto.
+
+El grid shop-lab__grid usa dos columnas para mostrar los productos. Cada article con clase shop-product representa un producto. Dentro hay un boton con clase shop-add-button y dos atributos data-name y data-price. Esos atributos son fundamentales porque JavaScript los lee para saber que nombre y precio tiene cada producto sin tener que buscar texto dentro del HTML.
+
+La seccion del carrito usa shop-cart. Tiene un encabezado shop-cart__head con el titulo Carrito y el boton Vaciar con id clearShopCart. El mensaje vacio usa shop-cart__empty con id shopEmptyMessage. Este parrafo solo se muestra cuando no hay items. La lista shop-cart__list con id shopCartList es el ul donde JavaScript inserta cada item nuevo. El total usa shop-cart__total con shopCartTotal para actualizar el precio acumulado.
+
+index.html
+<div class=
+
+=========================================
+=== KEY 55 ===
+=========================================
+55. Footer reutilizable como pie de pagina profesional
+
+Que hace?
+Es un componente estructural que se coloca al final de toda pagina web. Proporciona informacion de marca, enlaces de navegacion rapidos, datos de contacto, redes sociales y una barra de copyright. Es fundamental para cualquier sitio profesional porque cierra la jerarquia visual, mejora la navegacion y da credibilidad al proyecto.
+
+Objetivo del componente
+Crear un pie de pagina que funcione como cierre coherente de la interfaz, que sea totalmente responsive y que se pueda adaptar a cualquier proyecto simplemente cambiando textos, enlaces y colores. En esta pagina se resolvio con un estilo glass sutil que combina con el tema del proyecto.
+
+Estructura general del componente
+La interfaz se divide en tres zonas principales. La zona superior usa una grid de tres columnas: marca con descripcion, enlaces de navegacion y datos de contacto. La zona inferior es una barra separada por borde que muestra copyright y una etiqueta informativa. Todo esta contenido dentro de un footer con fondo semitransparente y borde superior.
+
+HTML minimo que debes copiar
+
+El contenedor principal usa la etiqueta semantica footer con clase site-footer y id siteFooter. El id es opcional si no necesitas manipularlo con JavaScript, pero es util para aplicar estilos especificos o animaciones de entrada.
+
+La grid superior usa site-footer__grid con display: grid. En escritorio usa tres columnas: 2fr para la marca y 1fr para cada una de las otras dos columnas. Esto da mas espacio a la descripcion y distribuye equitativamente los enlaces.
+
+La columna de marca site-footer__brand contiene el mismo logo o marca que la navbar. El span brand__mark usa el mismo estilo circular que el header para mantener coherencia visual. El parrafo muted usa la clase existente del proyecto para descripciones secundarias.
+
+La columna de enlaces site-footer__links usa un elemento nav semantico con aria-label para accesibilidad. Dentro hay enlaces a que apuntan a secciones internas con hash o rutas externas. Los enlaces internos se conectan automaticamente con el router de secciones si tu proyecto usa el patron data-section.
+
+La columna de contacto site-footer__contact usa enlaces a para mailto, GitHub y LinkedIn. El atributo target=_blank y rel=noreferrer son obligatorios para enlaces externos.
+
+La barra inferior site-footer__bottom usa dos span: uno para copyright con el simbolo y ano, y otro para una etiqueta informativa como el numero de funcionalidades o version del proyecto.
+
+index.html
+<footer class=
+
+=========================================
+=== KEY 56 ===
+=========================================
+56. Tarjetas de precios Bootstrap como actividad guiada completa
+
+Que hace?
+Es una actividad guiada para construir una seccion de tarifas o precios responsiva usando la logica de componentes de Bootstrap como referencia, pero adaptada al estilo visual de este proyecto. Cuenta con tres tarjetas de plan (Basico, Popular, Equipo) donde se resalta el plan Pro mediante bordes, sombras y degradados distintivos. Todo adaptado para pantallas moviles sin romperse.
+
+Objetivo de la actividad
+Aprender a maquetar multiples tarjetas alineadas en rejilla responsiva (Grid), implementar badges de categoria y botones de accion, diferenciar visualmente un elemento destacado (featured card) y utilizar variables de CSS para que el diseno se adapte a temas claro y oscuro de manera limpia.
+
+Estructura general del ejercicio
+El contenedor principal con clase pricing-lab agrupa las tarjetas. Cada tarjeta es un article con clase pricing-lab__card. La tarjeta destacada tiene la clase adicional pricing-lab__card--featured. Cada tarjeta contiene un badge pricing-lab__badge, un titulo de plan (h4), un precio pricing-lab__price y una lista de caracteristicas pricing-lab__list.
+
+HTML minimo que debes copiar
+index.html
+<div class=
+
+=========================================
+=== KEY 57 ===
+=========================================
+57. Barra de desplazamiento personalizada
+Aspecto
+Explicacion
+Que hace
+Aplica estilos personalizados y modernos a las barras de desplazamiento (scrollbars) de la pagina o de contenedores especificos. Reemplaza la barra nativa del sistema operativo por una barra mas delgada, elegante y con transiciones.
+Donde se usa en industria
+Paneles de control, sidebars de navegacion, bloques de codigo, tablas con scroll horizontal, areas de texto largas, chats y dashboards premium.
+Como se personaliza
+Ajusta el width (ancho), los border-radius (redondeado), el background-color del track (pista) y el thumb (deslizador). Puedes usar degradados y efectos hover.
+Mapa rapido de reciclaje
+1
+Ubica el contenedor con desbordamiento (overflow: auto o scroll) que quieres estilizar.
+2
+Copia los selectores CSS especificos de scrollbar.
+3
+Ajusta las variables de color y el ancho segun el diseno de tu interfaz.
+4
+Prueba tanto en navegadores basados en Chromium (Chrome, Edge, Opera, Safari) como en Firefox.
+HTML minimo que debes copiar
+index.html
+<div class=
+

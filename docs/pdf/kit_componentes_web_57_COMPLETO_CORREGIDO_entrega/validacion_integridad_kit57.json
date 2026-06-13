@@ -1,0 +1,401 @@
+[
+  {
+    "id": 1,
+    "name": "Navbar fija glass",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 2,
+    "name": "Sidebar ocultable",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 3,
+    "name": "Overlay para cerrar menú lateral",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 4,
+    "name": "Submenús desplegables dentro del sidebar",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 5,
+    "name": "Cambio de secciones del body con data-section",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 6,
+    "name": "Link activo en navbar y sidebar",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 7,
+    "name": "Dropdown superior",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 8,
+    "name": "Tema claro/oscuro",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 9,
+    "name": "Guardar tema en localStorage",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 10,
+    "name": "Barra de progreso de scroll",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 11,
+    "name": "Botón volver arriba",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 12,
+    "name": "Animación reveal on scroll",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 13,
+    "name": "Contador animado",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 14,
+    "name": "Login demo",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 15,
+    "name": "Logout demo",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 16,
+    "name": "Recordar usuario",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 17,
+    "name": "Mostrar/ocultar contraseña",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 18,
+    "name": "Validación de formulario",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 19,
+    "name": "Mensajes de error por campo",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 20,
+    "name": "Contador de caracteres",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 21,
+    "name": "Range slider con valor visible",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 22,
+    "name": "Información de archivo seleccionado",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 23,
+    "name": "Autoguardado de borrador",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 24,
+    "name": "Stepper de pasos",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 25,
+    "name": "Skeleton loader",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 26,
+    "name": "Select personalizado editable",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 27,
+    "name": "Tabs",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 28,
+    "name": "Acordeón",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 29,
+    "name": "Modal",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 30,
+    "name": "Toast notifications",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 31,
+    "name": "Carrusel",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 32,
+    "name": "Tooltip",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 33,
+    "name": "Badge de notificación",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 34,
+    "name": "Copiar al portapapeles",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 35,
+    "name": "Cards dinámicas desde array",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 36,
+    "name": "Búsqueda con debounce",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 37,
+    "name": "Filtros con chips",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 38,
+    "name": "Ordenamiento de cards",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 39,
+    "name": "Paginación de cards",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 40,
+    "name": "Tabla ordenable",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 41,
+    "name": "Filtro de tabla",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 42,
+    "name": "Notas con localStorage",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 43,
+    "name": "Exportar notas a JSON",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 44,
+    "name": "Lista de tareas",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 45,
+    "name": "Drag and drop en tareas",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 46,
+    "name": "Borrar tareas",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 47,
+    "name": "Conversor con botones C/F/K",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 48,
+    "name": "Cambio de fondo según unidad",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 49,
+    "name": "Cálculo dinámico de temperatura",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 50,
+    "name": "Imprimir página",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 51,
+    "name": "Reset visual de demo",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 52,
+    "name": "Helpers reutilizables para DOM, storage y debounce",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 53,
+    "name": "Tarjeta de presentación Bootstrap como actividad guiada",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 54,
+    "name": "Carrito de compras DOM como actividad guiada",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 55,
+    "name": "Footer reutilizable como pie de página profesional",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 56,
+    "name": "Tarjetas de precios Bootstrap como actividad guiada completa",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  },
+  {
+    "id": 57,
+    "name": "Barra de desplazamiento personalizada",
+    "css_balanced": true,
+    "js_balanced": true,
+    "html_nonempty": true
+  }
+]

@@ -3075,7 +3075,7 @@ export class ImplementationGuide {
         this.searchQuery = "";
         this.selectedId = null;
         this.pdfGroups = [
-            { label: "Guía de Reciclaje Completa", file: "docs/pdf/guia_reciclaje_completa_2026.pdf" },
+            { label: "Kit Completo 57 Funcionalidades (Guía Oficial)", file: "docs/pdf/kit_componentes_web_57_COMPLETO_CORREGIDO_entrega/kit_componentes_web_57_COMPLETO_CORREGIDO.pdf" },
             { label: "Actividades Guiadas", file: "docs/pdf/actividades_guiadas_componentes_web_2026.pdf" }
         ];
         if (this.container && this.detailPanel) {
