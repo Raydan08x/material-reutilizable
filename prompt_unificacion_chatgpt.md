@@ -11,7 +11,7 @@ Debes subir los siguientes **4 archivos PDF** que se encuentran en tu carpeta `d
 1. **`guia_reciclaje_componentes_web_01_10_actualizada_2026.pdf`** (Bloque 1: Funcionalidades 1 a 10)
 2. **`guia_reciclaje_componentes_web_10_25_actualizada_2026.pdf`** (Bloque 2: Funcionalidades 11 a 25)
 3. **`guia_reciclaje_componentes_web_26_40_actualizada_2026.pdf`** (Bloque 3: Funcionalidades 26 a 40)
-4. **`guia_reciclaje_componentes_web_41_50_orden_correcto.pdf`** (Bloque 4: Funcionalidades 41 a 57)
+4. **`guia_reciclaje_componentes_web_41_50_orden_correcto.pdf`** (Bloque 4: Funcionalidades 41 a 50)
 5. **`guia_reciclaje_componentes_web_41_57_actualizada_2026.pdf`** (Bloque 4: Funcionalidades 41 a 57)
 este ultimo tiene errores.
 
@@ -79,7 +79,7 @@ Generar un único archivo unificado que sirva como una guía de aprendizaje paso
 
 1. **Numeración Absoluta y Continua**:
    - Asegúrate de que los ejercicios se numeren consecutivamente del 1 al 57 sin saltarse números ni reiniciar la numeración en ningún bloque.
-   - En el Bloque 4, asegúrate de que el orden sea secuencial hasta la barra de desplazamiento en el ejercicio 57.
+   - En el Bloque 5, asegúrate de que el orden sea secuencial hasta la barra de desplazamiento en el ejercicio 57.
 
 2. **Eliminación de Duplicados e Inconsistencias**:
    - Revisa que ningún ejercicio se repita en diferentes secciones del documento. Cada funcionalidad debe aparecer una sola vez.
